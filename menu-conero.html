@@ -1,0 +1,3563 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menù Mezza Pensione — Borgo Conero (Per Persona)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sea-deep: #286098;      /* Blu Azzurro ufficiale (dal logo) */
+  --sea: #3A78B0;            /* Blu Azzurro schiarito per hover/link */
+  --sea-light: #E8EEF4;      /* Blu molto chiaro per sfondi soft */
+  --sand: #F4F1EC;           /* Tortora chiarissimo per sfondi */
+  --sand-mid: #B0A8A0;       /* Tortora ufficiale (dal logo) */
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #8a8a8a;
+  --paper: #fdfbf7;
+  --line: #d9d3c7;
+  --accent: #B0A8A0;         /* Tortora come accento brand */
+  --accent-warm: #8C6E4A;    /* Tortora scuro per dettagli caldi */
+  --error: #a13c3c;
+  --success: #3a7a4e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
+
+/* --- LAYOUT CONTAINERS --- */
+.app { max-width: 720px; margin: 0 auto; min-height: 100vh; background: var(--paper); }
+.container { padding: 24px 20px; }
+
+/* --- HEADER --- */
+.brand-header {
+  background: var(--sea-deep);
+  color: var(--paper);
+  padding: 28px 20px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.brand-header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+.brand-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+.brand-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  display: block;
+}
+.brand-text {
+  flex: 1;
+  min-width: 0;
+}
+.brand-mark {
+  font-family: 'Fraunces', serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 6px;
+  padding-right: 60px; /* Lascia spazio al toggle lingua */
+}
+.brand-title {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.brand-sub {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 4px;
+}
+
+/* --- LANG TOGGLE --- */
+.lang-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 2px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--paper);
+  padding: 5px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+.lang-toggle button.active {
+  background: var(--paper);
+  color: var(--sea-deep);
+  opacity: 1;
+}
+
+/* --- DATE PILL --- */
+.date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sand);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.date-pill .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+}
+
+/* --- SECTION HEADINGS --- */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 28px 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.section-head .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--accent-warm);
+  letter-spacing: 0.05em;
+}
+.section-head h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--sea-deep);
+}
+.section-head .en {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-left: auto;
+}
+
+/* --- FORM --- */
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--paper);
+  transition: border-color 0.15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--sea);
+  box-shadow: 0 0 0 3px rgba(26,109,142,0.1);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* --- DISH CARD --- */
+.dish {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  padding: 14px 4px;
+  border-bottom: 1px dashed var(--line);
+  align-items: center;
+}
+.dish:last-child { border-bottom: none; }
+.dish-info { min-width: 0; }
+.dish-name {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+.dish-name .allergens {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--accent-warm);
+  font-weight: 500;
+  margin-left: 4px;
+  letter-spacing: 0.03em;
+}
+.dish-desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* --- QUANTITY STEPPER --- */
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--sand);
+  border-radius: 100px;
+  padding: 3px;
+}
+.qty button {
+  width: 32px; height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: var(--sea-deep);
+  cursor: pointer;
+  border-radius: 50%;
+  font-weight: 600;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qty button:hover { background: rgba(26,109,142,0.1); }
+.qty button:disabled { opacity: 0.3; cursor: not-allowed; }
+.qty .value {
+  min-width: 22px;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.qty.active { background: var(--sea-light); }
+.qty.active .value { color: var(--sea-deep); }
+
+/* --- BUTTONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--sea-deep);
+  color: var(--paper);
+  width: 100%;
+}
+.btn-primary:hover { background: var(--sea); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-ghost {
+  background: transparent;
+  color: var(--sea-deep);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { background: var(--sand); }
+
+/* --- INFO BOXES --- */
+.info-box {
+  background: var(--sea-light);
+  border-left: 3px solid var(--sea);
+  padding: 14px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 20px 0;
+  line-height: 1.5;
+}
+.info-box strong { color: var(--sea-deep); }
+
+.allergen-legend {
+  background: var(--sand);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+.allergen-legend strong { color: var(--ink); font-size: 11px; letter-spacing: 0.05em; }
+
+/* --- SUCCESS VIEW --- */
+.success-view {
+  text-align: center;
+  padding: 60px 20px;
+}
+.success-icon {
+  width: 72px; height: 72px;
+  background: var(--sea-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--sea-deep);
+}
+.success-view h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  color: var(--sea-deep);
+  margin-bottom: 10px;
+}
+.success-view p { color: var(--ink-soft); margin-bottom: 24px; }
+
+/* --- ADMIN --- */
+.admin-nav {
+  display: flex;
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+  gap: 2px;
+}
+.admin-nav button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.admin-nav button.active {
+  background: var(--paper);
+  color: var(--sea-deep);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.day-tabs {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.day-tab {
+  padding: 10px 4px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.day-tab.active {
+  background: var(--sea-deep);
+  color: var(--paper);
+  border-color: var(--sea-deep);
+}
+.day-tab .num {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.dish-editor {
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+.dish-editor .remove {
+  background: transparent;
+  border: none;
+  color: var(--error);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.dish-editor .remove:hover { background: rgba(161,60,60,0.1); }
+
+.add-dish-btn {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px dashed var(--line);
+  background: transparent;
+  border-radius: 8px;
+  color: var(--ink-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.add-dish-btn:hover { border-color: var(--sea); color: var(--sea-deep); background: var(--sea-light); }
+
+.category-block {
+  margin-bottom: 24px;
+}
+.category-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--sea-deep);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.category-title::before {
+  content: '';
+  width: 4px; height: 16px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* --- DASHBOARD --- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--sand);
+  padding: 16px;
+  border-radius: 10px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+.stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--sea-deep);
+  margin-top: 4px;
+}
+
+.order-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+.order-family {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.order-meta {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 13px;
+}
+.order-item .name { color: var(--ink-soft); }
+.order-item .qty-badge {
+  background: var(--sea-light);
+  color: var(--sea-deep);
+  padding: 1px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.agg-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.agg-row:last-child { border-bottom: none; }
+.agg-bar {
+  height: 6px;
+  background: var(--sand);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.agg-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sea), var(--accent));
+  border-radius: 3px;
+}
+.agg-qty {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--sea-deep);
+  min-width: 40px;
+  text-align: right;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--ink-muted);
+}
+.empty-state .icon { font-size: 32px; margin-bottom: 10px; opacity: 0.5; }
+
+/* --- LOGIN --- */
+.login-view {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--sea-deep);
+}
+.login-card {
+  background: var(--paper);
+  padding: 36px 28px;
+  border-radius: 14px;
+  max-width: 360px;
+  width: 100%;
+}
+.login-card h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  color: var(--sea-deep);
+  margin-bottom: 4px;
+}
+.login-card p {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin-bottom: 20px;
+}
+
+/* --- MODAL / TOAST --- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 1000;
+  transition: transform 0.3s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+.footer-link {
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+.footer-link a { color: var(--sea); text-decoration: none; }
+
+.hidden { display: none !important; }
+
+/* Dialog modale di conferma */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 61, 82, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-out;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.modal {
+  background: var(--paper);
+  border-radius: 16px;
+  max-width: 420px;
+  width: 100%;
+  padding: 28px 24px 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal .icon-wrap {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--sea-light) 0%, rgba(176,168,160,0.15) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--accent);
+}
+.modal h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--sea-deep);
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.modal p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.modal .missing-list {
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.modal .missing-list div {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  color: var(--ink-soft);
+}
+.modal .missing-list .ok { color: var(--success); }
+.modal .missing-list .short { color: var(--accent); font-weight: 600; }
+.modal .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.modal .actions .btn {
+  width: 100%;
+}
+
+/* Sottosezione (es. Primi Bambini dentro Menù Bambini) */
+.subsection-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 18px 0 6px;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+}
+.subsection-head h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--sea-deep);
+}
+.subsection-head .en {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-left: auto;
+}
+
+/* Pannello intolleranze */
+.allergy-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: transparent;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink-soft);
+  width: 100%;
+  text-align: left;
+  transition: all 0.15s;
+  margin-bottom: 14px;
+}
+.allergy-trigger:hover { border-color: var(--sea); color: var(--sea-deep); background: var(--sea-light); }
+.allergy-trigger .chev { transition: transform 0.2s; font-size: 16px; color: var(--sea); }
+.allergy-trigger.open .chev { transform: rotate(45deg); }
+.allergy-trigger .label-wrap { display: flex; align-items: center; gap: 10px; }
+.allergy-trigger .count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 100px;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.allergy-panel {
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.allergy-panel .panel-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+.allergen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.allergen-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all 0.15s;
+  user-select: none;
+}
+.allergen-chip:hover { border-color: var(--sea); }
+.allergen-chip input { display: none; }
+.allergen-chip .box {
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.allergen-chip.active { background: rgba(176,168,160,0.08); border-color: var(--accent); color: var(--sea-deep); font-weight: 500; }
+.allergen-chip.active .box { background: var(--accent); border-color: var(--accent); }
+.allergen-chip.active .box::after { content: '✓'; color: var(--paper); font-size: 11px; font-weight: 700; }
+.allergen-chip .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--accent-warm);
+  margin-left: auto;
+}
+
+.filter-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--sea-light);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--sea-deep);
+}
+.switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background: var(--line);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 18px; height: 18px;
+  background: var(--paper);
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.switch.on { background: var(--sea); }
+.switch.on::after { transform: translateX(18px); }
+
+/* Stati piatti in base a intolleranze */
+.dish.safe .safe-badge {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--success);
+  background: rgba(58, 122, 78, 0.1);
+  padding: 2px 8px;
+  border-radius: 100px;
+  vertical-align: middle;
+}
+.dish.conflict { opacity: 0.55; }
+.dish .conflict-warn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--error);
+  background: rgba(161, 60, 60, 0.08);
+  padding: 2px 8px;
+  border-radius: 100px;
+  margin-top: 4px;
+}
+
+.notes-field textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+  line-height: 1.5;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+}
+.notes-field textarea:focus {
+  outline: none;
+  border-color: var(--sea);
+  box-shadow: 0 0 0 3px rgba(26,109,142,0.1);
+}
+
+/* Allergen picker button (admin) */
+.allergen-picker-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  text-align: left;
+  transition: all 0.15s;
+}
+.allergen-picker-btn:hover {
+  border-color: var(--sea);
+  background: var(--sea-light);
+}
+.allergen-picker-btn .picker-label {
+  flex: 1;
+  line-height: 1.4;
+}
+.allergen-picker-btn .picker-edit {
+  font-size: 11px;
+  color: var(--sea-deep);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+
+/* Alert intolleranze in dashboard admin */
+.intolerance-alert {
+  background: linear-gradient(135deg, rgba(161,60,60,0.08) 0%, rgba(176,168,160,0.08) 100%);
+  border-left: 3px solid var(--error);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.intolerance-alert .alert-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--error);
+  margin-bottom: 3px;
+}
+.intolerance-alert .alert-allergens {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.intolerance-alert .alert-notes {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(161,60,60,0.2);
+}
+
+/* --- TOGGLE INTOLLERANZE + ADD MANUALE --- */
+.intol-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--sand);
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.segmented {
+  display: flex;
+  gap: 2px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.seg-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.02em;
+}
+.seg-btn:hover { color: var(--ink); }
+.seg-btn.active {
+  background: var(--sea-deep);
+  color: var(--paper);
+}
+
+.add-guests-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.add-guest-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 11px 14px;
+  background: transparent;
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.add-guest-btn:hover:not(:disabled) {
+  border-color: var(--sea);
+  color: var(--sea-deep);
+  background: var(--sea-light);
+}
+.add-guest-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.add-guest-btn .plus {
+  font-size: 16px;
+  font-weight: 600;
+}
+.add-guest-btn.adult .plus { color: var(--sea); }
+.add-guest-btn.child .plus { color: var(--accent); }
+.add-guest-btn .count {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.guest-row .remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--ink-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  line-height: 1;
+}
+.guest-row .remove-btn:hover {
+  background: rgba(161,60,60,0.1);
+  color: var(--error);
+}
+
+/* --- LISTA COMMENSALI (versione per-persona) --- */
+.guests-list {
+  background: var(--sand);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 14px;
+}
+.guest-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--paper);
+  margin-bottom: 3px;
+  transition: all 0.15s;
+}
+.guest-row:last-child { margin-bottom: 0; }
+.guest-row:hover { box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.guest-row.has-intolerance {
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(90deg, rgba(176,168,160,0.04) 0%, var(--paper) 30%);
+}
+.guest-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--paper);
+  flex-shrink: 0;
+}
+.guest-avatar.adult {
+  background: linear-gradient(135deg, var(--sea-deep), var(--sea));
+}
+.guest-avatar.child {
+  background: linear-gradient(135deg, var(--accent-warm), var(--accent));
+}
+.guest-info {
+  flex: 1;
+  min-width: 0;
+}
+.guest-name {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.guest-intolerance-summary {
+  font-size: 11px;
+  color: var(--accent);
+  margin-top: 2px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.guest-intolerance-summary.empty {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.guest-edit-btn {
+  background: var(--sand);
+  border: none;
+  padding: 7px 12px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sea-deep);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.guest-edit-btn:hover {
+  background: var(--sea-light);
+}
+.guest-edit-btn.active {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* Modale edit commensale */
+.guest-modal {
+  background: var(--paper);
+  border-radius: 16px;
+  max-width: 460px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.guest-modal-head {
+  padding: 22px 24px 14px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 2;
+}
+.guest-modal-head .label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.guest-modal-head h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--sea-deep);
+  font-weight: 500;
+}
+.guest-modal-head p {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+.guest-modal-body {
+  padding: 18px 24px;
+}
+.guest-modal-foot {
+  padding: 14px 24px 20px;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  position: sticky;
+  bottom: 0;
+  background: var(--paper);
+}
+.guest-modal-foot .btn { flex: 1; }
+
+/* Card "direct-select" per Pizze / Pizze Baby */
+.direct-card {
+  background: linear-gradient(135deg, var(--sea-light) 0%, rgba(176,168,160,0.08) 100%);
+  border: 1px solid rgba(26,109,142,0.2);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin-top: 4px;
+}
+.direct-card .direct-info .title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--sea-deep);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.direct-card .direct-info .subtitle {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-top: 3px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .brand-title { font-size: 22px; }
+  .section-head h2 { font-size: 20px; }
+  .day-tab .num { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN VIEW ============ -->
+<div id="view-login" class="login-view hidden">
+  <div class="login-card">
+    <div style="font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Area Gestione</div>
+    <h1 class="display">Accesso Ristorante</h1>
+    <p>Inserisci email e password per accedere al pannello di gestione menù e ordinazioni.</p>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="admin-email" placeholder="nome@esempio.com" autocomplete="email" onkeypress="if(event.key==='Enter') document.getElementById('admin-password').focus()">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="admin-password" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter') login()">
+    </div>
+    <button class="btn btn-primary" id="login-btn" onclick="login()">Entra</button>
+    <div style="margin-top: 20px; text-align: center;">
+      <a href="#" onclick="showView('guest'); return false;" style="font-size: 12px; color: var(--ink-muted);">← Torna al menù ospiti</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GUEST VIEW ============ -->
+<div id="view-guest" class="app hidden">
+  <header class="brand-header">
+    <div class="lang-toggle">
+      <button id="lang-it" class="active" onclick="setLang('it')">IT</button>
+      <button id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <div class="brand-inner">
+      <img src="data:image/png;base64,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" alt="Conero Azzurro" class="brand-logo">
+      <div class="brand-text">
+        <div class="brand-mark" data-it="Villaggio Conero Azzurro" data-en="Villaggio Conero Azzurro">Villaggio Conero Azzurro</div>
+        <div class="brand-title display" data-it="Borgo Conero — Menù di domani" data-en="Borgo Conero — Tomorrow's Menu">Borgo Conero — Menù di domani</div>
+        <div class="brand-sub" data-it="Mezza Pensione" data-en="Half Board">Mezza Pensione</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="date-pill"><span class="dot"></span><span id="guest-date-display">—</span></div>
+
+    <!-- Form famiglia -->
+    <div class="field">
+      <label data-it="Cognome famiglia" data-en="Family name">Cognome famiglia</label>
+      <input type="text" id="guest-family" placeholder="Rossi">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label data-it="N° adulti" data-en="Adults">N° adulti</label>
+        <input type="number" id="guest-adults" min="0" max="20" placeholder="2" oninput="onPeopleCountChange()">
+      </div>
+      <div class="field">
+        <label data-it="N° bambini e neonati" data-en="Children & infants">N° bambini e neonati</label>
+        <input type="number" id="guest-children" min="0" max="20" placeholder="2" oninput="onPeopleCountChange()">
+      </div>
+    </div>
+
+    <!-- Toggle intolleranze -->
+    <div class="intol-toggle-row" id="intol-toggle-row">
+      <span data-it="Ci sono intolleranze nel vostro nucleo?" data-en="Any intolerances in your group?">Ci sono intolleranze nel vostro nucleo?</span>
+      <div class="segmented">
+        <button type="button" class="seg-btn active" id="seg-no" onclick="setHasIntolerances(false)" data-it="No" data-en="No">No</button>
+        <button type="button" class="seg-btn" id="seg-yes" onclick="setHasIntolerances(true)" data-it="Sì" data-en="Yes">Sì</button>
+      </div>
+    </div>
+
+    <!-- Lista commensali con intolleranze per persona (solo se hasIntolerances = true) -->
+    <div id="guests-list-wrap" class="hidden">
+      <div class="guests-list" id="guests-list"></div>
+      <div class="add-guests-row" id="add-guests-row"></div>
+    </div>
+
+    <!-- Filtro piatti adatti (appare solo se ci sono intolleranze) -->
+    <div id="filter-toggle-row" class="filter-toggle-row hidden">
+      <span data-it="Mostra solo piatti adatti" data-en="Show only safe dishes">Mostra solo piatti adatti</span>
+      <div class="switch" id="filter-switch" onclick="toggleFilterSafe()"></div>
+    </div>
+
+    <div class="info-box" id="guest-info-box">
+      <strong data-it="Come compilare:" data-en="How to order:">Come compilare:</strong>
+      <span id="guest-info-text"> ogni persona può scegliere 2 piatti — un primo e un secondo.</span>
+    </div>
+
+    <!-- Sezioni piatti (renderizzate dinamicamente) -->
+    <div id="menu-sections"></div>
+
+    <!-- Legenda allergeni (popolata dinamicamente dai piatti del giorno) -->
+    <div id="allergen-legend" class="allergen-legend"></div>
+
+    <div id="submit-wrap" style="margin-top: 24px;">
+      <button class="btn btn-primary" onclick="submitOrder()" id="submit-btn">
+        <span data-it="Invia ordinazione" data-en="Submit order">Invia ordinazione</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ SUCCESS VIEW ============ -->
+<div id="view-success" class="app hidden">
+  <header class="brand-header">
+    <div class="brand-mark">Villaggio Conero Azzurro</div>
+    <div class="brand-title display" data-it="Grazie!" data-en="Thank you!">Grazie!</div>
+  </header>
+  <div class="success-view">
+    <div class="success-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h2 class="display" data-it="Ordinazione inviata" data-en="Order submitted">Ordinazione inviata</h2>
+    <p data-it="L'abbiamo ricevuta correttamente. Ci vediamo a cena!" data-en="We received it correctly. See you at dinner!">L'abbiamo ricevuta correttamente. Ci vediamo a cena!</p>
+    <p style="font-size: 12px; margin-bottom: 20px;" data-it="Cortesemente presentarsi tra le 19:30 e le 20:15." data-en="Please present yourself between 7:30 PM and 8:15 PM.">Cortesemente presentarsi tra le 19:30 e le 20:15.</p>
+    <button class="btn btn-ghost" onclick="resetGuestForm()" data-it="Nuova ordinazione" data-en="New order">Nuova ordinazione</button>
+  </div>
+</div>
+
+<!-- ============ ADMIN VIEW ============ -->
+<div id="view-admin" class="app hidden">
+  <header class="brand-header">
+    <div style="position: absolute; top: 20px; right: 20px;">
+      <button onclick="logout()" style="background: rgba(255,255,255,0.15); border: none; color: var(--paper); padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; cursor: pointer;">ESCI</button>
+    </div>
+    <div class="brand-mark">Pannello Gestione</div>
+    <div class="brand-title display">Borgo Conero</div>
+    <div class="brand-sub">Menù Mezza Pensione</div>
+  </header>
+
+  <div class="container">
+    <nav class="admin-nav">
+      <button id="tab-menu" class="active" onclick="showAdminTab('menu')">Menù settimana</button>
+      <button id="tab-orders" onclick="showAdminTab('orders')">Ordinazioni</button>
+      <button id="tab-history" onclick="showAdminTab('history')">Storico</button>
+    </nav>
+
+    <!-- TAB: Menù settimana -->
+    <div id="admin-menu" class="admin-tab">
+      <p style="font-size: 13px; color: var(--ink-muted); margin-bottom: 16px;">Seleziona il giorno e componi il menù. Le modifiche vengono salvate automaticamente.</p>
+      
+      <div class="day-tabs" id="day-tabs"></div>
+      
+      <div id="day-editor"></div>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn btn-ghost" style="flex: 1;" onclick="copyFromPreviousWeek()">Copia da sett. precedente</button>
+        <button class="btn btn-ghost" style="flex: 1;" onclick="exportQR()">Genera QR Code</button>
+      </div>
+    </div>
+
+    <!-- TAB: Ordinazioni del giorno -->
+    <div id="admin-orders" class="admin-tab hidden">
+      <div style="display: flex; gap: 10px; margin-bottom: 16px; align-items: center;">
+        <input type="date" id="orders-date" onchange="renderOrders()" style="flex: 1; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px;">
+        <button class="btn btn-ghost" onclick="printOrders()" style="padding: 10px 16px;">Stampa</button>
+      </div>
+
+      <div class="stat-grid" id="stats-grid"></div>
+
+      <div class="section-head"><span class="num">I.</span><h2 class="display">Totali cucina</h2></div>
+      <div id="aggregates-list"></div>
+
+      <div class="section-head" style="margin-top: 28px;"><span class="num">II.</span><h2 class="display">Per famiglia</h2></div>
+      <div id="orders-list"></div>
+    </div>
+
+    <!-- TAB: Storico -->
+    <div id="admin-history" class="admin-tab hidden">
+      <p style="font-size: 13px; color: var(--ink-muted); margin-bottom: 16px;">Totale piatti ordinati nel periodo selezionato.</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+        <div class="field" style="margin: 0;">
+          <label>Da</label>
+          <input type="date" id="history-from" onchange="renderHistory()">
+        </div>
+        <div class="field" style="margin: 0;">
+          <label>A</label>
+          <input type="date" id="history-to" onchange="renderHistory()">
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap;">
+        <button class="btn btn-ghost" onclick="setHistoryPreset(7)" style="padding: 6px 12px; font-size: 12px;">Ultimi 7 giorni</button>
+        <button class="btn btn-ghost" onclick="setHistoryPreset(30)" style="padding: 6px 12px; font-size: 12px;">Ultimi 30 giorni</button>
+        <button class="btn btn-ghost" onclick="setHistoryPreset('season')" style="padding: 6px 12px; font-size: 12px;">Stagione</button>
+      </div>
+      
+      <div id="history-summary"></div>
+      <div id="history-list"></div>
+      
+      <div style="margin-top: 20px;">
+        <button class="btn btn-ghost" onclick="exportAllData()" style="width: 100%;">Esporta tutti i dati (JSON)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<!-- Modal conferma submit con piatti mancanti -->
+<div id="confirm-modal" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="icon-wrap">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+    </div>
+    <h3 id="confirm-title">Sei sicuro di aver compilato tutti i piatti?</h3>
+    <p id="confirm-subtitle">Abbiamo notato che mancano alcune portate rispetto al numero di persone indicato.</p>
+    <div class="missing-list" id="confirm-details"></div>
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeConfirmModal()">← Aggiungi portate mancanti</button>
+      <button class="btn btn-primary" onclick="forceSubmit()">Invia comunque</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal intolleranze per singola persona -->
+<div id="person-modal" class="modal-backdrop hidden">
+  <div class="guest-modal">
+    <div class="guest-modal-head">
+      <div class="label" id="person-modal-label">Commensale</div>
+      <h3 id="person-modal-title">Adulto 1</h3>
+      <p data-it="Seleziona gli allergeni da evitare per questa persona" data-en="Select allergens to avoid for this person">Seleziona gli allergeni da evitare per questa persona</p>
+    </div>
+    <div class="guest-modal-body">
+      <div class="allergen-grid" id="person-allergen-grid"></div>
+      <div class="panel-title" style="margin-top: 16px;" data-it="Note per la cucina (opzionale)" data-en="Notes for the kitchen (optional)">Note per la cucina (opzionale)</div>
+      <div class="notes-field">
+        <textarea id="person-notes" rows="2" placeholder="Es. dieta vegana, allergia ai funghi…"></textarea>
+      </div>
+    </div>
+    <div class="guest-modal-foot">
+      <button class="btn btn-ghost" onclick="clearPersonIntolerances()" data-it="Rimuovi tutto" data-en="Clear all">Rimuovi tutto</button>
+      <button class="btn btn-primary" onclick="savePersonIntolerances()" data-it="Salva" data-en="Save">Salva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal selezione allergeni per piatto (admin) -->
+<div id="admin-allergen-modal" class="modal-backdrop hidden">
+  <div class="guest-modal">
+    <div class="guest-modal-head">
+      <div class="label">Allergeni del piatto</div>
+      <h3 id="admin-allergen-modal-title">Seleziona allergeni</h3>
+      <p>Seleziona tutti gli allergeni presenti in questo piatto. L'ospite li vedrà accanto al nome.</p>
+    </div>
+    <div class="guest-modal-body">
+      <div class="allergen-grid" id="admin-allergen-grid"></div>
+    </div>
+    <div class="guest-modal-foot">
+      <button class="btn btn-ghost" onclick="clearAdminAllergens()">Rimuovi tutto</button>
+      <button class="btn btn-primary" onclick="saveAdminAllergens()">Salva</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ========================================================================
+// FIREBASE SETUP
+// ========================================================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { 
+  getFirestore, collection, doc, setDoc, deleteDoc, 
+  onSnapshot, addDoc, query, where, getDocs, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { 
+  getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA1HF4PmOgP2U2efcLDug87y35FvnWZUzI",
+  authDomain: "conero-azzurro-menu.firebaseapp.com",
+  projectId: "conero-azzurro-menu",
+  storageBucket: "conero-azzurro-menu.firebasestorage.app",
+  messagingSenderId: "616428568041",
+  appId: "1:616428568041:web:d985f15dca2e4b02aa9f78"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const fbDb = getFirestore(fbApp);
+const fbAuth = getAuth(fbApp);
+
+// ========================================================================
+// STATO E STORAGE (cache locale popolata da Firestore sync)
+// ========================================================================
+const DB = {
+  menus: {},     // chiave = dateKey (YYYY-MM-DD), valore = oggetto menu
+  orders: [],    // array di ordini
+  isAdmin: false,
+  ready: false,  // diventa true dopo il primo sync
+  _listeners: [] // callback invocate quando i dati cambiano
+};
+
+// Registra una callback che viene chiamata a ogni aggiornamento dati
+DB.onUpdate = function(cb) {
+  this._listeners.push(cb);
+};
+DB._notifyListeners = function() {
+  this._listeners.forEach(cb => { try { cb(); } catch(e) { console.error(e); } });
+};
+
+// --- SINCRONIZZAZIONE MENÙ (tutti possono leggere) ---
+// Sincronizza tutti i documenti della collezione `menus`
+onSnapshot(collection(fbDb, 'menus'), (snap) => {
+  const newMenus = {};
+  snap.forEach(doc => {
+    const data = doc.data();
+    // Ricostruisco Set per le intolleranze guest non serve qui perchè i menù non ne hanno
+    newMenus[doc.id] = data;
+  });
+  DB.menus = newMenus;
+  DB.ready = true;
+  DB._notifyListeners();
+}, (err) => {
+  console.error('Menu sync error:', err);
+});
+
+// --- SINCRONIZZAZIONE ORDINI (solo admin autenticati) ---
+// Attivata dopo il login admin in onAuthStateChanged più sotto
+let unsubscribeOrders = null;
+function subscribeOrders() {
+  if (unsubscribeOrders) return; // già attivo
+  unsubscribeOrders = onSnapshot(collection(fbDb, 'orders'), (snap) => {
+    const arr = [];
+    snap.forEach(doc => {
+      arr.push({ _id: doc.id, ...doc.data() });
+    });
+    DB.orders = arr;
+    DB._notifyListeners();
+  }, (err) => {
+    console.error('Orders sync error:', err);
+  });
+}
+function unsubscribeFromOrders() {
+  if (unsubscribeOrders) {
+    unsubscribeOrders();
+    unsubscribeOrders = null;
+    DB.orders = [];
+    DB._notifyListeners();
+  }
+}
+
+// --- API per salvare/leggere dati ---
+// Salva un menù per una data (solo admin)
+DB.saveMenu = async function(dateKey, menuData) {
+  try {
+    await setDoc(doc(fbDb, 'menus', dateKey), menuData);
+  } catch (e) {
+    console.error('saveMenu error:', e);
+    showToast('Errore salvataggio menù: ' + e.message);
+  }
+};
+
+// Elimina il menù di una data (solo admin)
+DB.deleteMenu = async function(dateKey) {
+  try {
+    await deleteDoc(doc(fbDb, 'menus', dateKey));
+  } catch (e) {
+    console.error('deleteMenu error:', e);
+  }
+};
+
+// Aggiunge un nuovo ordine (chiunque può)
+DB.addOrder = async function(orderData) {
+  try {
+    // Firestore non accetta undefined, puliamo
+    const clean = JSON.parse(JSON.stringify(orderData));
+    await addDoc(collection(fbDb, 'orders'), clean);
+    return true;
+  } catch (e) {
+    console.error('addOrder error:', e);
+    showToast('Errore invio ordine: ' + e.message);
+    return false;
+  }
+};
+
+// Elimina un ordine (solo admin)
+DB.deleteOrder = async function(orderId) {
+  try {
+    await deleteDoc(doc(fbDb, 'orders', orderId));
+  } catch (e) {
+    console.error('deleteOrder error:', e);
+  }
+};
+
+// --- AUTH ---
+// Gestione login/logout admin
+onAuthStateChanged(fbAuth, (user) => {
+  DB.isAdmin = !!user;
+  if (user) {
+    subscribeOrders();
+  } else {
+    unsubscribeFromOrders();
+  }
+  DB._notifyListeners();
+});
+
+DB.loginAdmin = async function(email, password) {
+  try {
+    await signInWithEmailAndPassword(fbAuth, email, password);
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e.code || e.message };
+  }
+};
+
+DB.logoutAdmin = async function() {
+  try { await signOut(fbAuth); } catch (e) { console.error(e); }
+};
+
+// Esponi DB come globale per le funzioni inline
+window.DB = DB;
+
+let currentLang = 'it';
+let selectedEditorDate = '';
+
+const DAYS_IT = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+const DAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS_IT = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+const CATEGORIES = [
+  { key: 'primi', label_it: 'Primi', label_en: 'First Course', num: 'I.', type: 'standard', kidsOnly: false },
+  { key: 'secondi', label_it: 'Secondi', label_en: 'Second Course', num: 'II.', type: 'standard', kidsOnly: false },
+  { key: 'contorni', label_it: 'Contorni', label_en: 'Side Dishes', num: 'III.', type: 'standard', kidsOnly: false },
+  { key: 'pizze', label_it: 'Pizze', label_en: 'Pizzas', num: 'IV.', type: 'direct', kidsOnly: false, toggleable: true },
+  { 
+    key: 'bambini', label_it: 'Menù Bambini', label_en: 'Kids\' Menu', num: 'V.', type: 'grouped', kidsOnly: true,
+    subsections: [
+      { key: 'bambini_primi', label_it: 'Primi Bambini', label_en: 'Kids\' First Course', kidsFixed: true },
+      { key: 'bambini_secondi', label_it: 'Secondi Bambini', label_en: 'Kids\' Second Course', kidsFixed: false }
+    ]
+  },
+  { key: 'pizze_baby', label_it: 'Pizze Baby', label_en: 'Baby Pizzas', num: 'VI.', type: 'direct', kidsOnly: true, toggleable: true }
+];
+
+// Piatti fissi sempre presenti (non modificabili dal gestore)
+const FIXED_DISHES = {
+  bambini_primi: [
+    { name_it: 'Baby pasta al pomodoro', name_en: 'Baby pasta with tomato sauce', desc_it: '', desc_en: '', allergens: '1', fixed: true },
+    { name_it: 'Baby pasta in bianco', name_en: 'Baby pasta with butter', desc_it: '', desc_en: '', allergens: '1,7', fixed: true },
+    { name_it: 'Baby passato di verdure', name_en: 'Baby vegetable soup', desc_it: '', desc_en: '', allergens: '9', fixed: true }
+  ]
+};
+
+// 14 allergeni UE (Reg. 1169/2011) con numerazione standard
+const ALLERGENS = [
+  { num: '1', it: 'Glutine', en: 'Gluten' },
+  { num: '2', it: 'Crostacei', en: 'Crustaceans' },
+  { num: '3', it: 'Uova', en: 'Eggs' },
+  { num: '4', it: 'Pesce', en: 'Fish' },
+  { num: '5', it: 'Arachidi', en: 'Peanuts' },
+  { num: '6', it: 'Soia', en: 'Soy' },
+  { num: '7', it: 'Latte', en: 'Milk' },
+  { num: '8', it: 'Frutta a guscio', en: 'Tree nuts' },
+  { num: '9', it: 'Sedano', en: 'Celery' },
+  { num: '10', it: 'Senape', en: 'Mustard' },
+  { num: '11', it: 'Sesamo', en: 'Sesame' },
+  { num: '12', it: 'Solfiti', en: 'Sulphites' },
+  { num: '13', it: 'Lupini', en: 'Lupins' },
+  { num: '14', it: 'Molluschi', en: 'Molluscs' }
+];
+
+// Stato intolleranze per singolo commensale
+// guests = array di oggetti: { id, kind: 'adult'|'child', label, allergens: Set, notes }
+let guests = [];
+let editingGuestId = null;
+let filterSafeOnly = false;
+
+// ========================================================================
+// UTILITY
+// ========================================================================
+function toDateKey(d) {
+  const yr = d.getFullYear();
+  const mo = String(d.getMonth() + 1).padStart(2, '0');
+  const da = String(d.getDate()).padStart(2, '0');
+  return `${yr}-${mo}-${da}`;
+}
+
+function formatDateLabel(dateKey, lang) {
+  const d = new Date(dateKey + 'T00:00:00');
+  const days = lang === 'it' ? DAYS_IT : DAYS_EN;
+  const months = lang === 'it' ? MONTHS_IT : MONTHS_EN;
+  const fullDays = lang === 'it' 
+    ? ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato']
+    : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  return `${fullDays[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function showView(name) {
+  document.querySelectorAll('#view-guest, #view-admin, #view-success, #view-login').forEach(v => v.classList.add('hidden'));
+  document.getElementById('view-' + name).classList.remove('hidden');
+  window.scrollTo(0, 0);
+  if (name === 'guest') renderGuestMenu();
+}
+
+// ========================================================================
+// LINGUA
+// ========================================================================
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('lang-it').classList.toggle('active', lang === 'it');
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  document.querySelectorAll('[data-it]').forEach(el => {
+    el.textContent = el.dataset[lang];
+  });
+  document.querySelectorAll('[data-it-attr]').forEach(el => {
+    const attr = el.dataset.itAttr;
+    el.setAttribute(attr, el.dataset[lang + 'Value']);
+  });
+  renderGuestsList();
+  renderGuestMenu();
+}
+
+// ========================================================================
+// INTOLLERANZE PER PERSONA
+// ========================================================================
+
+// Flag principale
+let hasIntolerances = false;
+
+// Toggle Sì/No principale
+function setHasIntolerances(value) {
+  hasIntolerances = value;
+  document.getElementById('seg-yes').classList.toggle('active', value);
+  document.getElementById('seg-no').classList.toggle('active', !value);
+  
+  if (!value) {
+    // Se si toglie, reset completo
+    guests = [];
+    filterSafeOnly = false;
+    document.getElementById('filter-switch')?.classList.remove('on');
+    document.getElementById('guests-list-wrap')?.classList.add('hidden');
+  } else {
+    document.getElementById('guests-list-wrap')?.classList.remove('hidden');
+  }
+  renderGuestsList();
+  updateFilterToggleVisibility();
+  renderGuestMenu();
+}
+
+function canAddAdult() {
+  const max = parseInt(document.getElementById('guest-adults')?.value) || 0;
+  const current = guests.filter(g => g.kind === 'adult').length;
+  return current < max;
+}
+
+function canAddChild() {
+  const max = parseInt(document.getElementById('guest-children')?.value) || 0;
+  const current = guests.filter(g => g.kind === 'child').length;
+  return current < max;
+}
+
+function addGuest(kind) {
+  if (kind === 'adult' && !canAddAdult()) return;
+  if (kind === 'child' && !canAddChild()) return;
+  
+  const newGuest = {
+    id: `${kind}-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
+    kind,
+    allergens: new Set(),
+    notes: ''
+  };
+  guests.push(newGuest);
+  renderGuestsList();
+  // Apri subito il modale per editare le intolleranze di questa persona
+  openPersonModal(newGuest.id);
+}
+
+function removeGuest(guestId) {
+  guests = guests.filter(g => g.id !== guestId);
+  renderGuestsList();
+  updateFilterToggleVisibility();
+  renderGuestMenu();
+}
+
+function renderGuestsList() {
+  const wrap = document.getElementById('guests-list-wrap');
+  const list = document.getElementById('guests-list');
+  const addRow = document.getElementById('add-guests-row');
+  if (!wrap || !list || !addRow) return;
+  
+  if (!hasIntolerances) {
+    wrap.classList.add('hidden');
+    return;
+  }
+  wrap.classList.remove('hidden');
+  
+  // --- Lista commensali inseriti ---
+  list.innerHTML = '';
+  if (guests.length === 0) {
+    list.style.display = 'none';
+  } else {
+    list.style.display = '';
+    let adultIdx = 0, childIdx = 0;
+    guests.forEach(g => {
+      const row = document.createElement('div');
+      const hasInt = g.allergens.size > 0 || g.notes;
+      row.className = 'guest-row' + (hasInt ? ' has-intolerance' : '');
+      
+      let label;
+      if (g.kind === 'adult') {
+        adultIdx++;
+        label = currentLang === 'it' ? `Adulto ${adultIdx}` : `Adult ${adultIdx}`;
+      } else {
+        childIdx++;
+        label = currentLang === 'it' ? `Bambino ${childIdx}` : `Child ${childIdx}`;
+      }
+      
+      const avatarChar = g.kind === 'adult' ? 'A' : 'B';
+      
+      let summary;
+      if (hasInt) {
+        const names = Array.from(g.allergens).map(allergenNumToLabel);
+        if (g.notes) names.push(`"${g.notes.substring(0, 40)}${g.notes.length > 40 ? '…' : ''}"`);
+        summary = `<div class="guest-intolerance-summary">${names.join(' · ')}</div>`;
+      } else {
+        summary = `<div class="guest-intolerance-summary empty">${currentLang === 'it' ? 'Nessuna intolleranza registrata' : 'No intolerances recorded'}</div>`;
+      }
+      
+      row.innerHTML = `
+        <div class="guest-avatar ${g.kind}">${avatarChar}</div>
+        <div class="guest-info">
+          <div class="guest-name">${label}</div>
+          ${summary}
+        </div>
+        <button class="guest-edit-btn ${hasInt ? 'active' : ''}" onclick="openPersonModal('${g.id}')">${
+          currentLang === 'it' ? 'Modifica' : 'Edit'
+        }</button>
+        <button class="remove-btn" onclick="removeGuest('${g.id}')" title="${currentLang === 'it' ? 'Rimuovi' : 'Remove'}">×</button>
+      `;
+      list.appendChild(row);
+    });
+  }
+  
+  // --- Pulsanti aggiungi ---
+  addRow.innerHTML = '';
+  const maxAdults = parseInt(document.getElementById('guest-adults')?.value) || 0;
+  const maxChildren = parseInt(document.getElementById('guest-children')?.value) || 0;
+  const currentAdults = guests.filter(g => g.kind === 'adult').length;
+  const currentChildren = guests.filter(g => g.kind === 'child').length;
+  
+  if (maxAdults > 0) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-guest-btn adult';
+    btn.disabled = !canAddAdult();
+    btn.onclick = () => addGuest('adult');
+    btn.innerHTML = `
+      <span class="plus">+</span>
+      <span>${currentLang === 'it' ? 'Adulto intollerante' : 'Adult with intolerance'}</span>
+      <span class="count">${currentAdults}/${maxAdults}</span>
+    `;
+    addRow.appendChild(btn);
+  }
+  
+  if (maxChildren > 0) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-guest-btn child';
+    btn.disabled = !canAddChild();
+    btn.onclick = () => addGuest('child');
+    btn.innerHTML = `
+      <span class="plus">+</span>
+      <span>${currentLang === 'it' ? 'Bambino intollerante' : 'Child with intolerance'}</span>
+      <span class="count">${currentChildren}/${maxChildren}</span>
+    `;
+    addRow.appendChild(btn);
+  }
+  
+  // Se entrambi gli input sono a 0, mostra un hint
+  if (maxAdults === 0 && maxChildren === 0) {
+    addRow.innerHTML = `
+      <div style="width: 100%; padding: 14px; text-align: center; font-size: 12px; color: var(--ink-muted); font-style: italic;">
+        ${currentLang === 'it' ? 'Inserisci prima il numero di adulti o bambini' : 'Please enter the number of adults or children first'}
+      </div>
+    `;
+  }
+}
+
+// Quando cambiano gli input adulti/bambini, aggiorna i limiti e rimuovi eventuali eccedenze
+function onPeopleCountChange() {
+  const maxAdults = parseInt(document.getElementById('guest-adults')?.value) || 0;
+  const maxChildren = parseInt(document.getElementById('guest-children')?.value) || 0;
+  
+  // Se il limite è sceso sotto il numero inserito, rimuovi gli ultimi
+  const adultList = guests.filter(g => g.kind === 'adult');
+  const childList = guests.filter(g => g.kind === 'child');
+  
+  if (adultList.length > maxAdults) {
+    const toKeep = adultList.slice(0, maxAdults).map(g => g.id);
+    guests = guests.filter(g => g.kind !== 'adult' || toKeep.includes(g.id));
+  }
+  if (childList.length > maxChildren) {
+    const toKeep = childList.slice(0, maxChildren).map(g => g.id);
+    guests = guests.filter(g => g.kind !== 'child' || toKeep.includes(g.id));
+  }
+  
+  renderGuestsList();
+  updateFilterToggleVisibility();
+  renderGuestMenu();
+}
+
+function openPersonModal(guestId) {
+  const g = guests.find(x => x.id === guestId);
+  if (!g) return;
+  editingGuestId = guestId;
+  
+  // Popola il titolo
+  let label;
+  let adultIdx = 0, childIdx = 0;
+  for (const guest of guests) {
+    if (guest.kind === 'adult') adultIdx++;
+    else childIdx++;
+    if (guest.id === guestId) {
+      label = guest.kind === 'adult' 
+        ? (currentLang === 'it' ? `Adulto ${adultIdx}` : `Adult ${adultIdx}`)
+        : (currentLang === 'it' ? `Bambino ${childIdx}` : `Child ${childIdx}`);
+      break;
+    }
+  }
+  document.getElementById('person-modal-label').textContent = currentLang === 'it' ? 'Commensale' : 'Guest';
+  document.getElementById('person-modal-title').textContent = label;
+  document.getElementById('person-notes').value = g.notes || '';
+  
+  // Renderizza grid allergeni
+  const grid = document.getElementById('person-allergen-grid');
+  grid.innerHTML = '';
+  ALLERGENS.forEach(a => {
+    const chip = document.createElement('label');
+    chip.className = 'allergen-chip' + (g.allergens.has(a.num) ? ' active' : '');
+    const name = currentLang === 'it' ? a.it : a.en;
+    chip.innerHTML = `
+      <div class="box"></div>
+      <span>${name}</span>
+      <span class="num">${a.num}</span>
+    `;
+    chip.onclick = (e) => {
+      e.preventDefault();
+      const currentGuest = guests.find(x => x.id === editingGuestId);
+      if (!currentGuest) return;
+      if (currentGuest.allergens.has(a.num)) {
+        currentGuest.allergens.delete(a.num);
+        chip.classList.remove('active');
+      } else {
+        currentGuest.allergens.add(a.num);
+        chip.classList.add('active');
+      }
+    };
+    grid.appendChild(chip);
+  });
+  
+  document.getElementById('person-modal').classList.remove('hidden');
+}
+
+function savePersonIntolerances() {
+  const g = guests.find(x => x.id === editingGuestId);
+  if (g) {
+    g.notes = document.getElementById('person-notes').value.trim();
+  }
+  document.getElementById('person-modal').classList.add('hidden');
+  editingGuestId = null;
+  renderGuestsList();
+  renderGuestMenu(); // aggiorna marcature piatti
+  updateFilterToggleVisibility();
+}
+
+function clearPersonIntolerances() {
+  const g = guests.find(x => x.id === editingGuestId);
+  if (g) {
+    g.allergens.clear();
+    g.notes = '';
+  }
+  document.getElementById('person-notes').value = '';
+  document.querySelectorAll('#person-allergen-grid .allergen-chip').forEach(c => c.classList.remove('active'));
+}
+
+// Unione di tutti gli allergeni selezionati, per evidenziare piatti
+function getAllSelectedAllergens() {
+  const all = new Set();
+  guests.forEach(g => g.allergens.forEach(a => all.add(a)));
+  return all;
+}
+
+function anyGuestHasIntolerances() {
+  return guests.some(g => g.allergens.size > 0 || g.notes);
+}
+
+function updateFilterToggleVisibility() {
+  const filterRow = document.getElementById('filter-toggle-row');
+  if (!filterRow) return;
+  if (anyGuestHasIntolerances()) {
+    filterRow.classList.remove('hidden');
+  } else {
+    filterRow.classList.add('hidden');
+    filterSafeOnly = false;
+    document.getElementById('filter-switch')?.classList.remove('on');
+  }
+}
+
+function toggleFilterSafe() {
+  filterSafeOnly = !filterSafeOnly;
+  document.getElementById('filter-switch').classList.toggle('on', filterSafeOnly);
+  renderGuestMenu();
+}
+
+// Ritorna array di numeri allergeni conflittuali con l'unione delle selezioni
+function getConflictAllergens(dish) {
+  const allSelected = getAllSelectedAllergens();
+  if (!dish.allergens || allSelected.size === 0) return [];
+  const dishAllergens = dish.allergens.split(',').map(s => s.trim()).filter(Boolean);
+  return dishAllergens.filter(a => allSelected.has(a));
+}
+
+function allergenNumToLabel(num) {
+  const a = ALLERGENS.find(x => x.num === num);
+  if (!a) return num;
+  return currentLang === 'it' ? a.it : a.en;
+}
+
+// ========================================================================
+// RENDER MENU GUEST
+// ========================================================================
+function getTargetDate() {
+  // Dalle 18:00 in poi si mostra il menù del giorno successivo.
+  // Prima delle 18:00 si mostra il menù del giorno corrente.
+  const now = new Date();
+  const target = new Date(now);
+  if (now.getHours() >= 18) {
+    target.setDate(target.getDate() + 1);
+  }
+  return toDateKey(target);
+}
+
+function renderGuestMenu() {
+  const dateKey = getTargetDate();
+  const menu = DB.menus[dateKey] || {};
+  const children = parseInt(document.getElementById('guest-children')?.value) || 0;
+  
+  document.getElementById('guest-date-display').textContent = formatDateLabel(dateKey, currentLang);
+
+  const container = document.getElementById('menu-sections');
+  container.innerHTML = '';
+  
+  // Elementi da nascondere quando non c'è menù da mostrare
+  const elementsToHideWhenUnpublished = [
+    'guest-info-box',
+    'intol-toggle-row',
+    'guests-list-wrap',
+    'filter-toggle-row',
+    'allergen-legend',
+    'submit-wrap'
+  ];
+  
+  // --- CARICAMENTO INIZIALE ---
+  // Se Firestore non ha ancora caricato nulla, mostra un loader invece del messaggio "non pubblicato"
+  if (!DB.ready) {
+    elementsToHideWhenUnpublished.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⏳</div>
+        <p>${currentLang === 'it' ? 'Caricamento del menù…' : 'Loading menu…'}</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // --- CHECK PUBBLICAZIONE ---
+  // Se il gestore non ha ancora pubblicato il menù per questa data, mostra solo lo schermo vuoto.
+  // Nessuna sezione, nemmeno i piatti fissi bambini.
+  const isPublished = !!menu._published;
+  
+  if (!isPublished) {
+    // Nascondi tutto il resto del form
+    elementsToHideWhenUnpublished.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">📋</div>
+        <p>${currentLang === 'it' ? 'Il menù di domani non è ancora stato pubblicato.' : 'Tomorrow\'s menu has not been published yet.'}</p>
+        <p style="font-size: 12px; margin-top: 10px;">${currentLang === 'it' ? 'Riprova più tardi o rivolgiti al personale.' : 'Please try again later or ask our staff.'}</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Menù pubblicato: mostra gli elementi del form
+  document.getElementById('guest-info-box')?.classList.remove('hidden');
+  document.getElementById('intol-toggle-row')?.classList.remove('hidden');
+  document.getElementById('allergen-legend')?.classList.remove('hidden');
+  document.getElementById('submit-wrap')?.classList.remove('hidden');
+  // guests-list-wrap e filter-toggle-row sono gestiti da altre funzioni in base allo stato
+
+  // Testo istruzioni dinamico: menziona pizza solo se pizze o pizze_baby sono attive
+  const pizzaEnabledAdults = !!menu._pizze_enabled;
+  const pizzaEnabledKids = !!menu._pizze_baby_enabled && children > 0;
+  const hasPizza = pizzaEnabledAdults || pizzaEnabledKids;
+  const infoText = document.getElementById('guest-info-text');
+  if (infoText) {
+    if (hasPizza) {
+      infoText.textContent = currentLang === 'it' 
+        ? ' ogni persona può scegliere 2 piatti — un primo e un secondo o una pizza.'
+        : ' each person can choose 2 dishes — a first course and a second course or a pizza.';
+    } else {
+      infoText.textContent = currentLang === 'it'
+        ? ' ogni persona può scegliere 2 piatti — un primo e un secondo.'
+        : ' each person can choose 2 dishes — a first course and a second course.';
+    }
+  }
+
+  let hasAnyDish = false;
+  CATEGORIES.forEach(cat => {
+    // Filtro: categorie kidsOnly solo se ci sono bambini
+    if (cat.kidsOnly && children === 0) return;
+    // Toggleable disattivate: salta
+    if (cat.toggleable && !menu[`_${cat.key}_enabled`]) return;
+    
+    // --- TIPO DIRECT (Pizze / Pizze Baby): card con stepper, senza piatti ---
+    if (cat.type === 'direct') {
+      hasAnyDish = true;
+      const section = document.createElement('div');
+      section.innerHTML = `
+        <div class="section-head">
+          <span class="num">${cat.num}</span>
+          <h2 class="display">${currentLang === 'it' ? cat.label_it : cat.label_en}</h2>
+          <span class="en">${currentLang === 'it' ? cat.label_en : cat.label_it}</span>
+        </div>
+        <div class="direct-card">
+          <div class="direct-info">
+            <div class="title">${currentLang === 'it' ? cat.label_it : cat.label_en}</div>
+            <div class="subtitle">${currentLang === 'it' ? 'A scelta dal menù ristorante' : 'Choice from restaurant menu'}</div>
+          </div>
+          <div class="qty">
+            <button onclick="changeQty('${cat.key}', 0, -1)">−</button>
+            <span class="value" id="qty-${cat.key}-0">0</span>
+            <button onclick="changeQty('${cat.key}', 0, 1)">+</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(section);
+      return;
+    }
+    
+    // --- TIPO GROUPED (Menù Bambini con sottosezioni) ---
+    if (cat.type === 'grouped') {
+      // Verifica se c'è almeno un piatto nelle sottosezioni (fissi o variabili)
+      const hasContent = cat.subsections.some(sub => {
+        const fixed = sub.kidsFixed && FIXED_DISHES[sub.key] ? FIXED_DISHES[sub.key].length : 0;
+        const variable = (menu[sub.key] || []).length;
+        return (fixed + variable) > 0;
+      });
+      if (!hasContent) return;
+      hasAnyDish = true;
+      
+      const section = document.createElement('div');
+      section.innerHTML = `
+        <div class="section-head">
+          <span class="num">${cat.num}</span>
+          <h2 class="display">${currentLang === 'it' ? cat.label_it : cat.label_en}</h2>
+          <span class="en">${currentLang === 'it' ? cat.label_en : cat.label_it}</span>
+        </div>
+      `;
+      container.appendChild(section);
+      
+      cat.subsections.forEach(sub => {
+        let dishes = [];
+        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
+          dishes = [...FIXED_DISHES[sub.key]];
+        }
+        dishes = dishes.concat(menu[sub.key] || []);
+        
+        // Applica filtro safe-only
+        const hasAnyInt = anyGuestHasIntolerances();
+        const visibleDishes = (filterSafeOnly && hasAnyInt)
+          ? dishes.filter(d => getConflictAllergens(d).length === 0)
+          : dishes;
+        
+        if (visibleDishes.length === 0) return;
+        
+        const subHead = document.createElement('div');
+        subHead.className = 'subsection-head';
+        subHead.innerHTML = `
+          <h3>${currentLang === 'it' ? sub.label_it : sub.label_en}</h3>
+          <span class="en">${currentLang === 'it' ? sub.label_en : sub.label_it}</span>
+        `;
+        container.appendChild(subHead);
+        
+        const list = document.createElement('div');
+        list.className = 'dishes-list';
+        dishes.forEach((dish, idx) => {
+          if (filterSafeOnly && hasAnyInt && getConflictAllergens(dish).length > 0) return;
+          list.appendChild(buildDishElement(dish, sub.key, idx));
+        });
+        container.appendChild(list);
+      });
+      return;
+    }
+    
+    // --- TIPO STANDARD: lista piatti classica ---
+    let dishes = menu[cat.key] || [];
+    const hasAnyIntolerance = anyGuestHasIntolerances();
+    if (filterSafeOnly && hasAnyIntolerance) {
+      dishes = dishes.filter(d => getConflictAllergens(d).length === 0);
+    }
+    if (dishes.length === 0) return;
+    hasAnyDish = true;
+    
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <div class="section-head">
+        <span class="num">${cat.num}</span>
+        <h2 class="display">${currentLang === 'it' ? cat.label_it : cat.label_en}</h2>
+        <span class="en">${currentLang === 'it' ? cat.label_en : cat.label_it}</span>
+      </div>
+      <div class="dishes-list"></div>
+    `;
+    const list = section.querySelector('.dishes-list');
+    (menu[cat.key] || []).forEach((dish, idx) => {
+      if (filterSafeOnly && hasAnyIntolerance && getConflictAllergens(dish).length > 0) return;
+      list.appendChild(buildDishElement(dish, cat.key, idx));
+    });
+    container.appendChild(section);
+  });
+
+  if (!hasAnyDish) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">📋</div>
+        <p>${currentLang === 'it' ? 'Il menù di domani non è ancora stato pubblicato.' : 'Tomorrow\'s menu has not been published yet.'}</p>
+        <p style="font-size: 12px; margin-top: 10px;">${currentLang === 'it' ? 'Riprova più tardi o rivolgiti al personale.' : 'Please try again later or ask our staff.'}</p>
+      </div>
+    `;
+  }
+  
+  // Popola la legenda allergeni con quelli effettivamente presenti nei piatti del giorno
+  updateAllergenLegend(menu, children);
+}
+
+function updateAllergenLegend(menu, children) {
+  const legendEl = document.getElementById('allergen-legend');
+  if (!legendEl) return;
+  
+  // Raccogli tutti gli allergeni presenti nei piatti del giorno
+  const presentAllergens = new Set();
+  
+  const collectFromDishes = (dishes) => {
+    dishes.forEach(d => {
+      if (d.allergens) {
+        d.allergens.split(',').map(s => s.trim()).filter(Boolean).forEach(a => presentAllergens.add(a));
+      }
+    });
+  };
+  
+  CATEGORIES.forEach(cat => {
+    if (cat.kidsOnly && children === 0) return;
+    if (cat.toggleable && !menu[`_${cat.key}_enabled`]) return;
+    if (cat.type === 'direct') return; // pizze/pizze-baby non hanno allergeni singoli
+    
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => {
+        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
+          collectFromDishes(FIXED_DISHES[sub.key]);
+        }
+        collectFromDishes(menu[sub.key] || []);
+      });
+    } else {
+      collectFromDishes(menu[cat.key] || []);
+    }
+  });
+  
+  if (presentAllergens.size === 0) {
+    legendEl.innerHTML = '';
+    legendEl.classList.add('hidden');
+    return;
+  }
+  legendEl.classList.remove('hidden');
+  
+  // Ordina per numero crescente
+  const sortedNums = Array.from(presentAllergens).sort((a,b) => parseInt(a) - parseInt(b));
+  const title = currentLang === 'it' ? 'LEGENDA ALLERGENI' : 'ALLERGENS KEY';
+  const items = sortedNums.map(num => {
+    const a = ALLERGENS.find(x => x.num === num);
+    const name = a ? (currentLang === 'it' ? a.it : a.en) : num;
+    return `${num} ${name}`;
+  }).join(' · ');
+  
+  legendEl.innerHTML = `<strong>${title}</strong><br>${items}`;
+}
+
+function buildDishElement(dish, catKey, idx) {
+  const dishEl = document.createElement('div');
+  dishEl.className = 'dish';
+  const name = currentLang === 'it' ? dish.name_it : (dish.name_en || dish.name_it);
+  const desc = currentLang === 'it' ? dish.desc_it : (dish.desc_en || dish.desc_it || '');
+  const allergens = dish.allergens ? `<span class="allergens">(${dish.allergens})</span>` : '';
+  
+  // Gestione stati intolleranze
+  let safeBadge = '';
+  let conflictWarn = '';
+  const allSelected = getAllSelectedAllergens();
+  if (allSelected.size > 0) {
+    const conflicts = getConflictAllergens(dish);
+    if (conflicts.length === 0) {
+      dishEl.classList.add('safe');
+      safeBadge = `<span class="safe-badge">${currentLang === 'it' ? '✓ Adatto' : '✓ Safe'}</span>`;
+    } else {
+      dishEl.classList.add('conflict');
+      const names = conflicts.map(allergenNumToLabel).join(', ');
+      conflictWarn = `<div class="conflict-warn">${currentLang === 'it' ? 'Contiene' : 'Contains'}: ${names}</div>`;
+    }
+  }
+  
+  dishEl.innerHTML = `
+    <div class="dish-info">
+      <div class="dish-name">${name} ${allergens}${safeBadge}</div>
+      ${desc ? `<div class="dish-desc">${desc}</div>` : ''}
+      ${conflictWarn}
+    </div>
+    <div class="qty">
+      <button onclick="changeQty('${catKey}', ${idx}, -1)">−</button>
+      <span class="value" id="qty-${catKey}-${idx}">0</span>
+      <button onclick="changeQty('${catKey}', ${idx}, 1)">+</button>
+    </div>
+  `;
+  return dishEl;
+}
+
+function changeQty(cat, idx, delta) {
+  const el = document.getElementById(`qty-${cat}-${idx}`);
+  let v = parseInt(el.textContent) + delta;
+  if (v < 0) v = 0;
+  if (v > 20) v = 20;
+  el.textContent = v;
+  const qtyBox = el.parentElement;
+  qtyBox.classList.toggle('active', v > 0);
+}
+
+// ========================================================================
+// SUBMIT ORDER
+// ========================================================================
+// Stato temporaneo per re-invio dopo conferma
+let pendingOrder = null;
+
+function submitOrder() {
+  const family = document.getElementById('guest-family').value.trim();
+  const adults = parseInt(document.getElementById('guest-adults').value) || 0;
+  const children = parseInt(document.getElementById('guest-children').value) || 0;
+  const people = adults + children;
+  
+  if (!family || people === 0) {
+    showToast(currentLang === 'it' ? 'Compila cognome famiglia e almeno una persona' : 'Please fill family name and at least one guest');
+    return;
+  }
+
+  const dateKey = getTargetDate();
+  const menu = DB.menus[dateKey] || {};
+  const items = [];
+  
+  // Contatori per validazione
+  let adultPrimi = 0, adultMains = 0; // mains = secondi + pizze
+  let kidPrimi = 0, kidMains = 0;    // kid mains = secondi bambini + pizze baby
+  
+  CATEGORIES.forEach(cat => {
+    if (cat.kidsOnly && children === 0) return;
+    if (cat.toggleable && !menu[`_${cat.key}_enabled`]) return;
+    
+    if (cat.type === 'direct') {
+      const qty = parseInt(document.getElementById(`qty-${cat.key}-0`)?.textContent || '0');
+      if (qty > 0) {
+        items.push({
+          category: cat.key,
+          dishName: cat.label_it,
+          dishNameEn: cat.label_en,
+          qty: qty
+        });
+        // Pizze = mains adulti; Pizze Baby = mains bambini
+        if (cat.key === 'pizze') adultMains += qty;
+        if (cat.key === 'pizze_baby') kidMains += qty;
+      }
+      return;
+    }
+    
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => {
+        let dishes = [];
+        if (sub.kidsFixed && FIXED_DISHES[sub.key]) dishes = [...FIXED_DISHES[sub.key]];
+        dishes = dishes.concat(menu[sub.key] || []);
+        dishes.forEach((dish, idx) => {
+          const qty = parseInt(document.getElementById(`qty-${sub.key}-${idx}`)?.textContent || '0');
+          if (qty > 0) {
+            items.push({
+              category: sub.key,
+              dishName: dish.name_it,
+              dishNameEn: dish.name_en || '',
+              qty: qty
+            });
+            if (sub.key === 'bambini_primi') kidPrimi += qty;
+            if (sub.key === 'bambini_secondi') kidMains += qty;
+          }
+        });
+      });
+      return;
+    }
+    
+    // standard (primi, secondi, contorni)
+    (menu[cat.key] || []).forEach((dish, idx) => {
+      const qty = parseInt(document.getElementById(`qty-${cat.key}-${idx}`)?.textContent || '0');
+      if (qty > 0) {
+        items.push({
+          category: cat.key,
+          dishName: dish.name_it,
+          dishNameEn: dish.name_en || '',
+          qty: qty
+        });
+        if (cat.key === 'primi') adultPrimi += qty;
+        if (cat.key === 'secondi') adultMains += qty;
+        // contorni esclusi dal conteggio (non incrementano nulla)
+      }
+    });
+  });
+
+  if (items.length === 0) {
+    showToast(currentLang === 'it' ? 'Seleziona almeno un piatto' : 'Please select at least one dish');
+    return;
+  }
+
+  // Prepara l'ordine pendente con intolleranze per persona
+  // Salviamo solo i commensali con intolleranze effettive (allergeni o note)
+  const guestsData = [];
+  let adultCounter = 0, childCounter = 0;
+  guests.forEach(g => {
+    const hasContent = g.allergens.size > 0 || (g.notes && g.notes.trim());
+    let label;
+    if (g.kind === 'adult') {
+      adultCounter++;
+      label = `Adulto ${adultCounter}`;
+    } else {
+      childCounter++;
+      label = `Bambino ${childCounter}`;
+    }
+    if (hasContent) {
+      guestsData.push({
+        kind: g.kind,
+        label,
+        intolerances: Array.from(g.allergens),
+        notes: g.notes || ''
+      });
+    }
+  });
+  
+  pendingOrder = {
+    id: Date.now(),
+    date: dateKey,
+    family, adults, children, people,
+    guests: guestsData,
+    items,
+    submittedAt: new Date().toISOString()
+  };
+
+  // Validazione MASSIMI: ogni persona può avere al massimo 1 primo + 1 secondo/pizza
+  // Se si supera, blocchiamo completamente l'invio (errore, non warning)
+  const exceeded = [];
+  if (adults > 0) {
+    if (adultPrimi > adults) {
+      exceeded.push({
+        label_it: 'Primi (adulti)', label_en: 'First courses (adults)',
+        max: adults, got: adultPrimi
+      });
+    }
+    if (adultMains > adults) {
+      exceeded.push({
+        label_it: 'Secondi o Pizze (adulti)', label_en: 'Second courses or Pizzas (adults)',
+        max: adults, got: adultMains
+      });
+    }
+  }
+  if (children > 0) {
+    if (kidPrimi > children) {
+      exceeded.push({
+        label_it: 'Primi Bambini', label_en: 'Kids\' First courses',
+        max: children, got: kidPrimi
+      });
+    }
+    if (kidMains > children) {
+      exceeded.push({
+        label_it: 'Secondi Bambini o Pizze Baby', label_en: 'Kids\' Second courses or Baby Pizzas',
+        max: children, got: kidMains
+      });
+    }
+  }
+  
+  if (exceeded.length > 0) {
+    showMaxExceededModal(exceeded);
+    return;
+  }
+  
+  // Validazione MINIMI: warning morbido, l'utente può scegliere di inviare lo stesso
+  const missing = [];
+  if (adults > 0) {
+    if (adultPrimi < adults) {
+      missing.push({ 
+        label_it: 'Primi (adulti)', label_en: 'First courses (adults)',
+        expected: adults, got: adultPrimi 
+      });
+    }
+    if (adultMains < adults) {
+      missing.push({ 
+        label_it: 'Secondi o Pizze (adulti)', label_en: 'Second courses or Pizzas (adults)',
+        expected: adults, got: adultMains 
+      });
+    }
+  }
+  if (children > 0) {
+    if (kidPrimi < children) {
+      missing.push({ 
+        label_it: 'Primi Bambini', label_en: 'Kids\' First courses',
+        expected: children, got: kidPrimi 
+      });
+    }
+    if (kidMains < children) {
+      missing.push({ 
+        label_it: 'Secondi Bambini o Pizze Baby', label_en: 'Kids\' Second courses or Baby Pizzas',
+        expected: children, got: kidMains 
+      });
+    }
+  }
+  
+  if (missing.length > 0) {
+    showConfirmModal(missing);
+    return;
+  }
+  
+  // Tutto ok, invia direttamente
+  forceSubmit();
+}
+
+function showMaxExceededModal(exceeded) {
+  const details = document.getElementById('confirm-details');
+  details.innerHTML = '';
+  exceeded.forEach(m => {
+    const row = document.createElement('div');
+    const label = currentLang === 'it' ? m.label_it : m.label_en;
+    row.innerHTML = `
+      <span>${label}</span>
+      <span class="short">${m.got} / ${m.max} max</span>
+    `;
+    details.appendChild(row);
+  });
+  
+  document.getElementById('confirm-title').textContent = currentLang === 'it' 
+    ? 'Troppi piatti selezionati'
+    : 'Too many dishes selected';
+  document.getElementById('confirm-subtitle').textContent = currentLang === 'it'
+    ? 'Ogni persona può scegliere al massimo 1 primo e 1 secondo o pizza. Riduci le quantità prima di inviare.'
+    : 'Each person can choose at most 1 first course and 1 second course or pizza. Please reduce the quantities before submitting.';
+  
+  // Nascondi "Invia comunque" perché è un errore bloccante
+  const btns = document.querySelectorAll('#confirm-modal .actions .btn');
+  btns[0].textContent = currentLang === 'it' ? '← Torna al menù' : '← Back to menu';
+  btns[0].classList.remove('btn-ghost');
+  btns[0].classList.add('btn-primary');
+  btns[0].style.display = '';
+  btns[1].style.display = 'none'; // nascondo il secondo
+  
+  document.getElementById('confirm-modal').classList.remove('hidden');
+}
+
+function showConfirmModal(missing) {
+  const details = document.getElementById('confirm-details');
+  details.innerHTML = '';
+  missing.forEach(m => {
+    const row = document.createElement('div');
+    const label = currentLang === 'it' ? m.label_it : m.label_en;
+    row.innerHTML = `
+      <span>${label}</span>
+      <span class="short">${m.got} / ${m.expected}</span>
+    `;
+    details.appendChild(row);
+  });
+  
+  // Ripristino visibilità entrambi i bottoni (se venivano da showMaxExceededModal)
+  const btns = document.querySelectorAll('#confirm-modal .actions .btn');
+  btns[0].style.display = '';
+  btns[1].style.display = '';
+  btns[0].classList.add('btn-ghost');
+  btns[0].classList.remove('btn-primary');
+  
+  document.getElementById('confirm-title').textContent = currentLang === 'it' 
+    ? 'Sei sicuro di aver compilato tutti i piatti?'
+    : 'Are you sure you\'ve selected all dishes?';
+  
+  // Sottotitolo dinamico: menziona pizza solo se attiva
+  const dateKey = getTargetDate();
+  const menu = DB.menus[dateKey] || {};
+  const children = parseInt(document.getElementById('guest-children')?.value) || 0;
+  const hasPizza = !!menu._pizze_enabled || (!!menu._pizze_baby_enabled && children > 0);
+  let subtitle;
+  if (hasPizza) {
+    subtitle = currentLang === 'it'
+      ? 'Ogni persona può scegliere 2 piatti: un primo e un secondo o una pizza. Abbiamo notato che mancano alcune portate.'
+      : 'Each person can choose 2 dishes: a first course and a second course or a pizza. Some courses seem to be missing.';
+  } else {
+    subtitle = currentLang === 'it'
+      ? 'Ogni persona può scegliere 2 piatti: un primo e un secondo. Abbiamo notato che mancano alcune portate.'
+      : 'Each person can choose 2 dishes: a first course and a second course. Some courses seem to be missing.';
+  }
+  document.getElementById('confirm-subtitle').textContent = subtitle;
+  
+  // Aggiorna i label dei pulsanti in base alla lingua
+  btns[0].textContent = currentLang === 'it' ? '← Aggiungi portate mancanti' : '← Add missing courses';
+  btns[1].textContent = currentLang === 'it' ? 'Invia comunque' : 'Submit anyway';
+  
+  document.getElementById('confirm-modal').classList.remove('hidden');
+}
+
+function closeConfirmModal() {
+  document.getElementById('confirm-modal').classList.add('hidden');
+  pendingOrder = null;
+}
+
+async function forceSubmit() {
+  if (!pendingOrder) return;
+  // Rimuovo l'id client-side, Firestore genererà un id server-side
+  const toSend = { ...pendingOrder };
+  delete toSend.id;
+  
+  // Disabilito pulsanti invio mentre sta salvando
+  const btns = document.querySelectorAll('#confirm-modal .btn, #submit-btn');
+  btns.forEach(b => b.disabled = true);
+  
+  const ok = await DB.addOrder(toSend);
+  btns.forEach(b => b.disabled = false);
+  
+  if (ok) {
+    pendingOrder = null;
+    document.getElementById('confirm-modal').classList.add('hidden');
+    showView('success');
+  }
+  // Se errore, resta nella vista compilazione — l'utente può riprovare
+}
+
+function resetGuestForm() {
+  document.getElementById('guest-family').value = '';
+  document.getElementById('guest-adults').value = '';
+  document.getElementById('guest-children').value = '';
+  guests = [];
+  hasIntolerances = false;
+  filterSafeOnly = false;
+  document.getElementById('seg-yes')?.classList.remove('active');
+  document.getElementById('seg-no')?.classList.add('active');
+  document.getElementById('filter-switch')?.classList.remove('on');
+  document.getElementById('guests-list-wrap')?.classList.add('hidden');
+  document.getElementById('filter-toggle-row')?.classList.add('hidden');
+  showView('guest');
+}
+
+// ========================================================================
+// LOGIN / LOGOUT (Firebase Auth)
+// ========================================================================
+async function login() {
+  const email = document.getElementById('admin-email').value.trim();
+  const pwd = document.getElementById('admin-password').value;
+  if (!email || !pwd) {
+    showToast('Inserisci email e password');
+    return;
+  }
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.textContent = 'Accesso in corso...';
+  
+  const result = await DB.loginAdmin(email, pwd);
+  btn.disabled = false;
+  btn.textContent = 'Entra';
+  
+  if (result.ok) {
+    // onAuthStateChanged ci notifica, ma mostriamo subito la vista admin
+    showView('admin');
+    initAdmin();
+  } else {
+    const msg = result.error?.includes('invalid-credential') || result.error?.includes('wrong-password') || result.error?.includes('user-not-found')
+      ? 'Email o password errate'
+      : 'Errore di accesso: ' + result.error;
+    showToast(msg);
+  }
+}
+
+async function logout() {
+  await DB.logoutAdmin();
+  // Resetto l'hash per uscire dalla modalità admin
+  if (window.location.hash === '#admin') window.location.hash = '';
+  showView('guest');
+}
+
+// ========================================================================
+// ADMIN
+// ========================================================================
+function showAdminTab(tab) {
+  ['menu','orders','history'].forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+    document.getElementById('admin-' + t).classList.toggle('hidden', t !== tab);
+  });
+  if (tab === 'orders') {
+    document.getElementById('orders-date').value = toDateKey(new Date(new Date().getTime() + 86400000));
+    renderOrders();
+  }
+  if (tab === 'history') {
+    // Default: ultimi 7 giorni se non già settato
+    const fromEl = document.getElementById('history-from');
+    const toEl = document.getElementById('history-to');
+    if (!fromEl.value || !toEl.value) {
+      setHistoryPreset(7);
+    } else {
+      renderHistory();
+    }
+  }
+  if (tab === 'menu') renderDayTabs();
+}
+
+function initAdmin() {
+  renderDayTabs();
+}
+
+function renderDayTabs() {
+  const today = new Date();
+  const tabs = document.getElementById('day-tabs');
+  tabs.innerHTML = '';
+  
+  // Mostra 7 giorni a partire da oggi
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + i);
+    const key = toDateKey(d);
+    const dayName = DAYS_IT[d.getDay()];
+    const isSelected = selectedEditorDate === key || (!selectedEditorDate && i === 1); // default: domani
+    if (isSelected) selectedEditorDate = key;
+    const isPub = !!(DB.menus[key] && DB.menus[key]._published);
+    
+    const btn = document.createElement('button');
+    btn.className = 'day-tab' + (isSelected ? ' active' : '');
+    btn.style.position = 'relative';
+    const dot = isPub 
+      ? `<span style="position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--success);" title="Pubblicato"></span>` 
+      : '';
+    btn.innerHTML = `${dayName}<span class="num">${d.getDate()}</span>${dot}`;
+    btn.onclick = () => { selectedEditorDate = key; renderDayTabs(); renderDayEditor(); };
+    tabs.appendChild(btn);
+  }
+  
+  renderDayEditor();
+}
+
+function renderDayEditor() {
+  const editor = document.getElementById('day-editor');
+  const menu = DB.menus[selectedEditorDate] || {};
+  const isPublished = !!menu._published;
+  
+  editor.innerHTML = `
+    <div style="background: ${isPublished ? 'linear-gradient(135deg, rgba(58,122,78,0.08), var(--sea-light))' : 'var(--sand)'}; padding: 14px 16px; border-radius: 10px; margin-bottom: 16px; border-left: 3px solid ${isPublished ? 'var(--success)' : 'var(--accent)'};">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+        <div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: ${isPublished ? 'var(--success)' : 'var(--accent-warm)'}; text-transform: uppercase;">
+            ${isPublished ? '● Pubblicato — visibile agli ospiti' : '○ Bozza — non visibile agli ospiti'}
+          </div>
+          <div style="font-family: 'Fraunces', serif; font-size: 18px; color: var(--sea-deep); margin-top: 4px;">${formatDateLabel(selectedEditorDate, 'it')}</div>
+        </div>
+        <button class="${isPublished ? 'btn btn-ghost' : 'btn btn-primary'}" onclick="togglePublish()" style="min-width: 140px; padding: 10px 18px;">
+          ${isPublished ? '↩ Nascondi' : '✓ Pubblica menù'}
+        </button>
+      </div>
+    </div>
+  `;
+  
+  CATEGORIES.forEach(cat => {
+    const block = document.createElement('div');
+    block.className = 'category-block';
+    
+    // Header categoria
+    let headerHtml = `<div class="category-title">${cat.label_it}`;
+    if (cat.toggleable) {
+      const enabled = !!menu[`_${cat.key}_enabled`];
+      headerHtml += `
+        <label style="margin-left: auto; display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: ${enabled ? 'var(--sea-deep)' : 'var(--ink-muted)'}; cursor: pointer;">
+          <input type="checkbox" ${enabled ? 'checked' : ''} onchange="toggleCategory('${cat.key}', this.checked)" style="width: 16px; height: 16px; accent-color: var(--sea-deep); cursor: pointer;">
+          ${enabled ? 'Attiva oggi' : 'Disattivata'}
+        </label>`;
+    }
+    if (cat.kidsOnly) {
+      headerHtml += `<span style="margin-left: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.05em; color: var(--accent); text-transform: uppercase; font-family: 'Inter', sans-serif;">Solo con bambini</span>`;
+    }
+    headerHtml += `</div>`;
+    block.innerHTML = headerHtml;
+    
+    // --- TIPO DIRECT: solo il toggle, nessun editor piatti ---
+    if (cat.type === 'direct') {
+      if (cat.toggleable && !menu[`_${cat.key}_enabled`]) {
+        const info = document.createElement('div');
+        info.style.cssText = 'font-size: 12px; color: var(--ink-muted); font-style: italic; padding: 8px 4px;';
+        info.textContent = 'Disattivata. Attivala per rendere questa opzione selezionabile dall\'ospite.';
+        block.appendChild(info);
+      } else {
+        const info = document.createElement('div');
+        info.style.cssText = 'background: linear-gradient(135deg, var(--sea-light) 0%, rgba(176,168,160,0.08) 100%); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: var(--sea-deep);';
+        info.innerHTML = `<strong style="font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;">Attiva</strong><br><span style="font-family: 'Fraunces', serif; font-size: 14px; font-style: italic;">L'ospite può selezionare quante ${cat.label_it.toLowerCase()} desidera, senza scegliere il gusto. Nessun piatto da inserire qui.</span>`;
+        block.appendChild(info);
+      }
+      editor.appendChild(block);
+      return;
+    }
+    
+    // --- TIPO GROUPED: sottosezioni ---
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => {
+        const subHead = document.createElement('div');
+        subHead.style.cssText = 'margin-top: 14px; margin-bottom: 8px; padding-left: 12px; border-left: 2px solid var(--accent); font-family: "Fraunces", serif; font-size: 15px; font-style: italic; color: var(--sea-deep);';
+        subHead.textContent = sub.label_it;
+        block.appendChild(subHead);
+        
+        // Piatti fissi read-only
+        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
+          const fixedInfo = document.createElement('div');
+          fixedInfo.style.cssText = 'background: var(--sea-light); border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 12px; color: var(--sea-deep);';
+          fixedInfo.innerHTML = `<strong style="font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;">Sempre disponibili</strong>`;
+          FIXED_DISHES[sub.key].forEach(d => {
+            const row = document.createElement('div');
+            row.style.cssText = 'padding: 4px 0; display: flex; justify-content: space-between; align-items: center;';
+            row.innerHTML = `<span style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink);">${d.name_it} <span style="color: var(--accent); font-family: 'Inter', sans-serif; font-size: 11px;">(${d.allergens})</span></span><span style="font-size: 10px; color: var(--ink-muted); letter-spacing: 0.05em; text-transform: uppercase;">fisso</span>`;
+            fixedInfo.appendChild(row);
+          });
+          block.appendChild(fixedInfo);
+        }
+        
+        // Piatti variabili della sottosezione
+        const dishes = menu[sub.key] || [];
+        const listEl = document.createElement('div');
+        dishes.forEach((dish, idx) => {
+          listEl.appendChild(buildDishEditor(sub.key, dish, idx));
+        });
+        
+        const addBtn = document.createElement('button');
+        addBtn.className = 'add-dish-btn';
+        addBtn.textContent = '+ Aggiungi piatto';
+        addBtn.onclick = () => addDish(sub.key);
+        
+        block.appendChild(listEl);
+        block.appendChild(addBtn);
+      });
+      editor.appendChild(block);
+      return;
+    }
+    
+    // --- TIPO STANDARD ---
+    const dishes = menu[cat.key] || [];
+    const listEl = document.createElement('div');
+    dishes.forEach((dish, idx) => {
+      listEl.appendChild(buildDishEditor(cat.key, dish, idx));
+    });
+    
+    const addBtn = document.createElement('button');
+    addBtn.className = 'add-dish-btn';
+    addBtn.textContent = '+ Aggiungi piatto';
+    addBtn.onclick = () => addDish(cat.key);
+    
+    block.appendChild(listEl);
+    block.appendChild(addBtn);
+    editor.appendChild(block);
+  });
+}
+
+function buildDishEditor(catKey, dish, idx) {
+  const de = document.createElement('div');
+  de.className = 'dish-editor';
+  
+  // Costruisci etichetta riassuntiva allergeni
+  const allergenNums = (dish.allergens || '').split(',').map(s => s.trim()).filter(Boolean);
+  let allergenLabel;
+  if (allergenNums.length === 0) {
+    allergenLabel = '<em style="color: var(--ink-muted); font-weight: 400;">Nessun allergene selezionato</em>';
+  } else {
+    const labels = allergenNums.sort((a,b) => parseInt(a)-parseInt(b)).map(num => {
+      const a = ALLERGENS.find(x => x.num === num);
+      return a ? `${num} ${a.it}` : num;
+    });
+    allergenLabel = labels.join(' · ');
+  }
+  
+  de.innerHTML = `
+    <div class="field-row">
+      <div class="field">
+        <label>Nome (IT)</label>
+        <input type="text" value="${escapeHtml(dish.name_it || '')}" oninput="updateDish('${catKey}',${idx},'name_it',this.value)">
+      </div>
+      <div class="field">
+        <label>Name (EN)</label>
+        <input type="text" value="${escapeHtml(dish.name_en || '')}" oninput="updateDish('${catKey}',${idx},'name_en',this.value)">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Descrizione (IT)</label>
+        <input type="text" value="${escapeHtml(dish.desc_it || '')}" oninput="updateDish('${catKey}',${idx},'desc_it',this.value)">
+      </div>
+      <div class="field">
+        <label>Description (EN)</label>
+        <input type="text" value="${escapeHtml(dish.desc_en || '')}" oninput="updateDish('${catKey}',${idx},'desc_en',this.value)">
+      </div>
+    </div>
+    <div class="field">
+      <label>Allergeni</label>
+      <button type="button" class="allergen-picker-btn" onclick="openAdminAllergenPicker('${catKey}', ${idx})">
+        <span class="picker-label">${allergenLabel}</span>
+        <span class="picker-edit">✎ Modifica</span>
+      </button>
+    </div>
+    <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+      <button class="remove" onclick="removeDish('${catKey}',${idx})">✕ Rimuovi piatto</button>
+    </div>
+  `;
+  return de;
+}
+
+// Helper: salva il menù del giorno correntemente editato su Firestore
+async function persistCurrentDay() {
+  if (!selectedEditorDate) return;
+  const menu = DB.menus[selectedEditorDate] || {};
+  await DB.saveMenu(selectedEditorDate, menu);
+}
+
+async function toggleCategory(catKey, enabled) {
+  if (!DB.menus[selectedEditorDate]) DB.menus[selectedEditorDate] = {};
+  DB.menus[selectedEditorDate][`_${catKey}_enabled`] = enabled;
+  await persistCurrentDay();
+  renderDayEditor();
+}
+
+async function togglePublish() {
+  if (!DB.menus[selectedEditorDate]) DB.menus[selectedEditorDate] = {};
+  const isPublished = !!DB.menus[selectedEditorDate]._published;
+  DB.menus[selectedEditorDate]._published = !isPublished;
+  await persistCurrentDay();
+  renderDayEditor();
+  showToast(isPublished ? 'Menù nascosto agli ospiti' : 'Menù pubblicato — ora visibile agli ospiti');
+}
+
+// ========================================================================
+// ADMIN ALLERGEN PICKER
+// ========================================================================
+let adminPickerContext = null; // { catKey, idx, selectedSet }
+
+function openAdminAllergenPicker(catKey, idx) {
+  const dish = DB.menus[selectedEditorDate]?.[catKey]?.[idx];
+  if (!dish) return;
+  
+  const currentNums = (dish.allergens || '').split(',').map(s => s.trim()).filter(Boolean);
+  adminPickerContext = {
+    catKey,
+    idx,
+    selectedSet: new Set(currentNums)
+  };
+  
+  // Titolo con nome del piatto
+  const dishName = dish.name_it || 'Piatto senza nome';
+  document.getElementById('admin-allergen-modal-title').textContent = dishName;
+  
+  // Renderizza grid
+  const grid = document.getElementById('admin-allergen-grid');
+  grid.innerHTML = '';
+  ALLERGENS.forEach(a => {
+    const chip = document.createElement('label');
+    chip.className = 'allergen-chip' + (adminPickerContext.selectedSet.has(a.num) ? ' active' : '');
+    chip.innerHTML = `
+      <div class="box"></div>
+      <span>${a.it}</span>
+      <span class="num">${a.num}</span>
+    `;
+    chip.onclick = (e) => {
+      e.preventDefault();
+      if (adminPickerContext.selectedSet.has(a.num)) {
+        adminPickerContext.selectedSet.delete(a.num);
+        chip.classList.remove('active');
+      } else {
+        adminPickerContext.selectedSet.add(a.num);
+        chip.classList.add('active');
+      }
+    };
+    grid.appendChild(chip);
+  });
+  
+  document.getElementById('admin-allergen-modal').classList.remove('hidden');
+}
+
+function clearAdminAllergens() {
+  if (!adminPickerContext) return;
+  adminPickerContext.selectedSet.clear();
+  document.querySelectorAll('#admin-allergen-grid .allergen-chip').forEach(c => c.classList.remove('active'));
+}
+
+function saveAdminAllergens() {
+  if (!adminPickerContext) return;
+  const { catKey, idx, selectedSet } = adminPickerContext;
+  // Ordina numericamente prima di salvare
+  const sorted = Array.from(selectedSet).sort((a,b) => parseInt(a) - parseInt(b));
+  const allergenString = sorted.join(',');
+  updateDish(catKey, idx, 'allergens', allergenString);
+  document.getElementById('admin-allergen-modal').classList.add('hidden');
+  adminPickerContext = null;
+  renderDayEditor(); // refresh per mostrare la nuova label
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+async function addDish(cat) {
+  if (!DB.menus[selectedEditorDate]) DB.menus[selectedEditorDate] = {};
+  if (!DB.menus[selectedEditorDate][cat]) DB.menus[selectedEditorDate][cat] = [];
+  DB.menus[selectedEditorDate][cat].push({ name_it: '', name_en: '', desc_it: '', desc_en: '', allergens: '' });
+  await persistCurrentDay();
+  renderDayEditor();
+}
+
+// updateDish chiamato onInput: scrive in cache subito, salva con debounce 600ms
+let _updateDishTimer = null;
+function updateDish(cat, idx, field, val) {
+  if (!DB.menus[selectedEditorDate]?.[cat]?.[idx]) return;
+  DB.menus[selectedEditorDate][cat][idx][field] = val;
+  if (_updateDishTimer) clearTimeout(_updateDishTimer);
+  _updateDishTimer = setTimeout(() => { persistCurrentDay(); }, 600);
+}
+
+async function removeDish(cat, idx) {
+  if (!confirm('Rimuovere questo piatto?')) return;
+  DB.menus[selectedEditorDate][cat].splice(idx, 1);
+  await persistCurrentDay();
+  renderDayEditor();
+}
+
+async function copyFromPreviousWeek() {
+  const d = new Date(selectedEditorDate + 'T00:00:00');
+  d.setDate(d.getDate() - 7);
+  const prevKey = toDateKey(d);
+  if (!DB.menus[prevKey]) {
+    showToast('Nessun menù nella settimana precedente per questo giorno');
+    return;
+  }
+  DB.menus[selectedEditorDate] = JSON.parse(JSON.stringify(DB.menus[prevKey]));
+  // Rimuovo il flag _published dalla copia (vuoi ripubblicarlo esplicitamente)
+  delete DB.menus[selectedEditorDate]._published;
+  await persistCurrentDay();
+  renderDayEditor();
+  showToast('Menù copiato dalla settimana precedente');
+}
+
+function exportQR() {
+  const url = window.location.href.split('#')[0].split('?')[0];
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(url)}`;
+  const w = window.open('', '_blank');
+  w.document.write(`
+    <html><head><title>QR Code Menù</title>
+    <style>body{font-family:sans-serif;text-align:center;padding:40px;}img{border:1px solid #ddd;padding:20px;border-radius:12px;}</style>
+    </head><body>
+    <h1>QR Code — Menù Mezza Pensione</h1>
+    <p>${url}</p>
+    <img src="${qrUrl}" alt="QR">
+    <p style="margin-top:20px;color:#666;font-size:13px;">Stampa questo foglio e mettilo sui tavoli.</p>
+    <button onclick="window.print()" style="padding:10px 20px;margin-top:20px;">Stampa</button>
+    </body></html>
+  `);
+}
+
+// ========================================================================
+// ORDINAZIONI
+// ========================================================================
+function renderOrders() {
+  const date = document.getElementById('orders-date').value;
+  const dayOrders = DB.orders.filter(o => o.date === date);
+  
+  // Stats
+  const totalPeople = dayOrders.reduce((s, o) => s + (o.people || 0), 0);
+  const totalAdults = dayOrders.reduce((s, o) => s + (o.adults || o.people || 0), 0);
+  const totalChildren = dayOrders.reduce((s, o) => s + (o.children || 0), 0);
+  const totalDishes = dayOrders.reduce((s, o) => s + o.items.reduce((ss, i) => ss + i.qty, 0), 0);
+  const withIntolerances = dayOrders.filter(o => {
+    // Nuovo formato: guests con intolleranze
+    if (o.guests && o.guests.some(g => (g.intolerances && g.intolerances.length > 0) || (g.notes && g.notes.length > 0))) return true;
+    // Vecchio formato: livello famiglia
+    if (o.intolerances && o.intolerances.length > 0) return true;
+    if (o.allergyNotes && o.allergyNotes.length > 0) return true;
+    return false;
+  }).length;
+  
+  let statsHtml = `
+    <div class="stat-card">
+      <div class="stat-label">Famiglie</div>
+      <div class="stat-value">${dayOrders.length}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Coperti totali</div>
+      <div class="stat-value">${totalPeople}</div>
+      <div style="font-size: 11px; color: var(--ink-muted); margin-top: 4px;">${totalAdults} adulti · ${totalChildren} bambini</div>
+    </div>
+  `;
+  if (withIntolerances > 0) {
+    statsHtml += `
+      <div class="stat-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(161,60,60,0.08) 0%, rgba(176,168,160,0.08) 100%); border-left: 3px solid var(--error);">
+        <div class="stat-label" style="color: var(--error);">⚠ Famiglie con intolleranze</div>
+        <div class="stat-value" style="color: var(--error);">${withIntolerances}</div>
+      </div>
+    `;
+  }
+  document.getElementById('stats-grid').innerHTML = statsHtml;
+  
+  // Aggregati per piatto
+  const agg = {};
+  dayOrders.forEach(o => {
+    o.items.forEach(i => {
+      const key = `${i.category}|${i.dishName}`;
+      if (!agg[key]) agg[key] = { category: i.category, name: i.dishName, qty: 0 };
+      agg[key].qty += i.qty;
+    });
+  });
+  
+  const aggList = document.getElementById('aggregates-list');
+  const maxQty = Math.max(...Object.values(agg).map(a => a.qty), 1);
+  
+  if (Object.keys(agg).length === 0) {
+    aggList.innerHTML = `<div class="empty-state"><div class="icon">🍽️</div><p>Nessuna ordinazione per questa data.</p></div>`;
+  } else {
+    aggList.innerHTML = '';
+    // Raggruppa per categoria (gestendo anche le sottosezioni del Menù Bambini)
+    const allCats = [];
+    CATEGORIES.forEach(cat => {
+      if (cat.type === 'grouped') {
+        cat.subsections.forEach(sub => allCats.push({ key: sub.key, label: sub.label_it }));
+      } else {
+        allCats.push({ key: cat.key, label: cat.label_it });
+      }
+    });
+    
+    allCats.forEach(cat => {
+      const catItems = Object.values(agg).filter(a => a.category === cat.key);
+      if (catItems.length === 0) return;
+      const header = document.createElement('div');
+      header.style.cssText = 'font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; margin-top: 14px; margin-bottom: 6px;';
+      header.textContent = cat.label;
+      aggList.appendChild(header);
+      
+      catItems.sort((a,b) => b.qty - a.qty).forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'agg-row';
+        row.innerHTML = `
+          <div>
+            <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}</div>
+            <div class="agg-bar"><div class="agg-fill" style="width: ${(item.qty / maxQty * 100)}%;"></div></div>
+          </div>
+          <div class="agg-qty">${item.qty}</div>
+        `;
+        aggList.appendChild(row);
+      });
+    });
+  }
+  
+  // Per famiglia
+  const ordersList = document.getElementById('orders-list');
+  if (dayOrders.length === 0) {
+    ordersList.innerHTML = `<div class="empty-state" style="padding: 20px;"><p style="font-size: 13px;">Nessuna famiglia ha ancora ordinato.</p></div>`;
+  } else {
+    ordersList.innerHTML = '';
+    dayOrders.sort((a,b) => (a.family || '').localeCompare(b.family || '')).forEach(o => {
+      const card = document.createElement('div');
+      card.className = 'order-card';
+      const time = new Date(o.submittedAt).toLocaleTimeString('it-IT', {hour:'2-digit',minute:'2-digit'});
+      let itemsHtml = '';
+      const allCatsMap = {};
+      CATEGORIES.forEach(cat => {
+        if (cat.type === 'grouped') {
+          cat.subsections.forEach(sub => { allCatsMap[sub.key] = sub.label_it; });
+        } else {
+          allCatsMap[cat.key] = cat.label_it;
+        }
+      });
+      Object.keys(allCatsMap).forEach(catKey => {
+        const catItems = o.items.filter(i => i.category === catKey);
+        if (catItems.length === 0) return;
+        itemsHtml += `<div style="font-size: 10px; font-weight: 600; color: var(--ink-muted); letter-spacing: 0.05em; margin-top: 8px; margin-bottom: 3px; text-transform: uppercase;">${allCatsMap[catKey]}</div>`;
+        catItems.forEach(i => {
+          itemsHtml += `<div class="order-item"><span class="name">${i.dishName}</span><span class="qty-badge">×${i.qty}</span></div>`;
+        });
+      });
+      // Alert intolleranze se presenti (versione per-persona)
+      let intoleranceHtml = '';
+      const guestsWithInt = (o.guests || []).filter(g => 
+        (g.intolerances && g.intolerances.length > 0) || (g.notes && g.notes.length > 0)
+      );
+      if (guestsWithInt.length > 0) {
+        const rowsHtml = guestsWithInt.map(g => {
+          const allergenLabels = (g.intolerances || []).map(num => {
+            const a = ALLERGENS.find(x => x.num === num);
+            return a ? `${a.it} (${a.num})` : num;
+          }).join(', ');
+          const parts = [];
+          if (allergenLabels) parts.push(`<span class="alert-allergens">${allergenLabels}</span>`);
+          if (g.notes) parts.push(`<span class="alert-notes" style="border: none; padding: 0; margin: 0;">"${escapeHtml(g.notes)}"</span>`);
+          return `
+            <div style="padding: 6px 0; border-bottom: 1px dashed rgba(161,60,60,0.15);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--error); letter-spacing: 0.03em;">${g.label}</div>
+              <div style="margin-top: 2px; font-size: 13px;">${parts.join(' · ')}</div>
+            </div>
+          `;
+        }).join('');
+        intoleranceHtml = `
+          <div class="intolerance-alert" style="padding-bottom: 6px;">
+            <div class="alert-label">⚠ Intolleranze segnalate (${guestsWithInt.length} ${guestsWithInt.length === 1 ? 'persona' : 'persone'})</div>
+            ${rowsHtml}
+          </div>
+        `;
+      } else if (o.intolerances && o.intolerances.length > 0) {
+        // Fallback per vecchi ordini (versione famiglia)
+        const allergenLabels = o.intolerances.map(num => {
+          const a = ALLERGENS.find(x => x.num === num);
+          return a ? `${a.it} (${a.num})` : num;
+        }).join(', ');
+        intoleranceHtml = `
+          <div class="intolerance-alert">
+            <div class="alert-label">⚠ Intolleranze segnalate</div>
+            <div class="alert-allergens">${allergenLabels}</div>
+            ${o.allergyNotes ? `<div class="alert-notes">Note: ${escapeHtml(o.allergyNotes)}</div>` : ''}
+          </div>
+        `;
+      }
+      card.innerHTML = `
+        <div class="order-head">
+          <div>
+            <div class="order-family">Famiglia ${o.family}</div>
+            <div class="order-meta">${(o.adults || o.people || 0)} adulti · ${(o.children || 0)} bambini · inviato alle ${time}</div>
+          </div>
+        </div>
+        ${intoleranceHtml}
+        ${itemsHtml}
+      `;
+      ordersList.appendChild(card);
+    });
+  }
+}
+
+async function deleteOrder(firestoreId) {
+  if (!confirm('Eliminare questa ordinazione?')) return;
+  await DB.deleteOrder(firestoreId);
+  // Il real-time listener aggiornerà automaticamente la UI
+}
+
+function printOrders() {
+  window.print();
+}
+
+// ========================================================================
+// STORICO
+// ========================================================================
+function setHistoryPreset(preset) {
+  const today = new Date();
+  const fromEl = document.getElementById('history-from');
+  const toEl = document.getElementById('history-to');
+  toEl.value = toDateKey(today);
+  
+  if (preset === 7) {
+    const from = new Date(today);
+    from.setDate(from.getDate() - 6); // include oggi = 7 giorni totali
+    fromEl.value = toDateKey(from);
+  } else if (preset === 30) {
+    const from = new Date(today);
+    from.setDate(from.getDate() - 29);
+    fromEl.value = toDateKey(from);
+  } else if (preset === 'season') {
+    // Stagione: tutto dallo storico
+    if (DB.orders.length > 0) {
+      const earliest = DB.orders.map(o => o.date).sort()[0];
+      fromEl.value = earliest;
+    } else {
+      fromEl.value = toDateKey(today);
+    }
+  }
+  renderHistory();
+}
+
+function renderHistory() {
+  const fromEl = document.getElementById('history-from');
+  const toEl = document.getElementById('history-to');
+  const summary = document.getElementById('history-summary');
+  const list = document.getElementById('history-list');
+  
+  // Default: ultimi 7 giorni se non settato
+  if (!fromEl.value || !toEl.value) {
+    setHistoryPreset(7);
+    return;
+  }
+  
+  const fromDate = fromEl.value;
+  const toDate = toEl.value;
+  
+  // Filtra ordini nel range (inclusivo)
+  const filtered = DB.orders.filter(o => o.date >= fromDate && o.date <= toDate);
+  
+  // Aggrega tutti i piatti
+  const agg = {};
+  let totalFamilies = filtered.length;
+  let totalPeople = 0;
+  filtered.forEach(o => {
+    totalPeople += (o.people || 0);
+    o.items.forEach(i => {
+      const key = `${i.category}|${i.dishName}`;
+      if (!agg[key]) agg[key] = { category: i.category, name: i.dishName, qty: 0 };
+      agg[key].qty += i.qty;
+    });
+  });
+  
+  const totalDishes = Object.values(agg).reduce((s, a) => s + a.qty, 0);
+  
+  // Summary card
+  summary.innerHTML = `
+    <div class="stat-grid" style="margin-bottom: 16px;">
+      <div class="stat-card">
+        <div class="stat-label">Famiglie</div>
+        <div class="stat-value">${totalFamilies}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Coperti</div>
+        <div class="stat-value">${totalPeople}</div>
+      </div>
+    </div>
+  `;
+  
+  if (Object.keys(agg).length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="icon">📚</div><p>Nessuna ordinazione nel periodo selezionato.</p></div>`;
+    return;
+  }
+  
+  // Mappa label categorie per sottosezioni + standard + direct
+  const catLabels = {};
+  CATEGORIES.forEach(cat => {
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => { catLabels[sub.key] = sub.label_it; });
+    } else {
+      catLabels[cat.key] = cat.label_it;
+    }
+  });
+  
+  // Raggruppo per categoria, piatti ordinati per quantità desc
+  list.innerHTML = `<div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 10px;">${totalDishes} piatti totali</div>`;
+  
+  const allItems = Object.values(agg);
+  
+  // Raggruppa per categoria mantenendo ordine CATEGORIES
+  const catOrder = [];
+  CATEGORIES.forEach(cat => {
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => catOrder.push(sub.key));
+    } else {
+      catOrder.push(cat.key);
+    }
+  });
+  
+  const maxQty = Math.max(...allItems.map(a => a.qty), 1);
+  
+  catOrder.forEach(catKey => {
+    const catItems = allItems.filter(a => a.category === catKey);
+    if (catItems.length === 0) return;
+    
+    const header = document.createElement('div');
+    header.style.cssText = 'font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; margin-top: 14px; margin-bottom: 6px;';
+    header.textContent = catLabels[catKey] || catKey;
+    list.appendChild(header);
+    
+    catItems.sort((a,b) => b.qty - a.qty).forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'agg-row';
+      row.innerHTML = `
+        <div>
+          <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}</div>
+          <div class="agg-bar"><div class="agg-fill" style="width: ${(item.qty / maxQty * 100)}%;"></div></div>
+        </div>
+        <div class="agg-qty">${item.qty}</div>
+      `;
+      list.appendChild(row);
+    });
+  });
+}
+
+function exportAllData() {
+  const data = {
+    exportedAt: new Date().toISOString(),
+    menus: DB.menus,
+    orders: DB.orders
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `conero-azzurro-menu-export-${toDateKey(new Date())}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ========================================================================
+// INIT
+// ========================================================================
+
+// Determina quale view mostrare in base all'URL hash:
+// - #admin → login admin
+// - (altro) → vista ospite
+function currentRoute() {
+  return (window.location.hash || '').toLowerCase();
+}
+
+function applyRoute() {
+  const hash = currentRoute();
+  if (hash === '#admin') {
+    // Se già autenticato, apri admin, altrimenti login
+    if (DB.isAdmin) {
+      showView('admin');
+      initAdmin();
+    } else {
+      showView('login');
+    }
+  } else {
+    showView('guest');
+  }
+}
+
+// Ascolta cambi hash (es. logout che resetta l'hash)
+window.addEventListener('hashchange', applyRoute);
+
+// Aggiornamento automatico della UI quando cambiano i dati su Firestore
+DB.onUpdate(() => {
+  // Refresh contestuale in base alla view attiva
+  const isGuestVisible = !document.getElementById('view-guest').classList.contains('hidden');
+  const isAdminVisible = !document.getElementById('view-admin').classList.contains('hidden');
+  const isLoginVisible = !document.getElementById('view-login').classList.contains('hidden');
+  
+  // Se siamo su #admin e l'utente è autenticato mentre stavamo vedendo la login
+  if (currentRoute() === '#admin' && DB.isAdmin && isLoginVisible) {
+    showView('admin');
+    initAdmin();
+    return;
+  }
+  // Se eravamo admin e siamo stati delogati
+  if (!DB.isAdmin && isAdminVisible) {
+    if (currentRoute() === '#admin') {
+      showView('login');
+    } else {
+      showView('guest');
+    }
+    return;
+  }
+  
+  // Refresh contenuti view attiva
+  if (isGuestVisible) {
+    renderGuestMenu();
+  } else if (isAdminVisible) {
+    // Re-render del tab aperto
+    const activeTab = document.querySelector('.admin-nav button.active')?.id?.replace('tab-', '');
+    if (activeTab === 'menu') {
+      renderDayTabs(); // include renderDayEditor
+    } else if (activeTab === 'orders') {
+      renderOrders();
+    } else if (activeTab === 'history') {
+      renderHistory();
+    }
+  }
+});
+
+// ========================================================================
+// ESPOSIZIONE FUNZIONI A WINDOW (per onclick/oninput inline nel HTML)
+// Dentro <script type="module"> le funzioni NON sono globali di default.
+// ========================================================================
+Object.assign(window, {
+  // View e navigazione
+  showView, showAdminTab,
+  // Lingua
+  setLang,
+  // Guest form
+  changeQty, submitOrder, forceSubmit, closeConfirmModal, resetGuestForm,
+  setHasIntolerances, toggleFilterSafe,
+  // Commensali / intolleranze persona
+  removeGuest, openPersonModal, savePersonIntolerances, clearPersonIntolerances,
+  onPeopleCountChange,
+  // Login / logout
+  login, logout,
+  // Admin menù
+  toggleCategory, togglePublish, addDish, updateDish, removeDish,
+  copyFromPreviousWeek, exportQR,
+  // Admin allergeni piatto
+  openAdminAllergenPicker, saveAdminAllergens, clearAdminAllergens,
+  // Admin ordini e storico
+  renderOrders, renderHistory, setHistoryPreset,
+  deleteOrder, printOrders, exportAllData
+});
+
+// Traduzione iniziale
+setLang('it');
+
+// Apply route iniziale (dopo piccolo delay per dare tempo a onAuthStateChanged)
+setTimeout(applyRoute, 50);
+</script>
+</body>
+</html>
