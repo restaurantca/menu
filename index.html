@@ -1485,6 +1485,142 @@ body {
   .section-head h2 { font-size: 20px; }
   .day-tab .num { font-size: 14px; }
 }
+
+/* ==================== STAMPA ==================== */
+#print-overlay { display: none; }
+
+@media print {
+  body.print-mode > *:not(#print-overlay) { display: none !important; }
+  body.print-mode #print-overlay {
+    display: block !important;
+    background: white;
+    color: #1a1a1a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    padding: 12mm;
+    font-size: 11pt;
+  }
+  body.print-mode { background: white !important; }
+  
+  .print-page { max-width: 100%; }
+  .print-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #286098;
+  }
+  .print-logo { width: 56px; height: 56px; flex-shrink: 0; border-radius: 4px; }
+  .print-header-text { flex: 1; }
+  .print-brand {
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #286098;
+    font-weight: 600;
+  }
+  .print-subtitle {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-size: 16pt;
+    color: #1a1a1a;
+    margin-top: 4px;
+  }
+  .print-date { font-size: 11pt; color: #555; margin-top: 2px; font-style: italic; }
+  
+  .print-section-title {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-size: 16pt;
+    color: #286098;
+    margin: 18px 0 10px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
+  }
+  .print-stats {
+    display: flex;
+    gap: 18px;
+    font-size: 10pt;
+    margin-bottom: 12px;
+    color: #555;
+  }
+  .print-stats strong { color: #1a1a1a; font-size: 12pt; }
+  
+  .print-cat-block { margin-bottom: 14px; page-break-inside: avoid; }
+  .print-cat-title {
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8C6E4A;
+    font-weight: 700;
+    margin: 12px 0 4px 0;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 3px;
+  }
+  .print-table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+  .print-table tr { border-bottom: 1px dotted #ddd; }
+  .print-table tr:last-child { border-bottom: none; }
+  .print-table .print-name { padding: 5px 4px; font-family: 'Fraunces', 'Times New Roman', serif; }
+  .print-table .print-qty {
+    text-align: right;
+    padding: 5px 4px;
+    font-weight: 700;
+    font-size: 13pt;
+    width: 50px;
+    color: #286098;
+  }
+  .print-variant {
+    display: inline-block;
+    padding: 1px 6px;
+    background: #8C6E4A;
+    color: white;
+    border-radius: 100px;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .print-side { font-size: 9pt; color: #777; font-style: italic; margin-top: 1px; }
+  .print-side-inline { color: #777; font-style: italic; font-size: 10pt; }
+  
+  .print-family-card {
+    margin-bottom: 14px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    page-break-inside: avoid;
+  }
+  .print-family-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  .print-family-head strong {
+    font-size: 13pt;
+    color: #286098;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+  }
+  .print-family-meta { font-size: 10pt; color: #777; }
+  .print-intol {
+    background: #fff5f5;
+    border-left: 3px solid #A13C3C;
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    font-size: 10pt;
+    color: #6a1f1f;
+  }
+  .print-intol strong { display: block; margin-bottom: 2px; }
+  .print-table-family { width: 100%; font-size: 10pt; }
+  .print-table-family td { padding: 3px 4px; border-bottom: 1px dotted #eee; }
+  .print-table-family .print-qty { text-align: right; font-weight: 700; width: 40px; }
+  
+  .print-pagebreak { page-break-before: always; }
+  .print-empty { text-align: center; color: #999; font-style: italic; padding: 20px; }
+  
+  @page { margin: 0; size: A4; }
+}
 </style>
 </head>
 <body>
@@ -1812,6 +1948,81 @@ body {
     <div class="guest-modal-foot">
       <button class="btn btn-ghost" onclick="cancelPizzaConfig()" data-it="Annulla" data-en="Cancel">Annulla</button>
       <button class="btn btn-primary" onclick="confirmPizzaConfig()" data-it="Aggiungi pizza" data-en="Add pizza">Aggiungi pizza</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal modifica ordine (admin) -->
+<div id="edit-order-modal" class="modal-backdrop hidden">
+  <div class="guest-modal" style="max-width: 540px;">
+    <div class="guest-modal-head">
+      <div class="label" style="color: var(--sea-deep);">Modifica ordine</div>
+      <h3 id="edit-order-title">Famiglia —</h3>
+      <p>Aggiorna le quantità o rimuovi le righe esistenti. Per aggiungere un nuovo piatto usa il campo libero in fondo.</p>
+    </div>
+    <div class="guest-modal-body" id="edit-order-body">
+      <!-- popolato dinamicamente -->
+    </div>
+    <div class="guest-modal-foot">
+      <button class="btn btn-ghost" onclick="cancelEditOrder()">Annulla</button>
+      <button class="btn btn-primary" onclick="saveEditOrder()">Salva modifiche</button>
+    </div>
+  </div>
+</div>
+
+<!-- Doppio modal di conferma eliminazione -->
+<div id="delete-confirm-1" class="modal-backdrop hidden">
+  <div class="modal" style="max-width: 420px;">
+    <div class="icon-wrap" style="background: linear-gradient(135deg, rgba(161,60,60,0.12) 0%, rgba(161,60,60,0.04) 100%);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+    </div>
+    <h3>Eliminare l'ordine?</h3>
+    <p style="font-size: 13px;">Stai per eliminare l'ordine di <strong id="delete-target-name-1" style="color: var(--ink);">—</strong>. Questa azione è irreversibile.</p>
+    <div class="actions" style="display: flex; gap: 8px;">
+      <button class="btn btn-ghost" onclick="closeDeleteConfirm()" style="flex: 1;">Annulla</button>
+      <button class="btn" onclick="proceedToDeleteConfirm2()" style="flex: 1; background: var(--error); color: var(--paper);">Sì, procedi</button>
+    </div>
+  </div>
+</div>
+
+<div id="delete-confirm-2" class="modal-backdrop hidden">
+  <div class="modal" style="max-width: 420px;">
+    <div class="icon-wrap" style="background: rgba(161,60,60,0.12);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </div>
+    <h3 style="color: var(--error);">Conferma definitiva</h3>
+    <p style="font-size: 13px;">Sei <strong>veramente sicuro</strong> di voler eliminare l'ordine di <strong id="delete-target-name-2" style="color: var(--ink);">—</strong>? Una volta eliminato non potrai più recuperarlo.</p>
+    <div class="actions" style="display: flex; gap: 8px;">
+      <button class="btn btn-ghost" onclick="closeDeleteConfirm()" style="flex: 1;">No, annulla</button>
+      <button class="btn" onclick="executeDeleteOrder()" style="flex: 1; background: var(--error); color: var(--paper);">Sì, elimina definitivamente</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scelta tipo stampa -->
+<div id="print-choice-modal" class="modal-backdrop hidden">
+  <div class="modal" style="max-width: 460px;">
+    <div class="icon-wrap" style="background: linear-gradient(135deg, var(--sea-light) 0%, rgba(176,168,160,0.08) 100%);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+    </div>
+    <h3>Cosa vuoi stampare?</h3>
+    <p style="font-size: 13px;">Scegli il tipo di documento da stampare per la cena.</p>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin: 18px 0;">
+      <button class="btn btn-primary" onclick="doPrint('aggregate')" style="display: flex; flex-direction: column; align-items: flex-start; padding: 14px 18px; text-align: left;">
+        <span style="font-size: 14px; font-weight: 600;">📋 Riepilogo cucina</span>
+        <span style="font-size: 11px; opacity: 0.85; margin-top: 2px; font-weight: 400;">Lista aggregata di tutti i piatti con i totali</span>
+      </button>
+      <button class="btn btn-ghost" onclick="doPrint('families')" style="display: flex; flex-direction: column; align-items: flex-start; padding: 14px 18px; text-align: left;">
+        <span style="font-size: 14px; font-weight: 600;">👨‍👩‍👧‍👦 Lista per famiglia</span>
+        <span style="font-size: 11px; opacity: 0.85; margin-top: 2px; font-weight: 400;">Ogni famiglia con i suoi piatti, in ordine alfabetico</span>
+      </button>
+      <button class="btn btn-ghost" onclick="doPrint('both')" style="display: flex; flex-direction: column; align-items: flex-start; padding: 14px 18px; text-align: left;">
+        <span style="font-size: 14px; font-weight: 600;">📄 Entrambi</span>
+        <span style="font-size: 11px; opacity: 0.85; margin-top: 2px; font-weight: 400;">Riepilogo cucina + lista per famiglia, in un'unica stampa</span>
+      </button>
+    </div>
+    <div style="text-align: center; margin-top: 6px;">
+      <button class="btn btn-ghost" onclick="closePrintChoice()" style="font-size: 12px;">Annulla</button>
     </div>
   </div>
 </div>
@@ -2694,6 +2905,32 @@ function renderGuestMenu() {
   
   // Popola la legenda allergeni con quelli effettivamente presenti nei piatti del giorno
   updateAllergenLegend(menu, children);
+  
+  // Ripristina i contatori visuali dallo stato in memoria
+  // (necessario perché ogni re-render ricrea gli elementi HTML con qty=0)
+  restoreQuantitiesFromState();
+}
+
+function restoreQuantitiesFromState() {
+  // Per ogni dish con varianti attive, aggiorna il contatore HTML e il breakdown
+  Object.keys(dishVariants).forEach(key => {
+    const v = dishVariants[key];
+    const total = v.standard + Object.values(v.byAllergen || {}).reduce((s, n) => s + n, 0);
+    if (total <= 0) return;
+    const [catKey, idxStr] = key.split('-');
+    // Per le sottosezioni il catKey può contenere underscore, ricostruiamolo
+    const lastDash = key.lastIndexOf('-');
+    const catKeyReal = key.substring(0, lastDash);
+    const idxReal = parseInt(key.substring(lastDash + 1));
+    const el = document.getElementById(`qty-${catKeyReal}-${idxReal}`);
+    if (el) {
+      el.textContent = total;
+      const qtyBox = el.parentElement;
+      qtyBox.classList.toggle('active', total > 0);
+      // Re-rendering del breakdown varianti
+      renderVariantsBreakdown(catKeyReal, idxReal);
+    }
+  });
 }
 
 function updateAllergenLegend(menu, children) {
@@ -3713,19 +3950,25 @@ function buildPizzaItemEditor(kind, item, idx) {
   }
   
   de.innerHTML = `
-    <div class="dish-editor-row" style="grid-template-columns: 1fr 1fr;">
-      <input type="text" placeholder="Nome (italiano)" value="${escapeHtml(item.name_it || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_it', this.value)">
-      <input type="text" placeholder="Name (English)" value="${escapeHtml(item.name_en || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_en', this.value)">
+    <div class="field-row">
+      <div class="field">
+        <label>Nome (IT)</label>
+        <input type="text" value="${escapeHtml(item.name_it || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_it', this.value)">
+      </div>
+      <div class="field">
+        <label>Name (EN)</label>
+        <input type="text" value="${escapeHtml(item.name_en || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_en', this.value)">
+      </div>
     </div>
-    <div style="margin-top: 10px;">
-      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 6px;">Allergeni</div>
+    <div class="field" style="margin-top: 8px;">
+      <label>Allergeni</label>
       <button class="allergen-picker-btn" onclick="openPizzaItemAllergenPicker('${kind}', ${idx})">
         <span class="allergen-picker-label">${allergenLabel}</span>
         <span class="allergen-picker-edit">✎ Modifica</span>
       </button>
     </div>
-    <div style="text-align: right; margin-top: 8px;">
-      <button onclick="removePizzaItem('${kind}', ${idx})" style="background: transparent; border: none; color: var(--error); font-size: 12px; cursor: pointer; padding: 4px 8px; font-family: 'Inter', sans-serif;">🗑 Rimuovi</button>
+    <div style="text-align: right; margin-top: 10px;">
+      <button onclick="removePizzaItem('${kind}', ${idx})" style="background: transparent; border: none; color: var(--error); font-size: 12px; cursor: pointer; padding: 6px 10px; font-family: 'Inter', sans-serif; font-weight: 600;">🗑 Rimuovi</button>
     </div>
   `;
   return de;
@@ -3742,6 +3985,7 @@ let _updatePizzaTimer = null;
 function updatePizzaItem(kind, idx, field, val) {
   if (!DB.pizzaConfig[kind] || !DB.pizzaConfig[kind][idx]) return;
   DB.pizzaConfig[kind][idx][field] = val;
+  markAdminTyping();
   if (_updatePizzaTimer) clearTimeout(_updatePizzaTimer);
   _updatePizzaTimer = setTimeout(() => {
     DB.savePizzaConfig(DB.pizzaConfig);
@@ -3760,19 +4004,32 @@ let _pizzaPickerCtx = null;
 function openPizzaItemAllergenPicker(kind, idx) {
   const item = DB.pizzaConfig[kind]?.[idx];
   if (!item) return;
-  _pizzaPickerCtx = { kind, idx };
+  _pizzaPickerCtx = { kind, idx, selectedSet: new Set() };
   
   // Riuso il modale admin-allergen-modal esistente
   const grid = document.getElementById('admin-allergen-grid');
   grid.innerHTML = '';
   const currentSelections = new Set((item.allergens || '').split(',').map(s => s.trim()).filter(Boolean));
+  // Popola anche il selectedSet del context (la verità è qui, non sul DOM)
+  currentSelections.forEach(n => _pizzaPickerCtx.selectedSet.add(n));
+  
   ALLERGENS.forEach(a => {
-    const chip = document.createElement('div');
-    chip.className = 'allergen-chip' + (currentSelections.has(a.num) ? ' selected' : '');
-    chip.dataset.num = a.num;
-    chip.innerHTML = `<span class="num">${a.num}</span><span class="name">${a.it}</span>`;
-    chip.onclick = () => {
-      chip.classList.toggle('selected');
+    const chip = document.createElement('label');
+    chip.className = 'allergen-chip' + (_pizzaPickerCtx.selectedSet.has(a.num) ? ' active' : '');
+    chip.innerHTML = `
+      <div class="box"></div>
+      <span>${a.it}</span>
+      <span class="num">${a.num}</span>
+    `;
+    chip.onclick = (e) => {
+      e.preventDefault();
+      if (_pizzaPickerCtx.selectedSet.has(a.num)) {
+        _pizzaPickerCtx.selectedSet.delete(a.num);
+        chip.classList.remove('active');
+      } else {
+        _pizzaPickerCtx.selectedSet.add(a.num);
+        chip.classList.add('active');
+      }
     };
     grid.appendChild(chip);
   });
@@ -3780,7 +4037,6 @@ function openPizzaItemAllergenPicker(kind, idx) {
   document.getElementById('admin-allergen-modal-title').textContent = `Allergeni: ${item.name_it || '(senza nome)'}`;
   // Override save action
   const modal = document.getElementById('admin-allergen-modal');
-  // Sostituisco temporaneamente il pulsante Salva
   const saveBtn = modal.querySelector('.btn-primary');
   const oldOnclick = saveBtn.getAttribute('onclick');
   saveBtn.setAttribute('onclick', "savePizzaItemAllergens()");
@@ -3793,11 +4049,8 @@ async function savePizzaItemAllergens() {
     document.getElementById('admin-allergen-modal').classList.add('hidden');
     return;
   }
-  const { kind, idx } = _pizzaPickerCtx;
-  const grid = document.getElementById('admin-allergen-grid');
-  const selected = Array.from(grid.querySelectorAll('.allergen-chip.selected'))
-    .map(c => c.dataset.num)
-    .sort((a,b) => parseInt(a)-parseInt(b));
+  const { kind, idx, selectedSet } = _pizzaPickerCtx;
+  const selected = Array.from(selectedSet).sort((a,b) => parseInt(a)-parseInt(b));
   
   if (DB.pizzaConfig[kind]?.[idx]) {
     DB.pizzaConfig[kind][idx].allergens = selected.join(',');
@@ -4238,11 +4491,23 @@ async function addDish(cat) {
   renderDayEditor();
 }
 
+// Flag che indica che l'admin sta scrivendo in un campo: 
+// finché è true, il listener Firestore NON rifà renderDayEditor (sennò perde il focus)
+let _isAdminTypingTimer = null;
+let isAdminTyping = false;
+function markAdminTyping() {
+  isAdminTyping = true;
+  if (_isAdminTypingTimer) clearTimeout(_isAdminTypingTimer);
+  // Dopo 3s di inattività riabilito i re-render
+  _isAdminTypingTimer = setTimeout(() => { isAdminTyping = false; }, 3000);
+}
+
 // updateDish chiamato onInput: scrive in cache subito, salva con debounce 600ms
 let _updateDishTimer = null;
 function updateDish(cat, idx, field, val) {
   if (!DB.menus[selectedEditorDate]?.[cat]?.[idx]) return;
   DB.menus[selectedEditorDate][cat][idx][field] = val;
+  markAdminTyping();
   if (_updateDishTimer) clearTimeout(_updateDishTimer);
   _updateDishTimer = setTimeout(() => { persistCurrentDay(); }, 600);
 }
@@ -4480,10 +4745,14 @@ function renderOrders() {
         `;
       }
       card.innerHTML = `
-        <div class="order-head">
-          <div>
+        <div class="order-head" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+          <div style="flex: 1; min-width: 0;">
             <div class="order-family">Famiglia ${o.family}</div>
             <div class="order-meta">${(o.adults || o.people || 0)} adulti · ${(o.children || 0)} bambini · inviato alle ${time}</div>
+          </div>
+          <div style="display: flex; gap: 6px; flex-shrink: 0;">
+            <button onclick="openEditOrderModal('${o._id}')" title="Modifica ordine" style="background: var(--sea-light); border: 1px solid var(--sea); color: var(--sea-deep); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 12px; font-family: 'Inter', sans-serif;">✎ Modifica</button>
+            <button onclick="confirmDeleteOrder('${o._id}', '${escapeHtml(o.family).replace(/'/g, "&#39;")}')" title="Elimina ordine" style="background: rgba(161,60,60,0.08); border: 1px solid var(--error); color: var(--error); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 12px; font-family: 'Inter', sans-serif;">🗑</button>
           </div>
         </div>
         ${intoleranceHtml}
@@ -4494,14 +4763,399 @@ function renderOrders() {
   }
 }
 
-async function deleteOrder(firestoreId) {
-  if (!confirm('Eliminare questa ordinazione?')) return;
-  await DB.deleteOrder(firestoreId);
-  // Il real-time listener aggiornerà automaticamente la UI
+// ========================================================================
+// MODIFICA / ELIMINAZIONE ORDINE (admin)
+// ========================================================================
+
+// Stato temporaneo per modali
+let _editOrderCtx = null;     // { orderId, items: [...] (snapshot modificabile), ...originalOrderFields }
+let _deleteOrderCtx = null;   // { orderId, family }
+
+// === MODIFICA ORDINE ===
+function openEditOrderModal(orderId) {
+  const order = DB.orders.find(o => o._id === orderId);
+  if (!order) {
+    showToast('Ordine non trovato');
+    return;
+  }
+  // Cloniamo gli items per modifiche locali
+  _editOrderCtx = {
+    orderId,
+    family: order.family,
+    items: JSON.parse(JSON.stringify(order.items || []))
+  };
+  document.getElementById('edit-order-title').textContent = `Famiglia ${order.family}`;
+  renderEditOrderBody();
+  document.getElementById('edit-order-modal').classList.remove('hidden');
 }
 
+function renderEditOrderBody() {
+  const body = document.getElementById('edit-order-body');
+  if (!body || !_editOrderCtx) return;
+  body.innerHTML = '';
+  
+  // Mappa categoria → label
+  const catLabels = {};
+  CATEGORIES.forEach(cat => {
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => {
+        catLabels[sub.key] = sub.label_it;
+        if (sub.supportsPizza) catLabels[`pizza_${sub.pizzaScope}`] = `🍕 Pizze ${sub.pizzaScope === 'kid' ? 'Baby' : 'Bambini'}`;
+      });
+    } else {
+      catLabels[cat.key] = cat.label_it;
+      if (cat.supportsPizza) catLabels[`pizza_${cat.pizzaScope}`] = `🍕 Pizze ${cat.pizzaScope === 'adult' ? 'Adulti' : 'Baby'}`;
+    }
+  });
+  catLabels['pizze'] = '🍕 Pizze (legacy)';
+  catLabels['pizze_baby'] = '🍕 Pizze Baby (legacy)';
+  
+  if (_editOrderCtx.items.length === 0) {
+    const empty = document.createElement('div');
+    empty.style.cssText = 'padding: 14px; font-size: 12px; color: var(--ink-muted); font-style: italic; text-align: center;';
+    empty.textContent = 'Nessuna riga in questo ordine.';
+    body.appendChild(empty);
+  }
+  
+  _editOrderCtx.items.forEach((item, idx) => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px;';
+    
+    const catLabel = catLabels[item.category] || item.category;
+    const variantTag = item.excludeAllergenName 
+      ? ` <span style="display: inline-block; padding: 1px 6px; background: var(--accent-warm); color: var(--paper); border-radius: 100px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; vertical-align: middle;">SENZA ${item.excludeAllergenName}</span>`
+      : '';
+    const sideText = item.pizzaSide ? `<div style="font-size: 11px; color: var(--ink-muted); font-style: italic;">+ ${escapeHtml(item.pizzaSide)}</div>` : '';
+    
+    row.innerHTML = `
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 10px; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase;">${catLabel}</div>
+        <div style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink);">${escapeHtml(item.dishName)}${variantTag}</div>
+        ${sideText}
+      </div>
+      <div class="qty" style="margin: 0;">
+        <button onclick="changeEditOrderQty(${idx}, -1)">−</button>
+        <span class="value">${item.qty}</span>
+        <button onclick="changeEditOrderQty(${idx}, 1)">+</button>
+      </div>
+      <button onclick="removeEditOrderRow(${idx})" title="Elimina riga" style="background: rgba(161,60,60,0.08); border: 1px solid var(--error); color: var(--error); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 14px; line-height: 1;">×</button>
+    `;
+    body.appendChild(row);
+  });
+  
+  // Sezione "aggiungi piatto manualmente"
+  const addSection = document.createElement('div');
+  addSection.style.cssText = 'margin-top: 14px; padding: 12px; background: var(--sand); border-radius: 8px;';
+  addSection.innerHTML = `
+    <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 8px;">+ Aggiungi piatto a mano</div>
+    <div style="display: grid; grid-template-columns: 1fr 90px; gap: 8px; margin-bottom: 6px;">
+      <input type="text" id="edit-add-name" placeholder="Nome piatto" style="padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 13px;">
+      <input type="number" id="edit-add-qty" placeholder="Qtà" min="1" value="1" style="padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 13px;">
+    </div>
+    <select id="edit-add-cat" style="width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 12px; margin-bottom: 8px;">
+      ${Object.entries(catLabels).filter(([k]) => !['pizze','pizze_baby'].includes(k)).map(([k, label]) => `<option value="${k}">${label}</option>`).join('')}
+    </select>
+    <button onclick="addEditOrderRow()" style="width: 100%; padding: 8px; background: var(--sea); color: var(--paper); border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif;">+ Aggiungi</button>
+  `;
+  body.appendChild(addSection);
+}
+
+function changeEditOrderQty(idx, delta) {
+  if (!_editOrderCtx?.items[idx]) return;
+  let q = (_editOrderCtx.items[idx].qty || 0) + delta;
+  if (q < 1) q = 1;
+  if (q > 99) q = 99;
+  _editOrderCtx.items[idx].qty = q;
+  renderEditOrderBody();
+}
+
+function removeEditOrderRow(idx) {
+  if (!_editOrderCtx?.items[idx]) return;
+  if (!confirm(`Rimuovere "${_editOrderCtx.items[idx].dishName}" dall'ordine?`)) return;
+  _editOrderCtx.items.splice(idx, 1);
+  renderEditOrderBody();
+}
+
+function addEditOrderRow() {
+  const nameEl = document.getElementById('edit-add-name');
+  const qtyEl = document.getElementById('edit-add-qty');
+  const catEl = document.getElementById('edit-add-cat');
+  const name = (nameEl.value || '').trim();
+  const qty = parseInt(qtyEl.value) || 1;
+  const cat = catEl.value;
+  if (!name) {
+    showToast('Inserisci il nome del piatto');
+    return;
+  }
+  if (!_editOrderCtx) return;
+  _editOrderCtx.items.push({
+    category: cat,
+    dishName: name,
+    dishNameEn: name,
+    qty: qty
+  });
+  nameEl.value = '';
+  qtyEl.value = '1';
+  renderEditOrderBody();
+}
+
+async function saveEditOrder() {
+  if (!_editOrderCtx) return;
+  const order = DB.orders.find(o => o._id === _editOrderCtx.orderId);
+  if (!order) {
+    showToast('Ordine non più disponibile');
+    cancelEditOrder();
+    return;
+  }
+  // Aggiorno solo il campo items (resto rimane identico)
+  try {
+    await setDoc(doc(fbDb, 'orders', _editOrderCtx.orderId), {
+      ...order,
+      items: _editOrderCtx.items,
+      editedAt: new Date().toISOString()
+    });
+    showToast('Ordine modificato');
+    cancelEditOrder();
+  } catch (e) {
+    console.error('Save edit order error:', e);
+    showToast('Errore nel salvataggio: ' + e.message);
+  }
+}
+
+function cancelEditOrder() {
+  document.getElementById('edit-order-modal').classList.add('hidden');
+  _editOrderCtx = null;
+}
+
+// === ELIMINAZIONE ORDINE (con doppia conferma) ===
+function confirmDeleteOrder(orderId, family) {
+  _deleteOrderCtx = { orderId, family };
+  document.getElementById('delete-target-name-1').textContent = `Famiglia ${family}`;
+  document.getElementById('delete-confirm-1').classList.remove('hidden');
+}
+
+function proceedToDeleteConfirm2() {
+  if (!_deleteOrderCtx) return;
+  document.getElementById('delete-confirm-1').classList.add('hidden');
+  document.getElementById('delete-target-name-2').textContent = `Famiglia ${_deleteOrderCtx.family}`;
+  document.getElementById('delete-confirm-2').classList.remove('hidden');
+}
+
+async function executeDeleteOrder() {
+  if (!_deleteOrderCtx) return;
+  const orderId = _deleteOrderCtx.orderId;
+  document.getElementById('delete-confirm-2').classList.add('hidden');
+  await DB.deleteOrder(orderId);
+  showToast('Ordine eliminato');
+  _deleteOrderCtx = null;
+}
+
+function closeDeleteConfirm() {
+  document.getElementById('delete-confirm-1').classList.add('hidden');
+  document.getElementById('delete-confirm-2').classList.add('hidden');
+  _deleteOrderCtx = null;
+}
+
+// Funzione legacy mantenuta per compatibilità (non più chiamata da UI)
+async function deleteOrder(firestoreId) {
+  await DB.deleteOrder(firestoreId);
+}
+
+// === STAMPA con scelta tipologia ===
+let _printMode = 'aggregate'; // 'aggregate' | 'families' | 'both'
+
 function printOrders() {
-  window.print();
+  document.getElementById('print-choice-modal').classList.remove('hidden');
+}
+
+function closePrintChoice() {
+  document.getElementById('print-choice-modal').classList.add('hidden');
+}
+
+function doPrint(mode) {
+  _printMode = mode;
+  document.getElementById('print-choice-modal').classList.add('hidden');
+  // Aggiungo classe al body che attiva il foglio CSS print custom
+  document.body.classList.add('print-mode');
+  document.body.dataset.printMode = mode;
+  // Costruisco l'overlay di stampa
+  buildPrintOverlay(mode);
+  // Lascio renderizzare poi stampo
+  setTimeout(() => {
+    window.print();
+    // Pulizia dopo stampa
+    setTimeout(() => {
+      document.body.classList.remove('print-mode');
+      document.body.dataset.printMode = '';
+      const overlay = document.getElementById('print-overlay');
+      if (overlay) overlay.remove();
+    }, 500);
+  }, 100);
+}
+
+function buildPrintOverlay(mode) {
+  // Rimuovo overlay precedente se c'è
+  const oldOverlay = document.getElementById('print-overlay');
+  if (oldOverlay) oldOverlay.remove();
+  
+  const dateInput = document.getElementById('orders-date');
+  const dateKey = dateInput ? dateInput.value : toDateKey(new Date());
+  const dayOrders = DB.orders.filter(o => o.date === dateKey).sort((a,b) => 
+    (a.family || '').localeCompare(b.family || '', 'it', { sensitivity: 'base' })
+  );
+  
+  // Aggregati per piatto+variante+side
+  const agg = {};
+  dayOrders.forEach(o => {
+    (o.items || []).forEach(i => {
+      const variantKey = i.excludeAllergen ? `|NO_${i.excludeAllergen}` : '';
+      const sideKey = i.pizzaSide ? `|+${i.pizzaSide}` : '';
+      const key = `${i.category}|${i.dishName}${variantKey}${sideKey}`;
+      if (!agg[key]) agg[key] = { 
+        category: i.category, name: i.dishName, qty: 0,
+        excludeAllergenName: i.excludeAllergenName || null,
+        pizzaSide: i.pizzaSide || null
+      };
+      agg[key].qty += i.qty;
+    });
+  });
+  
+  // Ordine categorie per stampa
+  const catOrder = [];
+  const catLabels = {};
+  CATEGORIES.forEach(cat => {
+    if (cat.type === 'grouped') {
+      cat.subsections.forEach(sub => {
+        catOrder.push(sub.key);
+        catLabels[sub.key] = sub.label_it;
+        if (sub.supportsPizza) {
+          catOrder.push(`pizza_${sub.pizzaScope}`);
+          catLabels[`pizza_${sub.pizzaScope}`] = `Pizze ${sub.pizzaScope === 'kid' ? 'Baby' : 'Bambini'}`;
+        }
+      });
+    } else {
+      catOrder.push(cat.key);
+      catLabels[cat.key] = cat.label_it;
+      if (cat.supportsPizza) {
+        catOrder.push(`pizza_${cat.pizzaScope}`);
+        catLabels[`pizza_${cat.pizzaScope}`] = `Pizze ${cat.pizzaScope === 'adult' ? 'Adulti' : 'Baby'}`;
+      }
+    }
+  });
+  catOrder.push('pizze', 'pizze_baby');
+  catLabels['pizze'] = 'Pizze (legacy)';
+  catLabels['pizze_baby'] = 'Pizze Baby (legacy)';
+  
+  // Header brand
+  const dateLabel = formatDateLabel(dateKey, 'it');
+  let html = `
+    <div class="print-page">
+      <div class="print-header">
+        <img src="${getEmbeddedLogoUrl()}" alt="Conero Azzurro" class="print-logo">
+        <div class="print-header-text">
+          <div class="print-brand">Villaggio Conero Azzurro</div>
+          <div class="print-subtitle">Borgo Conero — Mezza Pensione</div>
+          <div class="print-date">${dateLabel}</div>
+        </div>
+      </div>
+  `;
+  
+  // === SEZIONE RIEPILOGO CUCINA ===
+  if (mode === 'aggregate' || mode === 'both') {
+    const totalFamilies = dayOrders.length;
+    const totalPeople = dayOrders.reduce((s, o) => s + (o.adults || o.people || 0) + (o.children || 0), 0);
+    const totalDishes = Object.values(agg).reduce((s, a) => s + a.qty, 0);
+    
+    html += `
+      <h2 class="print-section-title">Riepilogo Cucina</h2>
+      <div class="print-stats">
+        <span><strong>${totalFamilies}</strong> famiglie</span>
+        <span><strong>${totalPeople}</strong> coperti</span>
+        <span><strong>${totalDishes}</strong> piatti totali</span>
+      </div>
+    `;
+    
+    if (Object.keys(agg).length === 0) {
+      html += `<p class="print-empty">Nessuna ordinazione per questa data.</p>`;
+    } else {
+      catOrder.forEach(catKey => {
+        const catItems = Object.values(agg).filter(a => a.category === catKey);
+        if (catItems.length === 0) return;
+        html += `<div class="print-cat-block"><h3 class="print-cat-title">${catLabels[catKey] || catKey}</h3><table class="print-table">`;
+        catItems.sort((a,b) => b.qty - a.qty).forEach(item => {
+          const variantTag = item.excludeAllergenName ? `<span class="print-variant">SENZA ${item.excludeAllergenName}</span>` : '';
+          const sideText = item.pizzaSide ? `<div class="print-side">+ ${escapeHtml(item.pizzaSide)}</div>` : '';
+          html += `<tr><td class="print-name">${escapeHtml(item.name)} ${variantTag}${sideText}</td><td class="print-qty">${item.qty}</td></tr>`;
+        });
+        html += `</table></div>`;
+      });
+    }
+  }
+  
+  // === SEZIONE LISTA PER FAMIGLIA ===
+  if (mode === 'families' || mode === 'both') {
+    if (mode === 'both') {
+      html += `<div class="print-pagebreak"></div>`;
+    }
+    html += `<h2 class="print-section-title">Ordinazioni per Famiglia</h2>`;
+    if (dayOrders.length === 0) {
+      html += `<p class="print-empty">Nessuna famiglia ha ordinato per questa data.</p>`;
+    } else {
+      dayOrders.forEach(o => {
+        const adults = o.adults || o.people || 0;
+        const children = o.children || 0;
+        // Intolleranze
+        let intolHtml = '';
+        const guestsWithInt = (o.guests || []).filter(g => 
+          (g.intolerances && g.intolerances.length > 0) || (g.notes && g.notes.length > 0)
+        );
+        if (guestsWithInt.length > 0) {
+          intolHtml = `<div class="print-intol"><strong>⚠ Intolleranze:</strong>`;
+          guestsWithInt.forEach(g => {
+            const allergenLabels = (g.intolerances || []).map(num => {
+              const a = ALLERGENS.find(x => x.num === num);
+              return a ? a.it : num;
+            }).join(', ');
+            intolHtml += `<div>${g.label}: ${allergenLabels}${g.notes ? ` — "${escapeHtml(g.notes)}"` : ''}</div>`;
+          });
+          intolHtml += `</div>`;
+        }
+        
+        // Items
+        let itemsHtml = '';
+        (o.items || []).forEach(i => {
+          const variantTag = i.excludeAllergenName ? `<span class="print-variant">SENZA ${i.excludeAllergenName}</span>` : '';
+          const sideText = i.pizzaSide ? ` + ${escapeHtml(i.pizzaSide)}` : '';
+          const pizzaIcon = (i.category === 'pizza_adult' || i.category === 'pizza_kid') ? '🍕 ' : '';
+          itemsHtml += `<tr><td>${pizzaIcon}${escapeHtml(i.dishName)} ${variantTag}<span class="print-side-inline">${sideText}</span></td><td class="print-qty">×${i.qty}</td></tr>`;
+        });
+        
+        html += `
+          <div class="print-family-card">
+            <div class="print-family-head">
+              <strong>${escapeHtml(o.family)}</strong>
+              <span class="print-family-meta">${adults} adulti · ${children} bambini</span>
+            </div>
+            ${intolHtml}
+            <table class="print-table-family">${itemsHtml}</table>
+          </div>
+        `;
+      });
+    }
+  }
+  
+  html += `</div>`;
+  
+  const overlay = document.createElement('div');
+  overlay.id = 'print-overlay';
+  overlay.innerHTML = html;
+  document.body.appendChild(overlay);
+}
+
+function getEmbeddedLogoUrl() {
+  // Riuso il logo embedded nell'header brand-header
+  const logoImg = document.querySelector('.brand-logo');
+  return logoImg ? logoImg.src : '';
 }
 
 // ========================================================================
@@ -4743,11 +5397,13 @@ DB.onUpdate(() => {
     // Re-render del tab aperto
     const activeTab = document.querySelector('.admin-nav button.active')?.id?.replace('tab-', '');
     if (activeTab === 'menu') {
+      // Se l'admin sta scrivendo, non ricostruire l'editor (perderebbe il focus)
+      if (isAdminTyping) return;
       renderDayTabs(); // include renderDayEditor
-      // Aggiorno UI switch hour solo se NON è in modalità modifica (per non sovrascrivere
-      // il valore che l'utente sta modificando manualmente)
+      // Aggiorno UI switch hour solo se NON è in modalità modifica
       if (!switchHourUnlocked) refreshSwitchHourUI();
     } else if (activeTab === 'pizza') {
+      if (isAdminTyping) return;
       renderPizzaConfigEditor();
     } else if (activeTab === 'orders') {
       renderOrders();
@@ -4789,7 +5445,12 @@ Object.assign(window, {
   openAdminAllergenPicker, saveAdminAllergens, clearAdminAllergens,
   // Admin ordini e storico
   renderOrders, renderHistory, setHistoryPreset,
-  deleteOrder, printOrders, exportAllData
+  deleteOrder, printOrders, exportAllData,
+  // Modifica/elimina ordine + stampa
+  openEditOrderModal, cancelEditOrder, saveEditOrder,
+  changeEditOrderQty, removeEditOrderRow, addEditOrderRow,
+  confirmDeleteOrder, proceedToDeleteConfirm2, executeDeleteOrder, closeDeleteConfirm,
+  closePrintChoice, doPrint
 });
 
 // Traduzione iniziale
