@@ -903,6 +903,246 @@ body {
   box-shadow: 0 0 0 3px rgba(26,109,142,0.1);
 }
 
+/* Pizza card (dentro Prima Uscita) */
+.pizza-card {
+  background: linear-gradient(135deg, var(--paper) 0%, rgba(140,110,74,0.06) 100%);
+  border: 1.5px dashed var(--accent-warm);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pizza-card-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.pizza-card-content { flex: 1; min-width: 0; }
+.pizza-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.pizza-card-sub {
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pizza-add-btn {
+  background: var(--accent-warm);
+  color: var(--paper);
+  border: none;
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.pizza-add-btn:hover { background: var(--ink); }
+
+/* Lista pizze ordinate sotto la card */
+.pizza-orders-list {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(140,110,74,0.06);
+  border-radius: 8px;
+  font-size: 12px;
+}
+.pizza-order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(140,110,74,0.15);
+}
+.pizza-order-row:last-child { border-bottom: none; }
+.pizza-order-row .desc {
+  flex: 1;
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+}
+.pizza-order-row .desc .side {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.pizza-order-row .remove-pizza {
+  background: transparent;
+  border: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 6px;
+  line-height: 1;
+}
+.pizza-order-row .remove-pizza:hover { color: var(--error); }
+
+/* Popup configuratore pizza - radio choices */
+.pizza-config-section {
+  margin-bottom: 18px;
+}
+.pizza-config-section h4 {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+.pizza-config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.pizza-config-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+}
+.pizza-config-option:hover { border-color: var(--accent-warm); }
+.pizza-config-option.selected {
+  border-color: var(--accent-warm);
+  background: rgba(140,110,74,0.08);
+}
+.pizza-config-option .radio-dot {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.15s;
+}
+.pizza-config-option.selected .radio-dot {
+  border-color: var(--accent-warm);
+}
+.pizza-config-option.selected .radio-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px; height: 8px;
+  background: var(--accent-warm);
+  border-radius: 50%;
+}
+.pizza-config-option .name {
+  flex: 1;
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+.pizza-config-option .allergens {
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Variante intolleranze */
+.variant-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.variant-choice:hover { border-color: var(--sea); }
+.variant-choice.selected {
+  border-color: var(--sea-deep);
+  background: var(--sea-light);
+}
+.variant-choice .radio-dot {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.15s;
+}
+.variant-choice.selected .radio-dot {
+  border-color: var(--sea-deep);
+}
+.variant-choice.selected .radio-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px; height: 10px;
+  background: var(--sea-deep);
+  border-radius: 50%;
+}
+.variant-choice .label {
+  flex: 1;
+  font-size: 14px;
+  color: var(--ink);
+}
+.variant-choice .label strong {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+}
+
+/* Breakdown varianti sotto il piatto */
+.dish-variants-breakdown {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(176,168,160,0.1);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.dish-variants-breakdown .variant-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dish-variants-breakdown .no-allergen {
+  color: var(--accent-warm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.dish-variants-breakdown .remove-variant {
+  background: transparent;
+  border: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 4px;
+  line-height: 1;
+}
+.dish-variants-breakdown .remove-variant:hover { color: var(--error); }
+
 /* Allergen picker button (admin) */
 .allergen-picker-btn {
   width: 100%;
@@ -1292,7 +1532,7 @@ body {
 
     <!-- Form famiglia -->
     <div class="field">
-      <label data-it="Cognome famiglia" data-en="Family name">Cognome famiglia</label>
+      <label data-it="Cognome di prenotazione" data-en="Booking surname">Cognome di prenotazione</label>
       <input type="text" id="guest-family" placeholder="Rossi">
     </div>
     <div class="field-row">
@@ -1321,11 +1561,7 @@ body {
       <div class="add-guests-row" id="add-guests-row"></div>
     </div>
 
-    <!-- Filtro piatti adatti (appare solo se ci sono intolleranze) -->
-    <div id="filter-toggle-row" class="filter-toggle-row hidden">
-      <span data-it="Mostra solo piatti adatti" data-en="Show only safe dishes">Mostra solo piatti adatti</span>
-      <div class="switch" id="filter-switch" onclick="toggleFilterSafe()"></div>
-    </div>
+    <!-- Filtro piatti adatti rimosso su richiesta utente -->
 
     <div class="info-box" id="guest-info-box">
       <strong data-it="Come compilare:" data-en="How to order:">Come compilare:</strong>
@@ -1359,8 +1595,8 @@ body {
     </div>
     <h2 class="display" data-it="Ordinazione inviata" data-en="Order submitted">Ordinazione inviata</h2>
     <p data-it="L'abbiamo ricevuta correttamente. Ci vediamo a cena!" data-en="We received it correctly. See you at dinner!">L'abbiamo ricevuta correttamente. Ci vediamo a cena!</p>
-    <p style="font-size: 12px; margin-bottom: 20px;" data-it="Cortesemente presentarsi tra le 19:30 e le 20:15." data-en="Please present yourself between 7:30 PM and 8:15 PM.">Cortesemente presentarsi tra le 19:30 e le 20:15.</p>
-    <button class="btn btn-ghost" onclick="resetGuestForm()" data-it="Nuova ordinazione" data-en="New order">Nuova ordinazione</button>
+    <p data-it="Cortesemente presentarsi tra le 19:30 e le 20:15." data-en="Please present yourself between 7:30 PM and 8:15 PM.">Cortesemente presentarsi tra le 19:30 e le 20:15.</p>
+    <p data-it="Il personale di sala è a vostra disposizione dalle ore 17 al Borgo Conero." data-en="Our staff is available from 5 PM at Borgo Conero.">Il personale di sala è a vostra disposizione dalle ore 17 al Borgo Conero.</p>
   </div>
 </div>
 
@@ -1378,6 +1614,7 @@ body {
   <div class="container">
     <nav class="admin-nav">
       <button id="tab-menu" class="active" onclick="showAdminTab('menu')">Menù settimana</button>
+      <button id="tab-pizza" onclick="showAdminTab('pizza')">Menù Pizza</button>
       <button id="tab-orders" onclick="showAdminTab('orders')">Ordinazioni</button>
       <button id="tab-history" onclick="showAdminTab('history')">Storico</button>
     </nav>
@@ -1386,6 +1623,19 @@ body {
     <div id="admin-menu" class="admin-tab">
       <p style="font-size: 13px; color: var(--ink-muted); margin-bottom: 16px;">Seleziona il giorno e componi il menù. Le modifiche vengono salvate automaticamente.</p>
       
+      <!-- Orario di switch menù del giorno → giorno dopo -->
+      <div id="switch-hour-block" style="background: linear-gradient(135deg, var(--sea-light) 0%, rgba(176,168,160,0.08) 100%); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="font-size: 22px;">🕐</div>
+        <div style="flex: 1; min-width: 180px;">
+          <div style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink);">Orario di switch al menù del giorno dopo</div>
+          <div style="font-size: 11px; color: var(--ink-muted);">Da quest'ora in poi gli ospiti vedono il menù del giorno successivo</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <input type="time" id="switch-hour-input" value="18:00" disabled style="padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; background: var(--paper); width: 110px;">
+          <button id="switch-hour-lock-btn" type="button" onclick="toggleSwitchHourLock()" style="background: var(--sea-deep); color: var(--paper); border: none; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 16px; line-height: 1;" title="Sblocca per modificare">🔒</button>
+        </div>
+      </div>
+      
       <div class="day-tabs" id="day-tabs"></div>
       
       <div id="day-editor"></div>
@@ -1393,6 +1643,34 @@ body {
       <div style="display: flex; gap: 10px; margin-top: 20px;">
         <button class="btn btn-ghost" style="flex: 1;" onclick="copyFromPreviousWeek()">Copia da sett. precedente</button>
         <button class="btn btn-ghost" style="flex: 1;" onclick="exportQR()">Genera QR Code</button>
+      </div>
+    </div>
+
+    <!-- TAB: Menù Pizza globale -->
+    <div id="admin-pizza" class="admin-tab hidden">
+      <p style="font-size: 13px; color: var(--ink-muted); margin-bottom: 16px;">
+        Configura il menù pizza. Questi gusti e contorni saranno disponibili agli ospiti quando attiverai la pizza per un determinato giorno (dal tab "Menù settimana").
+      </p>
+      
+      <!-- Sezione gusti adulti -->
+      <div class="category-block">
+        <div class="category-title">🍕 Gusti pizza adulti</div>
+        <div id="pizza-adult-list"></div>
+        <button class="add-dish-btn" onclick="addPizzaItem('adultFlavors')">+ Aggiungi gusto</button>
+      </div>
+      
+      <!-- Sezione gusti bambini -->
+      <div class="category-block">
+        <div class="category-title">🍕 Gusti pizza baby</div>
+        <div id="pizza-kid-list"></div>
+        <button class="add-dish-btn" onclick="addPizzaItem('kidFlavors')">+ Aggiungi gusto baby</button>
+      </div>
+      
+      <!-- Sezione contorni -->
+      <div class="category-block">
+        <div class="category-title">🥗 Contorni d'accompagnamento</div>
+        <div id="pizza-sides-list"></div>
+        <button class="add-dish-btn" onclick="addPizzaItem('sides')">+ Aggiungi contorno</button>
       </div>
     </div>
 
@@ -1501,6 +1779,43 @@ body {
   </div>
 </div>
 
+<!-- Modal "Desidera la variante senza X?" per piatti con allergeni in conflitto -->
+<div id="variant-modal" class="modal-backdrop hidden">
+  <div class="modal" style="max-width: 440px;">
+    <div class="icon-wrap" style="background: linear-gradient(135deg, rgba(176,168,160,0.2) 0%, var(--sea-light) 100%);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </div>
+    <h3 id="variant-modal-title" data-it="Desidera la variante senza allergene?" data-en="Would you like the allergen-free variant?">Desidera la variante senza allergene?</h3>
+    <p id="variant-modal-subtitle" style="font-size: 13px; color: var(--ink-soft);">
+      <span id="variant-modal-dish-name" style="font-family: 'Fraunces', serif; font-size: 15px; color: var(--sea-deep); display: block; margin-bottom: 6px;"></span>
+      <span data-it="Hai segnalato un'intolleranza a questo allergene." data-en="You've reported an intolerance to this allergen.">Hai segnalato un'intolleranza a questo allergene.</span>
+    </p>
+    <div id="variant-modal-choices" style="display: flex; flex-direction: column; gap: 8px; margin: 18px 0;"></div>
+    <div class="actions" style="display: flex; gap: 8px;">
+      <button class="btn btn-ghost" onclick="cancelVariant()" style="flex: 1;" data-it="Annulla" data-en="Cancel">Annulla</button>
+      <button class="btn btn-primary" onclick="confirmVariant()" style="flex: 1;" data-it="Conferma" data-en="Confirm">Conferma</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal configuratore pizza: scelta gusto + contorno opzionale -->
+<div id="pizza-config-modal" class="modal-backdrop hidden">
+  <div class="guest-modal" style="max-width: 460px;">
+    <div class="guest-modal-head">
+      <div class="label" style="color: var(--accent-warm);" data-it="Configura la tua pizza" data-en="Configure your pizza">Configura la tua pizza</div>
+      <h3 id="pizza-modal-title" data-it="Scegli gusto e contorno" data-en="Choose flavor and side">Scegli gusto e contorno</h3>
+      <p data-it="Seleziona un gusto. Il contorno è opzionale." data-en="Pick a flavor. The side dish is optional.">Seleziona un gusto. Il contorno è opzionale.</p>
+    </div>
+    <div class="guest-modal-body" id="pizza-config-body">
+      <!-- Popolato dinamicamente -->
+    </div>
+    <div class="guest-modal-foot">
+      <button class="btn btn-ghost" onclick="cancelPizzaConfig()" data-it="Annulla" data-en="Cancel">Annulla</button>
+      <button class="btn btn-primary" onclick="confirmPizzaConfig()" data-it="Aggiungi pizza" data-en="Add pizza">Aggiungi pizza</button>
+    </div>
+  </div>
+</div>
+
 <script type="module">
 // ========================================================================
 // FIREBASE SETUP
@@ -1562,6 +1877,45 @@ onSnapshot(collection(fbDb, 'menus'), (snap) => {
   console.error('Menu sync error:', err);
 });
 
+// --- SINCRONIZZAZIONE CONFIG PIZZA (lettura globale) ---
+// Documento: config/pizza con struttura:
+// { adultFlavors: [{name_it, name_en, allergens}], kidFlavors: [...], sides: [{name_it, name_en, allergens}] }
+DB.pizzaConfig = { adultFlavors: [], kidFlavors: [], sides: [] };
+onSnapshot(doc(fbDb, 'config', 'pizza'), (docSnap) => {
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    DB.pizzaConfig = {
+      adultFlavors: data.adultFlavors || [],
+      kidFlavors: data.kidFlavors || [],
+      sides: data.sides || []
+    };
+  } else {
+    DB.pizzaConfig = { adultFlavors: [], kidFlavors: [], sides: [] };
+  }
+  DB._notifyListeners();
+}, (err) => {
+  console.error('Pizza config sync error:', err);
+});
+
+// --- SINCRONIZZAZIONE CONFIG GENERAL (lettura globale) ---
+// Documento: config/general con struttura: { switchHour: 18, switchMinute: 0 }
+// Insieme = ora del giorno (HH:MM) in cui passa al menù del giorno dopo
+DB.generalConfig = { switchHour: 18, switchMinute: 0 };
+onSnapshot(doc(fbDb, 'config', 'general'), (docSnap) => {
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    DB.generalConfig = {
+      switchHour: typeof data.switchHour === 'number' ? data.switchHour : 18,
+      switchMinute: typeof data.switchMinute === 'number' ? data.switchMinute : 0
+    };
+  } else {
+    DB.generalConfig = { switchHour: 18, switchMinute: 0 };
+  }
+  DB._notifyListeners();
+}, (err) => {
+  console.error('General config sync error:', err);
+});
+
 // --- SINCRONIZZAZIONE ORDINI (solo admin autenticati) ---
 // Attivata dopo il login admin in onAuthStateChanged più sotto
 let unsubscribeOrders = null;
@@ -1604,6 +1958,26 @@ DB.deleteMenu = async function(dateKey) {
     await deleteDoc(doc(fbDb, 'menus', dateKey));
   } catch (e) {
     console.error('deleteMenu error:', e);
+  }
+};
+
+// Salva il menù pizza globale (solo admin)
+DB.savePizzaConfig = async function(config) {
+  try {
+    await setDoc(doc(fbDb, 'config', 'pizza'), config);
+  } catch (e) {
+    console.error('savePizzaConfig error:', e);
+    showToast('Errore salvataggio menù pizza: ' + e.message);
+  }
+};
+
+// Salva la config generale (solo admin)
+DB.saveGeneralConfig = async function(config) {
+  try {
+    await setDoc(doc(fbDb, 'config', 'general'), config);
+  } catch (e) {
+    console.error('saveGeneralConfig error:', e);
+    showToast('Errore salvataggio configurazione: ' + e.message);
   }
 };
 
@@ -1667,18 +2041,16 @@ const MONTHS_IT = ['gennaio','febbraio','marzo','aprile','maggio','giugno','lugl
 const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 const CATEGORIES = [
-  { key: 'primi', label_it: 'Primi', label_en: 'First Course', num: 'I.', type: 'standard', kidsOnly: false },
-  { key: 'secondi', label_it: 'Secondi', label_en: 'Second Course', num: 'II.', type: 'standard', kidsOnly: false },
+  { key: 'primi', label_it: 'Prima Uscita', label_en: 'First Course', num: 'I.', type: 'standard', kidsOnly: false, supportsPizza: true, pizzaScope: 'adult' },
+  { key: 'secondi', label_it: 'Seconda Uscita', label_en: 'Second Course', num: 'II.', type: 'standard', kidsOnly: false },
   { key: 'contorni', label_it: 'Contorni', label_en: 'Side Dishes', num: 'III.', type: 'standard', kidsOnly: false },
-  { key: 'pizze', label_it: 'Pizze', label_en: 'Pizzas', num: 'IV.', type: 'direct', kidsOnly: false, toggleable: true },
   { 
-    key: 'bambini', label_it: 'Menù Bambini', label_en: 'Kids\' Menu', num: 'V.', type: 'grouped', kidsOnly: true,
+    key: 'bambini', label_it: 'Menù Bambini', label_en: 'Kids\' Menu', num: 'IV.', type: 'grouped', kidsOnly: true,
     subsections: [
-      { key: 'bambini_primi', label_it: 'Primi Bambini', label_en: 'Kids\' First Course', kidsFixed: true },
-      { key: 'bambini_secondi', label_it: 'Secondi Bambini', label_en: 'Kids\' Second Course', kidsFixed: false }
+      { key: 'bambini_primi', label_it: 'Prima Uscita Bambini', label_en: 'Kids\' First Course', kidsFixed: true, supportsPizza: true, pizzaScope: 'kid' },
+      { key: 'bambini_secondi', label_it: 'Seconda Uscita Bambini', label_en: 'Kids\' Second Course', kidsFixed: false }
     ]
-  },
-  { key: 'pizze_baby', label_it: 'Pizze Baby', label_en: 'Baby Pizzas', num: 'VI.', type: 'direct', kidsOnly: true, toggleable: true }
+  }
 ];
 
 // Piatti fissi sempre presenti (non modificabili dal gestore)
@@ -1689,6 +2061,14 @@ const FIXED_DISHES = {
     { name_it: 'Baby passato di verdure', name_en: 'Baby vegetable soup', desc_it: '', desc_en: '', allergens: '9', fixed: true }
   ]
 };
+
+// Helper: per le subsections con piatti fissi+variabili, ritorna l'array completo
+// nell'ordine corretto: PRIMA i piatti del giorno, POI i fissi sempre disponibili
+function buildSubsectionDishes(menu, sub) {
+  const dailyDishes = menu[sub.key] || [];
+  const fixedDishes = (sub.kidsFixed && FIXED_DISHES[sub.key]) ? FIXED_DISHES[sub.key] : [];
+  return [...dailyDishes, ...fixedDishes];
+}
 
 // 14 allergeni UE (Reg. 1169/2011) con numerazione standard
 const ALLERGENS = [
@@ -2076,11 +2456,20 @@ function allergenNumToLabel(num) {
 // RENDER MENU GUEST
 // ========================================================================
 function getTargetDate() {
-  // Dalle 18:00 in poi si mostra il menù del giorno successivo.
-  // Prima delle 18:00 si mostra il menù del giorno corrente.
+  // Dall'orario configurato (default 18:00) in poi mostra il menù del giorno successivo.
+  // Prima dell'orario configurato mostra il menù del giorno corrente.
+  const switchHour = (DB.generalConfig && typeof DB.generalConfig.switchHour === 'number') 
+    ? DB.generalConfig.switchHour 
+    : 18;
+  const switchMinute = (DB.generalConfig && typeof DB.generalConfig.switchMinute === 'number') 
+    ? DB.generalConfig.switchMinute 
+    : 0;
   const now = new Date();
   const target = new Date(now);
-  if (now.getHours() >= 18) {
+  // Confronto: ora corrente in minuti totali del giorno >= soglia in minuti totali del giorno?
+  const nowTotalMin = now.getHours() * 60 + now.getMinutes();
+  const switchTotalMin = switchHour * 60 + switchMinute;
+  if (nowTotalMin >= switchTotalMin) {
     target.setDate(target.getDate() + 1);
   }
   return toDateKey(target);
@@ -2222,11 +2611,7 @@ function renderGuestMenu() {
       container.appendChild(section);
       
       cat.subsections.forEach(sub => {
-        let dishes = [];
-        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
-          dishes = [...FIXED_DISHES[sub.key]];
-        }
-        dishes = dishes.concat(menu[sub.key] || []);
+        let dishes = buildSubsectionDishes(menu, sub);
         
         // Applica filtro safe-only
         const hasAnyInt = anyGuestHasIntolerances();
@@ -2234,7 +2619,10 @@ function renderGuestMenu() {
           ? dishes.filter(d => getConflictAllergens(d).length === 0)
           : dishes;
         
-        if (visibleDishes.length === 0) return;
+        // Pizza baby supportata?
+        const pizzaEnabled = sub.supportsPizza && !!menu[`_pizza_${sub.pizzaScope}_enabled`];
+        
+        if (visibleDishes.length === 0 && !pizzaEnabled) return;
         
         const subHead = document.createElement('div');
         subHead.className = 'subsection-head';
@@ -2250,6 +2638,9 @@ function renderGuestMenu() {
           if (filterSafeOnly && hasAnyInt && getConflictAllergens(dish).length > 0) return;
           list.appendChild(buildDishElement(dish, sub.key, idx));
         });
+        if (pizzaEnabled) {
+          list.appendChild(buildPizzaCard(sub.pizzaScope));
+        }
         container.appendChild(list);
       });
       return;
@@ -2261,7 +2652,11 @@ function renderGuestMenu() {
     if (filterSafeOnly && hasAnyIntolerance) {
       dishes = dishes.filter(d => getConflictAllergens(d).length === 0);
     }
-    if (dishes.length === 0) return;
+    
+    // Pizza supportata?
+    const pizzaEnabled = cat.supportsPizza && !!menu[`_pizza_${cat.pizzaScope}_enabled`];
+    
+    if (dishes.length === 0 && !pizzaEnabled) return;
     hasAnyDish = true;
     
     const section = document.createElement('div');
@@ -2278,6 +2673,12 @@ function renderGuestMenu() {
       if (filterSafeOnly && hasAnyIntolerance && getConflictAllergens(dish).length > 0) return;
       list.appendChild(buildDishElement(dish, cat.key, idx));
     });
+    
+    // Aggiunge la pizza card se attiva
+    if (pizzaEnabled) {
+      list.appendChild(buildPizzaCard(cat.pizzaScope));
+    }
+    
     container.appendChild(section);
   });
 
@@ -2384,14 +2785,438 @@ function buildDishElement(dish, catKey, idx) {
   return dishEl;
 }
 
+// ========================================================================
+// VARIANTI INTOLLERANZE
+// ========================================================================
+// Stato: per ogni piatto teniamo il breakdown qty per variante.
+// chiave: "${catKey}-${idx}", valore: { standard: N, byAllergen: { '1': N, '7': N } }
+// La somma di standard + tutti i byAllergen[*] = qty totale visualizzata sullo stepper.
+const dishVariants = {};
+
+// ========================================================================
+// PIZZE ORDINATE
+// ========================================================================
+// Stato: array di pizze configurate dall'ospite, separate adulti / bambini
+// pizzaOrders.adult = [{ flavorIdx, sideIdx (oppure null) }, ...]
+// pizzaOrders.kid = [...]
+const pizzaOrders = { adult: [], kid: [] };
+
+function buildPizzaCard(scope) {
+  // scope = 'adult' | 'kid'
+  const card = document.createElement('div');
+  const flavorList = scope === 'adult' ? DB.pizzaConfig.adultFlavors : DB.pizzaConfig.kidFlavors;
+  const hasAnyFlavor = (flavorList && flavorList.length > 0);
+  
+  card.className = 'pizza-card';
+  card.innerHTML = `
+    <div class="pizza-card-icon">🍕</div>
+    <div class="pizza-card-content">
+      <div class="pizza-card-title">${currentLang === 'it' ? 'Pizza' : 'Pizza'}${scope === 'kid' ? ' Baby' : ''}</div>
+      <div class="pizza-card-sub">${currentLang === 'it' ? 'Scegli gusto e contorno' : 'Pick flavor and side'}</div>
+    </div>
+    <button class="pizza-add-btn" onclick="openPizzaModal('${scope}')" ${hasAnyFlavor ? '' : 'disabled style="opacity: 0.5; cursor: not-allowed;"'}>
+      ${currentLang === 'it' ? '+ Pizza' : '+ Pizza'}
+    </button>
+  `;
+  
+  const wrapper = document.createElement('div');
+  wrapper.appendChild(card);
+  
+  // Sotto la card, lista delle pizze già ordinate
+  if (pizzaOrders[scope].length > 0) {
+    const list = document.createElement('div');
+    list.className = 'pizza-orders-list';
+    pizzaOrders[scope].forEach((order, i) => {
+      const flavor = flavorList[order.flavorIdx];
+      const side = (order.sideIdx !== null && order.sideIdx !== undefined) 
+        ? DB.pizzaConfig.sides[order.sideIdx] 
+        : null;
+      if (!flavor) return; // safety
+      
+      const flavorName = currentLang === 'it' ? flavor.name_it : (flavor.name_en || flavor.name_it);
+      const sideName = side ? (currentLang === 'it' ? side.name_it : (side.name_en || side.name_it)) : null;
+      
+      const row = document.createElement('div');
+      row.className = 'pizza-order-row';
+      row.innerHTML = `
+        <div class="desc">
+          ${flavorName}
+          ${sideName ? `<div class="side">+ ${sideName}</div>` : ''}
+        </div>
+        <button class="remove-pizza" onclick="removePizzaOrder('${scope}', ${i})" title="Rimuovi">×</button>
+      `;
+      list.appendChild(row);
+    });
+    wrapper.appendChild(list);
+  }
+  
+  return wrapper;
+}
+
+// Stato temporaneo per il modal
+let pendingPizzaConfig = null; // { scope, flavorIdx, sideIdx }
+
+function openPizzaModal(scope) {
+  const flavorList = scope === 'adult' ? DB.pizzaConfig.adultFlavors : DB.pizzaConfig.kidFlavors;
+  const sideList = DB.pizzaConfig.sides || [];
+  
+  if (!flavorList || flavorList.length === 0) {
+    showToast(currentLang === 'it' ? 'Nessun gusto pizza configurato' : 'No pizza flavor configured');
+    return;
+  }
+  
+  pendingPizzaConfig = { scope, flavorIdx: null, sideIdx: null };
+  
+  const body = document.getElementById('pizza-config-body');
+  body.innerHTML = '';
+  
+  // CONTORNI (sopra come da specifica)
+  if (sideList.length > 0) {
+    const sidesSection = document.createElement('div');
+    sidesSection.className = 'pizza-config-section';
+    sidesSection.innerHTML = `<h4>${currentLang === 'it' ? "Contorno d'accompagnamento (opzionale)" : 'Side dish (optional)'}</h4>`;
+    const sidesList = document.createElement('div');
+    sidesList.className = 'pizza-config-list';
+    
+    // Opzione "nessuno"
+    const noneOpt = document.createElement('div');
+    noneOpt.className = 'pizza-config-option selected';
+    noneOpt.dataset.kind = 'side';
+    noneOpt.dataset.idx = 'null';
+    noneOpt.innerHTML = `
+      <div class="radio-dot"></div>
+      <div class="name" style="font-style: italic; color: var(--ink-muted);">${currentLang === 'it' ? 'Nessun contorno' : 'No side'}</div>
+    `;
+    noneOpt.onclick = () => selectPizzaOption('side', null);
+    sidesList.appendChild(noneOpt);
+    
+    sideList.forEach((side, idx) => {
+      const opt = document.createElement('div');
+      opt.className = 'pizza-config-option';
+      opt.dataset.kind = 'side';
+      opt.dataset.idx = idx;
+      const sideName = currentLang === 'it' ? side.name_it : (side.name_en || side.name_it);
+      const allergensTxt = side.allergens 
+        ? `<span class="allergens">(${side.allergens})</span>` 
+        : '';
+      opt.innerHTML = `
+        <div class="radio-dot"></div>
+        <div class="name">${sideName}</div>
+        ${allergensTxt}
+      `;
+      opt.onclick = () => selectPizzaOption('side', idx);
+      sidesList.appendChild(opt);
+    });
+    sidesSection.appendChild(sidesList);
+    body.appendChild(sidesSection);
+  }
+  
+  // GUSTI (obbligatorio)
+  const flavorsSection = document.createElement('div');
+  flavorsSection.className = 'pizza-config-section';
+  flavorsSection.innerHTML = `<h4>${currentLang === 'it' ? 'Gusto della pizza' : 'Pizza flavor'}</h4>`;
+  const flavorsList = document.createElement('div');
+  flavorsList.className = 'pizza-config-list';
+  
+  flavorList.forEach((flavor, idx) => {
+    const opt = document.createElement('div');
+    opt.className = 'pizza-config-option';
+    opt.dataset.kind = 'flavor';
+    opt.dataset.idx = idx;
+    const flavorName = currentLang === 'it' ? flavor.name_it : (flavor.name_en || flavor.name_it);
+    const allergensTxt = flavor.allergens 
+      ? `<span class="allergens">(${flavor.allergens})</span>` 
+      : '';
+    opt.innerHTML = `
+      <div class="radio-dot"></div>
+      <div class="name">${flavorName}</div>
+      ${allergensTxt}
+    `;
+    opt.onclick = () => selectPizzaOption('flavor', idx);
+    flavorsList.appendChild(opt);
+  });
+  flavorsSection.appendChild(flavorsList);
+  body.appendChild(flavorsSection);
+  
+  document.getElementById('pizza-config-modal').classList.remove('hidden');
+}
+
+function selectPizzaOption(kind, idx) {
+  // Selezione singola tra le opzioni dello stesso "kind"
+  document.querySelectorAll(`#pizza-config-body .pizza-config-option[data-kind="${kind}"]`).forEach(el => {
+    const elIdx = el.dataset.idx === 'null' ? null : parseInt(el.dataset.idx);
+    el.classList.toggle('selected', elIdx === idx);
+  });
+  if (!pendingPizzaConfig) return;
+  if (kind === 'flavor') pendingPizzaConfig.flavorIdx = idx;
+  if (kind === 'side') pendingPizzaConfig.sideIdx = idx; // può essere null
+}
+
+function confirmPizzaConfig() {
+  if (!pendingPizzaConfig) return;
+  if (pendingPizzaConfig.flavorIdx === null || pendingPizzaConfig.flavorIdx === undefined) {
+    showToast(currentLang === 'it' ? 'Seleziona un gusto pizza' : 'Please select a pizza flavor');
+    return;
+  }
+  pizzaOrders[pendingPizzaConfig.scope].push({
+    flavorIdx: pendingPizzaConfig.flavorIdx,
+    sideIdx: pendingPizzaConfig.sideIdx
+  });
+  document.getElementById('pizza-config-modal').classList.add('hidden');
+  pendingPizzaConfig = null;
+  // Re-render menù per aggiornare la lista pizze sotto la card
+  renderGuestMenu();
+}
+
+function cancelPizzaConfig() {
+  document.getElementById('pizza-config-modal').classList.add('hidden');
+  pendingPizzaConfig = null;
+}
+
+function removePizzaOrder(scope, index) {
+  pizzaOrders[scope].splice(index, 1);
+  renderGuestMenu();
+}
+
+function getDishVariants(catKey, idx) {
+  const k = `${catKey}-${idx}`;
+  if (!dishVariants[k]) dishVariants[k] = { standard: 0, byAllergen: {} };
+  return dishVariants[k];
+}
+
+function getTotalQty(catKey, idx) {
+  const v = getDishVariants(catKey, idx);
+  let total = v.standard;
+  for (const a of Object.keys(v.byAllergen)) total += v.byAllergen[a];
+  return total;
+}
+
+// Stato temporaneo per il modale
+let pendingVariantContext = null; // { catKey, idx, dish, conflictAllergens, selectedExclusions: Set }
+
 function changeQty(cat, idx, delta) {
   const el = document.getElementById(`qty-${cat}-${idx}`);
-  let v = parseInt(el.textContent) + delta;
-  if (v < 0) v = 0;
-  if (v > 20) v = 20;
-  el.textContent = v;
-  const qtyBox = el.parentElement;
-  qtyBox.classList.toggle('active', v > 0);
+  if (!el) return;
+  
+  if (delta < 0) {
+    // Diminuzione: leva 1 dal "primo" disponibile (preferenza: una variante speciale, poi standard)
+    const v = getDishVariants(cat, idx);
+    const allergens = Object.keys(v.byAllergen);
+    if (allergens.length > 0) {
+      // Rimuovi 1 dalla prima variante allergen-free
+      const firstAllerg = allergens[0];
+      v.byAllergen[firstAllerg]--;
+      if (v.byAllergen[firstAllerg] <= 0) delete v.byAllergen[firstAllerg];
+    } else if (v.standard > 0) {
+      v.standard--;
+    } else {
+      return; // niente da rimuovere
+    }
+    refreshDishQtyUI(cat, idx);
+    return;
+  }
+  
+  // Incremento: controlla se ci sono allergeni in conflitto da considerare
+  const dishObj = findDishByCatIdx(cat, idx);
+  if (!dishObj) {
+    // Fallback: comportamento legacy senza varianti
+    const v = getDishVariants(cat, idx);
+    if (getTotalQty(cat, idx) >= 20) return;
+    v.standard++;
+    refreshDishQtyUI(cat, idx);
+    return;
+  }
+  
+  const conflicts = getConflictAllergens(dishObj);
+  if (conflicts.length === 0) {
+    // Nessun conflitto: incremento standard direttamente
+    if (getTotalQty(cat, idx) >= 20) return;
+    const v = getDishVariants(cat, idx);
+    v.standard++;
+    refreshDishQtyUI(cat, idx);
+  } else {
+    // Conflitto: apri il popup di scelta variante
+    openVariantModal(cat, idx, dishObj, conflicts);
+  }
+}
+
+// Trova l'oggetto dish dato cat/idx (supporta sia categorie standard che subsections)
+function findDishByCatIdx(catKey, idx) {
+  const dateKey = getTargetDate();
+  const menu = DB.menus[dateKey] || {};
+  
+  // Prova categoria standard
+  if (menu[catKey] && menu[catKey][idx]) return menu[catKey][idx];
+  
+  // Prova subsection (es. bambini_primi/bambini_secondi)
+  for (const cat of CATEGORIES) {
+    if (cat.type === 'grouped') {
+      for (const sub of cat.subsections) {
+        if (sub.key === catKey) {
+          const dishes = buildSubsectionDishes(menu, sub);
+          if (dishes[idx]) return dishes[idx];
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function refreshDishQtyUI(catKey, idx) {
+  const total = getTotalQty(catKey, idx);
+  const el = document.getElementById(`qty-${catKey}-${idx}`);
+  if (el) {
+    el.textContent = total;
+    const qtyBox = el.parentElement;
+    qtyBox.classList.toggle('active', total > 0);
+  }
+  // Aggiorna breakdown sotto il piatto
+  renderVariantsBreakdown(catKey, idx);
+}
+
+function renderVariantsBreakdown(catKey, idx) {
+  const v = getDishVariants(catKey, idx);
+  const breakdownId = `variants-${catKey}-${idx}`;
+  let breakdownEl = document.getElementById(breakdownId);
+  
+  const allergenKeys = Object.keys(v.byAllergen).filter(a => v.byAllergen[a] > 0);
+  
+  if (allergenKeys.length === 0) {
+    if (breakdownEl) breakdownEl.remove();
+    return;
+  }
+  
+  if (!breakdownEl) {
+    // Crea il breakdown sotto il dish-info del piatto
+    const qtyEl = document.getElementById(`qty-${catKey}-${idx}`);
+    if (!qtyEl) return;
+    const dishEl = qtyEl.closest('.dish');
+    if (!dishEl) return;
+    const dishInfo = dishEl.querySelector('.dish-info');
+    if (!dishInfo) return;
+    breakdownEl = document.createElement('div');
+    breakdownEl.id = breakdownId;
+    breakdownEl.className = 'dish-variants-breakdown';
+    dishInfo.appendChild(breakdownEl);
+  }
+  
+  const rows = allergenKeys.map(a => {
+    const allergenName = allergenNumToLabel(a).toUpperCase();
+    return `<div class="variant-row">
+      <span><strong>${v.byAllergen[a]}×</strong> <span class="no-allergen">SENZA ${allergenName}</span></span>
+      <button class="remove-variant" onclick="removeVariantOne('${catKey}', ${idx}, '${a}')" title="Rimuovi 1">×</button>
+    </div>`;
+  }).join('');
+  breakdownEl.innerHTML = rows;
+}
+
+function removeVariantOne(catKey, idx, allergenNum) {
+  const v = getDishVariants(catKey, idx);
+  if (v.byAllergen[allergenNum]) {
+    v.byAllergen[allergenNum]--;
+    if (v.byAllergen[allergenNum] <= 0) delete v.byAllergen[allergenNum];
+    refreshDishQtyUI(catKey, idx);
+  }
+}
+
+function openVariantModal(catKey, idx, dish, conflictAllergens) {
+  pendingVariantContext = {
+    catKey, idx, dish, conflictAllergens,
+    selectedExclusions: new Set() // allergeni che l'utente sceglie di escludere
+  };
+  
+  const dishName = currentLang === 'it' ? dish.name_it : (dish.name_en || dish.name_it);
+  document.getElementById('variant-modal-dish-name').textContent = dishName;
+  
+  // Titolo dinamico
+  const allergensJoined = conflictAllergens.map(allergenNumToLabel).join(', ');
+  document.getElementById('variant-modal-title').textContent = currentLang === 'it'
+    ? `Hai segnalato un'intolleranza a: ${allergensJoined}`
+    : `You've reported an intolerance to: ${allergensJoined}`;
+  document.getElementById('variant-modal-subtitle').innerHTML = `
+    <span id="variant-modal-dish-name" style="font-family: 'Fraunces', serif; font-size: 16px; color: var(--sea-deep); display: block; margin-bottom: 8px;">${dishName}</span>
+    <span style="font-size: 13px; color: var(--ink-soft);">${currentLang === 'it' ? 'Come preferisci aggiungerlo?' : 'How would you like to add it?'}</span>
+  `;
+  
+  // Costruisci le scelte
+  const choicesEl = document.getElementById('variant-modal-choices');
+  choicesEl.innerHTML = '';
+  
+  // Scelta 1: Standard (il piatto originale, contiene gli allergeni)
+  const standardChoice = document.createElement('div');
+  standardChoice.className = 'variant-choice selected';
+  standardChoice.dataset.choice = 'standard';
+  standardChoice.innerHTML = `
+    <div class="radio-dot"></div>
+    <div class="label">
+      <strong>${currentLang === 'it' ? 'Versione standard' : 'Standard version'}</strong>
+      <div style="font-size: 11px; color: var(--ink-muted); margin-top: 2px;">
+        ${currentLang === 'it' ? 'Contiene' : 'Contains'}: ${allergensJoined}
+      </div>
+    </div>
+  `;
+  standardChoice.onclick = () => selectVariantChoice('standard');
+  choicesEl.appendChild(standardChoice);
+  
+  // Per ogni allergene in conflitto, scelta "senza X"
+  conflictAllergens.forEach(allergenNum => {
+    const allergenName = allergenNumToLabel(allergenNum);
+    const choice = document.createElement('div');
+    choice.className = 'variant-choice';
+    choice.dataset.choice = allergenNum;
+    choice.innerHTML = `
+      <div class="radio-dot"></div>
+      <div class="label">
+        <strong>${currentLang === 'it' ? 'Variante SENZA' : 'Variant WITHOUT'} ${allergenName.toUpperCase()}</strong>
+        <div style="font-size: 11px; color: var(--ink-muted); margin-top: 2px;">
+          ${currentLang === 'it' ? 'Verrà preparato senza questo allergene' : 'Will be prepared without this allergen'}
+        </div>
+      </div>
+    `;
+    choice.onclick = () => selectVariantChoice(allergenNum);
+    choicesEl.appendChild(choice);
+  });
+  
+  document.getElementById('variant-modal').classList.remove('hidden');
+}
+
+function selectVariantChoice(choice) {
+  // Selezione singola (radio)
+  document.querySelectorAll('#variant-modal-choices .variant-choice').forEach(el => {
+    el.classList.toggle('selected', el.dataset.choice === choice);
+  });
+}
+
+function confirmVariant() {
+  if (!pendingVariantContext) return;
+  const { catKey, idx } = pendingVariantContext;
+  const selectedEl = document.querySelector('#variant-modal-choices .variant-choice.selected');
+  if (!selectedEl) return;
+  const choice = selectedEl.dataset.choice;
+  
+  const v = getDishVariants(catKey, idx);
+  if (getTotalQty(catKey, idx) >= 20) {
+    document.getElementById('variant-modal').classList.add('hidden');
+    pendingVariantContext = null;
+    return;
+  }
+  
+  if (choice === 'standard') {
+    v.standard++;
+  } else {
+    // choice è il numero allergene
+    if (!v.byAllergen[choice]) v.byAllergen[choice] = 0;
+    v.byAllergen[choice]++;
+  }
+  
+  refreshDishQtyUI(catKey, idx);
+  document.getElementById('variant-modal').classList.add('hidden');
+  pendingVariantContext = null;
+}
+
+function cancelVariant() {
+  document.getElementById('variant-modal').classList.add('hidden');
+  pendingVariantContext = null;
 }
 
 // ========================================================================
@@ -2416,46 +3241,49 @@ function submitOrder() {
   const items = [];
   
   // Contatori per validazione
-  let adultPrimi = 0, adultMains = 0; // mains = secondi + pizze
+  let adultPrimi = 0, adultMains = 0; // primi = piatti del giorno + pizze (adulti)
   let kidPrimi = 0, kidMains = 0;    // kid mains = secondi bambini + pizze baby
   
   CATEGORIES.forEach(cat => {
     if (cat.kidsOnly && children === 0) return;
     if (cat.toggleable && !menu[`_${cat.key}_enabled`]) return;
     
-    if (cat.type === 'direct') {
-      const qty = parseInt(document.getElementById(`qty-${cat.key}-0`)?.textContent || '0');
-      if (qty > 0) {
-        items.push({
-          category: cat.key,
-          dishName: cat.label_it,
-          dishNameEn: cat.label_en,
-          qty: qty
-        });
-        // Pizze = mains adulti; Pizze Baby = mains bambini
-        if (cat.key === 'pizze') adultMains += qty;
-        if (cat.key === 'pizze_baby') kidMains += qty;
-      }
-      return;
-    }
-    
     if (cat.type === 'grouped') {
       cat.subsections.forEach(sub => {
-        let dishes = [];
-        if (sub.kidsFixed && FIXED_DISHES[sub.key]) dishes = [...FIXED_DISHES[sub.key]];
-        dishes = dishes.concat(menu[sub.key] || []);
+        let dishes = buildSubsectionDishes(menu, sub);
         dishes.forEach((dish, idx) => {
-          const qty = parseInt(document.getElementById(`qty-${sub.key}-${idx}`)?.textContent || '0');
-          if (qty > 0) {
+          const variants = getDishVariants(sub.key, idx);
+          const totalQty = getTotalQty(sub.key, idx);
+          if (totalQty <= 0) return;
+          
+          // Riga standard (se ce ne sono)
+          if (variants.standard > 0) {
             items.push({
               category: sub.key,
               dishName: dish.name_it,
               dishNameEn: dish.name_en || '',
-              qty: qty
+              qty: variants.standard
             });
-            if (sub.key === 'bambini_primi') kidPrimi += qty;
-            if (sub.key === 'bambini_secondi') kidMains += qty;
           }
+          // Una riga per ogni variante allergen-free
+          Object.keys(variants.byAllergen).forEach(allergenNum => {
+            const q = variants.byAllergen[allergenNum];
+            if (q > 0) {
+              const allergenName = allergenNumToLabel(allergenNum);
+              items.push({
+                category: sub.key,
+                dishName: dish.name_it,
+                dishNameEn: dish.name_en || '',
+                qty: q,
+                excludeAllergen: allergenNum,
+                excludeAllergenName: allergenName.toUpperCase()
+              });
+            }
+          });
+          
+          // Conteggi per validazione
+          if (sub.key === 'bambini_primi') kidPrimi += totalQty;
+          if (sub.key === 'bambini_secondi') kidMains += totalQty;
         });
       });
       return;
@@ -2463,19 +3291,74 @@ function submitOrder() {
     
     // standard (primi, secondi, contorni)
     (menu[cat.key] || []).forEach((dish, idx) => {
-      const qty = parseInt(document.getElementById(`qty-${cat.key}-${idx}`)?.textContent || '0');
-      if (qty > 0) {
+      const variants = getDishVariants(cat.key, idx);
+      const totalQty = getTotalQty(cat.key, idx);
+      if (totalQty <= 0) return;
+      
+      // Riga standard
+      if (variants.standard > 0) {
         items.push({
           category: cat.key,
           dishName: dish.name_it,
           dishNameEn: dish.name_en || '',
-          qty: qty
+          qty: variants.standard
         });
-        if (cat.key === 'primi') adultPrimi += qty;
-        if (cat.key === 'secondi') adultMains += qty;
-        // contorni esclusi dal conteggio (non incrementano nulla)
       }
+      // Varianti allergen-free
+      Object.keys(variants.byAllergen).forEach(allergenNum => {
+        const q = variants.byAllergen[allergenNum];
+        if (q > 0) {
+          const allergenName = allergenNumToLabel(allergenNum);
+          items.push({
+            category: cat.key,
+            dishName: dish.name_it,
+            dishNameEn: dish.name_en || '',
+            qty: q,
+            excludeAllergen: allergenNum,
+            excludeAllergenName: allergenName.toUpperCase()
+          });
+        }
+      });
+      
+      // Conteggi per validazione
+      if (cat.key === 'primi') adultPrimi += totalQty;
+      if (cat.key === 'secondi') adultMains += totalQty;
+      // contorni esclusi dal conteggio (non incrementano nulla)
     });
+  });
+
+  // Aggiungi le pizze ordinate (Prima Uscita) come righe separate
+  pizzaOrders.adult.forEach(pizzaOrder => {
+    const flavor = DB.pizzaConfig.adultFlavors[pizzaOrder.flavorIdx];
+    if (!flavor) return;
+    const side = (pizzaOrder.sideIdx !== null && pizzaOrder.sideIdx !== undefined)
+      ? DB.pizzaConfig.sides[pizzaOrder.sideIdx] 
+      : null;
+    items.push({
+      category: 'pizza_adult',
+      dishName: flavor.name_it,
+      dishNameEn: flavor.name_en || '',
+      qty: 1,
+      pizzaSide: side ? side.name_it : null,
+      pizzaSideEn: side ? (side.name_en || side.name_it) : null
+    });
+    adultPrimi++;
+  });
+  pizzaOrders.kid.forEach(pizzaOrder => {
+    const flavor = DB.pizzaConfig.kidFlavors[pizzaOrder.flavorIdx];
+    if (!flavor) return;
+    const side = (pizzaOrder.sideIdx !== null && pizzaOrder.sideIdx !== undefined)
+      ? DB.pizzaConfig.sides[pizzaOrder.sideIdx] 
+      : null;
+    items.push({
+      category: 'pizza_kid',
+      dishName: flavor.name_it,
+      dishNameEn: flavor.name_en || '',
+      qty: 1,
+      pizzaSide: side ? side.name_it : null,
+      pizzaSideEn: side ? (side.name_en || side.name_it) : null
+    });
+    kidPrimi++;
   });
 
   if (items.length === 0) {
@@ -2522,13 +3405,13 @@ function submitOrder() {
   if (adults > 0) {
     if (adultPrimi > adults) {
       exceeded.push({
-        label_it: 'Primi (adulti)', label_en: 'First courses (adults)',
+        label_it: 'Prima Uscita o Pizze (adulti)', label_en: 'First courses or Pizzas (adults)',
         max: adults, got: adultPrimi
       });
     }
     if (adultMains > adults) {
       exceeded.push({
-        label_it: 'Secondi o Pizze (adulti)', label_en: 'Second courses or Pizzas (adults)',
+        label_it: 'Seconda Uscita (adulti)', label_en: 'Second courses (adults)',
         max: adults, got: adultMains
       });
     }
@@ -2536,13 +3419,13 @@ function submitOrder() {
   if (children > 0) {
     if (kidPrimi > children) {
       exceeded.push({
-        label_it: 'Primi Bambini', label_en: 'Kids\' First courses',
+        label_it: 'Prima Uscita Bambini o Pizze Baby', label_en: 'Kids\' First courses or Baby Pizzas',
         max: children, got: kidPrimi
       });
     }
     if (kidMains > children) {
       exceeded.push({
-        label_it: 'Secondi Bambini o Pizze Baby', label_en: 'Kids\' Second courses or Baby Pizzas',
+        label_it: 'Seconda Uscita Bambini', label_en: 'Kids\' Second courses',
         max: children, got: kidMains
       });
     }
@@ -2558,13 +3441,13 @@ function submitOrder() {
   if (adults > 0) {
     if (adultPrimi < adults) {
       missing.push({ 
-        label_it: 'Primi (adulti)', label_en: 'First courses (adults)',
+        label_it: 'Prima Uscita o Pizze (adulti)', label_en: 'First courses or Pizzas (adults)',
         expected: adults, got: adultPrimi 
       });
     }
     if (adultMains < adults) {
       missing.push({ 
-        label_it: 'Secondi o Pizze (adulti)', label_en: 'Second courses or Pizzas (adults)',
+        label_it: 'Seconda Uscita (adulti)', label_en: 'Second courses (adults)',
         expected: adults, got: adultMains 
       });
     }
@@ -2572,13 +3455,13 @@ function submitOrder() {
   if (children > 0) {
     if (kidPrimi < children) {
       missing.push({ 
-        label_it: 'Primi Bambini', label_en: 'Kids\' First courses',
+        label_it: 'Prima Uscita Bambini o Pizze Baby', label_en: 'Kids\' First courses or Baby Pizzas',
         expected: children, got: kidPrimi 
       });
     }
     if (kidMains < children) {
       missing.push({ 
-        label_it: 'Secondi Bambini o Pizze Baby', label_en: 'Kids\' Second courses or Baby Pizzas',
+        label_it: 'Seconda Uscita Bambini', label_en: 'Kids\' Second courses',
         expected: children, got: kidMains 
       });
     }
@@ -2705,6 +3588,11 @@ function resetGuestForm() {
   guests = [];
   hasIntolerances = false;
   filterSafeOnly = false;
+  // Svuota lo stato delle varianti
+  for (const k of Object.keys(dishVariants)) delete dishVariants[k];
+  // Svuota le pizze ordinate
+  pizzaOrders.adult = [];
+  pizzaOrders.kid = [];
   document.getElementById('seg-yes')?.classList.remove('active');
   document.getElementById('seg-no')?.classList.add('active');
   document.getElementById('filter-switch')?.classList.remove('on');
@@ -2754,7 +3642,7 @@ async function logout() {
 // ADMIN
 // ========================================================================
 function showAdminTab(tab) {
-  ['menu','orders','history'].forEach(t => {
+  ['menu','pizza','orders','history'].forEach(t => {
     document.getElementById('tab-' + t).classList.toggle('active', t === tab);
     document.getElementById('admin-' + t).classList.toggle('hidden', t !== tab);
   });
@@ -2772,11 +3660,160 @@ function showAdminTab(tab) {
       renderHistory();
     }
   }
-  if (tab === 'menu') renderDayTabs();
+  if (tab === 'menu') {
+    renderDayTabs();
+    refreshSwitchHourUI();
+  }
+  if (tab === 'pizza') renderPizzaConfigEditor();
 }
 
 function initAdmin() {
   renderDayTabs();
+}
+
+// ========================================================================
+// EDITOR MENÙ PIZZA GLOBALE
+// ========================================================================
+function renderPizzaConfigEditor() {
+  ['adultFlavors', 'kidFlavors', 'sides'].forEach(kind => {
+    const containerId = kind === 'adultFlavors' ? 'pizza-adult-list'
+                      : kind === 'kidFlavors' ? 'pizza-kid-list'
+                      : 'pizza-sides-list';
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    const items = DB.pizzaConfig[kind] || [];
+    if (items.length === 0) {
+      const empty = document.createElement('div');
+      empty.style.cssText = 'padding: 14px; font-size: 12px; color: var(--ink-muted); font-style: italic;';
+      empty.textContent = 'Nessun elemento configurato. Aggiungilo qui sotto.';
+      container.appendChild(empty);
+      return;
+    }
+    items.forEach((item, idx) => {
+      container.appendChild(buildPizzaItemEditor(kind, item, idx));
+    });
+  });
+}
+
+function buildPizzaItemEditor(kind, item, idx) {
+  const de = document.createElement('div');
+  de.className = 'dish-editor';
+  
+  const allergenNums = (item.allergens || '').split(',').map(s => s.trim()).filter(Boolean);
+  let allergenLabel;
+  if (allergenNums.length === 0) {
+    allergenLabel = '<em style="color: var(--ink-muted); font-weight: 400;">Nessun allergene selezionato</em>';
+  } else {
+    const labels = allergenNums.sort((a,b) => parseInt(a)-parseInt(b)).map(num => {
+      const a = ALLERGENS.find(x => x.num === num);
+      return a ? `${num} ${a.it}` : num;
+    });
+    allergenLabel = labels.join(' · ');
+  }
+  
+  de.innerHTML = `
+    <div class="dish-editor-row" style="grid-template-columns: 1fr 1fr;">
+      <input type="text" placeholder="Nome (italiano)" value="${escapeHtml(item.name_it || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_it', this.value)">
+      <input type="text" placeholder="Name (English)" value="${escapeHtml(item.name_en || '')}" oninput="updatePizzaItem('${kind}', ${idx}, 'name_en', this.value)">
+    </div>
+    <div style="margin-top: 10px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 6px;">Allergeni</div>
+      <button class="allergen-picker-btn" onclick="openPizzaItemAllergenPicker('${kind}', ${idx})">
+        <span class="allergen-picker-label">${allergenLabel}</span>
+        <span class="allergen-picker-edit">✎ Modifica</span>
+      </button>
+    </div>
+    <div style="text-align: right; margin-top: 8px;">
+      <button onclick="removePizzaItem('${kind}', ${idx})" style="background: transparent; border: none; color: var(--error); font-size: 12px; cursor: pointer; padding: 4px 8px; font-family: 'Inter', sans-serif;">🗑 Rimuovi</button>
+    </div>
+  `;
+  return de;
+}
+
+async function addPizzaItem(kind) {
+  if (!DB.pizzaConfig[kind]) DB.pizzaConfig[kind] = [];
+  DB.pizzaConfig[kind].push({ name_it: '', name_en: '', allergens: '' });
+  await DB.savePizzaConfig(DB.pizzaConfig);
+  renderPizzaConfigEditor();
+}
+
+let _updatePizzaTimer = null;
+function updatePizzaItem(kind, idx, field, val) {
+  if (!DB.pizzaConfig[kind] || !DB.pizzaConfig[kind][idx]) return;
+  DB.pizzaConfig[kind][idx][field] = val;
+  if (_updatePizzaTimer) clearTimeout(_updatePizzaTimer);
+  _updatePizzaTimer = setTimeout(() => {
+    DB.savePizzaConfig(DB.pizzaConfig);
+  }, 600);
+}
+
+async function removePizzaItem(kind, idx) {
+  if (!confirm('Rimuovere questo elemento dal menù pizza?')) return;
+  DB.pizzaConfig[kind].splice(idx, 1);
+  await DB.savePizzaConfig(DB.pizzaConfig);
+  renderPizzaConfigEditor();
+}
+
+// Stato temporaneo per allergen picker pizza
+let _pizzaPickerCtx = null;
+function openPizzaItemAllergenPicker(kind, idx) {
+  const item = DB.pizzaConfig[kind]?.[idx];
+  if (!item) return;
+  _pizzaPickerCtx = { kind, idx };
+  
+  // Riuso il modale admin-allergen-modal esistente
+  const grid = document.getElementById('admin-allergen-grid');
+  grid.innerHTML = '';
+  const currentSelections = new Set((item.allergens || '').split(',').map(s => s.trim()).filter(Boolean));
+  ALLERGENS.forEach(a => {
+    const chip = document.createElement('div');
+    chip.className = 'allergen-chip' + (currentSelections.has(a.num) ? ' selected' : '');
+    chip.dataset.num = a.num;
+    chip.innerHTML = `<span class="num">${a.num}</span><span class="name">${a.it}</span>`;
+    chip.onclick = () => {
+      chip.classList.toggle('selected');
+    };
+    grid.appendChild(chip);
+  });
+  
+  document.getElementById('admin-allergen-modal-title').textContent = `Allergeni: ${item.name_it || '(senza nome)'}`;
+  // Override save action
+  const modal = document.getElementById('admin-allergen-modal');
+  // Sostituisco temporaneamente il pulsante Salva
+  const saveBtn = modal.querySelector('.btn-primary');
+  const oldOnclick = saveBtn.getAttribute('onclick');
+  saveBtn.setAttribute('onclick', "savePizzaItemAllergens()");
+  saveBtn.dataset.legacyOnclick = oldOnclick;
+  modal.classList.remove('hidden');
+}
+
+async function savePizzaItemAllergens() {
+  if (!_pizzaPickerCtx) {
+    document.getElementById('admin-allergen-modal').classList.add('hidden');
+    return;
+  }
+  const { kind, idx } = _pizzaPickerCtx;
+  const grid = document.getElementById('admin-allergen-grid');
+  const selected = Array.from(grid.querySelectorAll('.allergen-chip.selected'))
+    .map(c => c.dataset.num)
+    .sort((a,b) => parseInt(a)-parseInt(b));
+  
+  if (DB.pizzaConfig[kind]?.[idx]) {
+    DB.pizzaConfig[kind][idx].allergens = selected.join(',');
+    await DB.savePizzaConfig(DB.pizzaConfig);
+    renderPizzaConfigEditor();
+  }
+  
+  // Ripristina il save button al comportamento originale
+  const modal = document.getElementById('admin-allergen-modal');
+  const saveBtn = modal.querySelector('.btn-primary');
+  if (saveBtn.dataset.legacyOnclick) {
+    saveBtn.setAttribute('onclick', saveBtn.dataset.legacyOnclick);
+    delete saveBtn.dataset.legacyOnclick;
+  }
+  _pizzaPickerCtx = null;
+  modal.classList.add('hidden');
 }
 
 function renderDayTabs() {
@@ -2874,21 +3911,7 @@ function renderDayEditor() {
         subHead.textContent = sub.label_it;
         block.appendChild(subHead);
         
-        // Piatti fissi read-only
-        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
-          const fixedInfo = document.createElement('div');
-          fixedInfo.style.cssText = 'background: var(--sea-light); border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 12px; color: var(--sea-deep);';
-          fixedInfo.innerHTML = `<strong style="font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;">Sempre disponibili</strong>`;
-          FIXED_DISHES[sub.key].forEach(d => {
-            const row = document.createElement('div');
-            row.style.cssText = 'padding: 4px 0; display: flex; justify-content: space-between; align-items: center;';
-            row.innerHTML = `<span style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink);">${d.name_it} <span style="color: var(--accent); font-family: 'Inter', sans-serif; font-size: 11px;">(${d.allergens})</span></span><span style="font-size: 10px; color: var(--ink-muted); letter-spacing: 0.05em; text-transform: uppercase;">fisso</span>`;
-            fixedInfo.appendChild(row);
-          });
-          block.appendChild(fixedInfo);
-        }
-        
-        // Piatti variabili della sottosezione
+        // Piatti variabili del giorno (PRIMA)
         const dishes = menu[sub.key] || [];
         const listEl = document.createElement('div');
         dishes.forEach((dish, idx) => {
@@ -2902,6 +3925,40 @@ function renderDayEditor() {
         
         block.appendChild(listEl);
         block.appendChild(addBtn);
+        
+        // Piatti fissi read-only (DOPO i piatti del giorno)
+        if (sub.kidsFixed && FIXED_DISHES[sub.key]) {
+          const fixedInfo = document.createElement('div');
+          fixedInfo.style.cssText = 'background: var(--sea-light); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 12px; color: var(--sea-deep);';
+          fixedInfo.innerHTML = `<strong style="font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;">Sempre disponibili (mostrati dopo i piatti del giorno)</strong>`;
+          FIXED_DISHES[sub.key].forEach(d => {
+            const row = document.createElement('div');
+            row.style.cssText = 'padding: 4px 0; display: flex; justify-content: space-between; align-items: center;';
+            row.innerHTML = `<span style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink);">${d.name_it} <span style="color: var(--accent); font-family: 'Inter', sans-serif; font-size: 11px;">(${d.allergens})</span></span><span style="font-size: 10px; color: var(--ink-muted); letter-spacing: 0.05em; text-transform: uppercase;">fisso</span>`;
+            fixedInfo.appendChild(row);
+          });
+          block.appendChild(fixedInfo);
+        }
+        
+        // Toggle pizza baby (per subsection con supportsPizza)
+        if (sub.supportsPizza) {
+          const pizzaFlagKey = `_pizza_${sub.pizzaScope}_enabled`;
+          const pizzaEnabled = !!menu[pizzaFlagKey];
+          const pizzaToggle = document.createElement('div');
+          pizzaToggle.style.cssText = 'margin-top: 12px; padding: 10px 14px; background: rgba(140,110,74,0.08); border-radius: 8px; display: flex; align-items: center; gap: 10px;';
+          pizzaToggle.innerHTML = `
+            <span style="font-size: 22px;">🍕</span>
+            <div style="flex: 1;">
+              <div style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink);">Pizza Baby in ${sub.label_it.toLowerCase()}</div>
+              <div style="font-size: 11px; color: var(--ink-muted);">L'ospite potrà aggiungere pizze baby configurate</div>
+            </div>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: ${pizzaEnabled ? 'var(--accent-warm)' : 'var(--ink-muted)'}; cursor: pointer;">
+              <input type="checkbox" ${pizzaEnabled ? 'checked' : ''} onchange="togglePizzaCategory('${sub.pizzaScope}', this.checked)" style="width: 16px; height: 16px; accent-color: var(--accent-warm); cursor: pointer;">
+              ${pizzaEnabled ? 'Attiva oggi' : 'Disattivata'}
+            </label>
+          `;
+          block.appendChild(pizzaToggle);
+        }
       });
       editor.appendChild(block);
       return;
@@ -2921,6 +3978,27 @@ function renderDayEditor() {
     
     block.appendChild(listEl);
     block.appendChild(addBtn);
+    
+    // Toggle pizza attiva (solo per categorie che la supportano)
+    if (cat.supportsPizza) {
+      const pizzaFlagKey = `_pizza_${cat.pizzaScope}_enabled`;
+      const pizzaEnabled = !!menu[pizzaFlagKey];
+      const pizzaToggle = document.createElement('div');
+      pizzaToggle.style.cssText = 'margin-top: 12px; padding: 10px 14px; background: rgba(140,110,74,0.08); border-radius: 8px; display: flex; align-items: center; gap: 10px;';
+      pizzaToggle.innerHTML = `
+        <span style="font-size: 22px;">🍕</span>
+        <div style="flex: 1;">
+          <div style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink);">Pizza in ${cat.label_it.toLowerCase()}</div>
+          <div style="font-size: 11px; color: var(--ink-muted);">L'ospite potrà aggiungere pizze configurate (gusto + contorno)</div>
+        </div>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: ${pizzaEnabled ? 'var(--accent-warm)' : 'var(--ink-muted)'}; cursor: pointer;">
+          <input type="checkbox" ${pizzaEnabled ? 'checked' : ''} onchange="togglePizzaCategory('${cat.pizzaScope}', this.checked)" style="width: 16px; height: 16px; accent-color: var(--accent-warm); cursor: pointer;">
+          ${pizzaEnabled ? 'Attiva oggi' : 'Disattivata'}
+        </label>
+      `;
+      block.appendChild(pizzaToggle);
+    }
+    
     editor.appendChild(block);
   });
 }
@@ -2989,6 +4067,89 @@ async function toggleCategory(catKey, enabled) {
   DB.menus[selectedEditorDate][`_${catKey}_enabled`] = enabled;
   await persistCurrentDay();
   renderDayEditor();
+}
+
+// Attiva/disattiva pizze (adulti o baby) per il giorno selezionato
+async function togglePizzaCategory(scope, enabled) {
+  if (!DB.menus[selectedEditorDate]) DB.menus[selectedEditorDate] = {};
+  DB.menus[selectedEditorDate][`_pizza_${scope}_enabled`] = enabled;
+  await persistCurrentDay();
+  renderDayEditor();
+}
+
+// ========================================================================
+// SWITCH HOUR (orario di passaggio al menù del giorno successivo)
+// ========================================================================
+let switchHourUnlocked = false;
+
+function getSwitchHourString() {
+  const h = (DB.generalConfig && typeof DB.generalConfig.switchHour === 'number') 
+    ? DB.generalConfig.switchHour 
+    : 18;
+  const m = (DB.generalConfig && typeof DB.generalConfig.switchMinute === 'number') 
+    ? DB.generalConfig.switchMinute 
+    : 0;
+  return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+}
+
+function refreshSwitchHourUI() {
+  const input = document.getElementById('switch-hour-input');
+  const btn = document.getElementById('switch-hour-lock-btn');
+  if (!input || !btn) return;
+  
+  if (!switchHourUnlocked) {
+    // Stato bloccato: l'input mostra il valore attuale e non è modificabile
+    input.value = getSwitchHourString();
+    input.disabled = true;
+    input.style.background = 'var(--paper)';
+    input.style.borderColor = 'var(--line)';
+    input.style.color = 'var(--ink)';
+    btn.textContent = '🔒';
+    btn.title = 'Sblocca per modificare';
+    btn.style.background = 'var(--sea-deep)';
+  } else {
+    // Stato sbloccato: input modificabile
+    input.disabled = false;
+    input.style.background = '#FFF8E1';
+    input.style.borderColor = 'var(--accent-warm)';
+    input.style.color = 'var(--ink)';
+    btn.textContent = '✓';
+    btn.title = 'Conferma modifica';
+    btn.style.background = 'var(--accent-warm)';
+  }
+}
+
+async function toggleSwitchHourLock() {
+  const input = document.getElementById('switch-hour-input');
+  if (!input) return;
+  
+  if (!switchHourUnlocked) {
+    // Sblocca per modificare
+    switchHourUnlocked = true;
+    refreshSwitchHourUI();
+    input.focus();
+  } else {
+    // Conferma e salva
+    const val = input.value; // formato "HH:MM"
+    if (!val || !/^\d{2}:\d{2}$/.test(val)) {
+      showToast('Inserisci un orario valido');
+      return;
+    }
+    const [hStr, mStr] = val.split(':');
+    const hour = parseInt(hStr);
+    const minute = parseInt(mStr);
+    if (isNaN(hour) || hour < 0 || hour > 23 || isNaN(minute) || minute < 0 || minute > 59) {
+      showToast('Orario non valido');
+      return;
+    }
+    
+    DB.generalConfig.switchHour = hour;
+    DB.generalConfig.switchMinute = minute;
+    await DB.saveGeneralConfig({ switchHour: hour, switchMinute: minute });
+    switchHourUnlocked = false;
+    refreshSwitchHourUI();
+    showToast(`Orario di switch impostato alle ${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')}`);
+  }
 }
 
 async function togglePublish() {
@@ -3168,12 +4329,24 @@ function renderOrders() {
   }
   document.getElementById('stats-grid').innerHTML = statsHtml;
   
-  // Aggregati per piatto
+  // Aggregati per piatto + variante
+  // Chiave include excludeAllergen e pizzaSide: così le varianti sono righe distinte
   const agg = {};
   dayOrders.forEach(o => {
     o.items.forEach(i => {
-      const key = `${i.category}|${i.dishName}`;
-      if (!agg[key]) agg[key] = { category: i.category, name: i.dishName, qty: 0 };
+      const variantKey = i.excludeAllergen ? `|NO_${i.excludeAllergen}` : '';
+      const sideKey = i.pizzaSide ? `|+${i.pizzaSide}` : '';
+      const key = `${i.category}|${i.dishName}${variantKey}${sideKey}`;
+      if (!agg[key]) {
+        agg[key] = { 
+          category: i.category, 
+          name: i.dishName, 
+          qty: 0,
+          excludeAllergen: i.excludeAllergen || null,
+          excludeAllergenName: i.excludeAllergenName || null,
+          pizzaSide: i.pizzaSide || null
+        };
+      }
       agg[key].qty += i.qty;
     });
   });
@@ -3185,13 +4358,21 @@ function renderOrders() {
     aggList.innerHTML = `<div class="empty-state"><div class="icon">🍽️</div><p>Nessuna ordinazione per questa data.</p></div>`;
   } else {
     aggList.innerHTML = '';
-    // Raggruppa per categoria (gestendo anche le sottosezioni del Menù Bambini)
+    // Raggruppa per categoria (gestendo anche le sottosezioni del Menù Bambini e le pizze)
     const allCats = [];
     CATEGORIES.forEach(cat => {
       if (cat.type === 'grouped') {
-        cat.subsections.forEach(sub => allCats.push({ key: sub.key, label: sub.label_it }));
+        cat.subsections.forEach(sub => {
+          allCats.push({ key: sub.key, label: sub.label_it });
+          if (sub.supportsPizza) {
+            allCats.push({ key: `pizza_${sub.pizzaScope}`, label: `🍕 Pizze ${sub.pizzaScope === 'kid' ? 'Baby' : 'Bambini'}` });
+          }
+        });
       } else {
         allCats.push({ key: cat.key, label: cat.label_it });
+        if (cat.supportsPizza) {
+          allCats.push({ key: `pizza_${cat.pizzaScope}`, label: `🍕 Pizze ${cat.pizzaScope === 'adult' ? 'Adulti' : 'Baby'}` });
+        }
       }
     });
     
@@ -3206,9 +4387,16 @@ function renderOrders() {
       catItems.sort((a,b) => b.qty - a.qty).forEach(item => {
         const row = document.createElement('div');
         row.className = 'agg-row';
+        const variantTag = item.excludeAllergenName 
+          ? `<span style="display: inline-block; margin-left: 8px; padding: 2px 8px; background: var(--accent-warm); color: var(--paper); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em;">SENZA ${item.excludeAllergenName}</span>`
+          : '';
+        const sideInfo = item.pizzaSide
+          ? `<div style="font-size: 11px; color: var(--ink-muted); font-style: italic; margin-top: 2px;">+ ${item.pizzaSide}</div>`
+          : '';
         row.innerHTML = `
           <div>
-            <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}</div>
+            <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}${variantTag}</div>
+            ${sideInfo}
             <div class="agg-bar"><div class="agg-fill" style="width: ${(item.qty / maxQty * 100)}%;"></div></div>
           </div>
           <div class="agg-qty">${item.qty}</div>
@@ -3242,7 +4430,12 @@ function renderOrders() {
         if (catItems.length === 0) return;
         itemsHtml += `<div style="font-size: 10px; font-weight: 600; color: var(--ink-muted); letter-spacing: 0.05em; margin-top: 8px; margin-bottom: 3px; text-transform: uppercase;">${allCatsMap[catKey]}</div>`;
         catItems.forEach(i => {
-          itemsHtml += `<div class="order-item"><span class="name">${i.dishName}</span><span class="qty-badge">×${i.qty}</span></div>`;
+          const variantBadge = i.excludeAllergenName
+            ? ` <span style="display: inline-block; margin-left: 4px; padding: 1px 6px; background: var(--accent-warm); color: var(--paper); border-radius: 100px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; vertical-align: middle;">SENZA ${i.excludeAllergenName}</span>`
+            : '';
+          const sideText = i.pizzaSide ? ` <span style="font-style: italic; color: var(--ink-muted); font-size: 11px;">+ ${i.pizzaSide}</span>` : '';
+          const pizzaIcon = (i.category === 'pizza_adult' || i.category === 'pizza_kid') ? '🍕 ' : '';
+          itemsHtml += `<div class="order-item"><span class="name">${pizzaIcon}${i.dishName}${variantBadge}${sideText}</span><span class="qty-badge">×${i.qty}</span></div>`;
         });
       });
       // Alert intolleranze se presenti (versione per-persona)
@@ -3365,8 +4558,17 @@ function renderHistory() {
   filtered.forEach(o => {
     totalPeople += (o.people || 0);
     o.items.forEach(i => {
-      const key = `${i.category}|${i.dishName}`;
-      if (!agg[key]) agg[key] = { category: i.category, name: i.dishName, qty: 0 };
+      const variantKey = i.excludeAllergen ? `|NO_${i.excludeAllergen}` : '';
+      const sideKey = i.pizzaSide ? `|+${i.pizzaSide}` : '';
+      const key = `${i.category}|${i.dishName}${variantKey}${sideKey}`;
+      if (!agg[key]) agg[key] = { 
+        category: i.category, 
+        name: i.dishName, 
+        qty: 0,
+        excludeAllergen: i.excludeAllergen || null,
+        excludeAllergenName: i.excludeAllergenName || null,
+        pizzaSide: i.pizzaSide || null
+      };
       agg[key].qty += i.qty;
     });
   });
@@ -3392,30 +4594,47 @@ function renderHistory() {
     return;
   }
   
-  // Mappa label categorie per sottosezioni + standard + direct
+  // Mappa label categorie per sottosezioni + standard + pizze
   const catLabels = {};
   CATEGORIES.forEach(cat => {
     if (cat.type === 'grouped') {
-      cat.subsections.forEach(sub => { catLabels[sub.key] = sub.label_it; });
+      cat.subsections.forEach(sub => { 
+        catLabels[sub.key] = sub.label_it;
+        if (sub.supportsPizza) {
+          catLabels[`pizza_${sub.pizzaScope}`] = `🍕 Pizze ${sub.pizzaScope === 'kid' ? 'Baby' : 'Bambini'}`;
+        }
+      });
     } else {
       catLabels[cat.key] = cat.label_it;
+      if (cat.supportsPizza) {
+        catLabels[`pizza_${cat.pizzaScope}`] = `🍕 Pizze ${cat.pizzaScope === 'adult' ? 'Adulti' : 'Baby'}`;
+      }
     }
   });
+  // Categorie legacy (compatibilità con ordini precedenti su Firestore)
+  catLabels['pizze'] = '🍕 Pizze (legacy)';
+  catLabels['pizze_baby'] = '🍕 Pizze Baby (legacy)';
   
   // Raggruppo per categoria, piatti ordinati per quantità desc
   list.innerHTML = `<div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 10px;">${totalDishes} piatti totali</div>`;
   
   const allItems = Object.values(agg);
   
-  // Raggruppa per categoria mantenendo ordine CATEGORIES
+  // Raggruppa per categoria mantenendo ordine CATEGORIES (con pizze inserite dopo Prima Uscita)
   const catOrder = [];
   CATEGORIES.forEach(cat => {
     if (cat.type === 'grouped') {
-      cat.subsections.forEach(sub => catOrder.push(sub.key));
+      cat.subsections.forEach(sub => {
+        catOrder.push(sub.key);
+        if (sub.supportsPizza) catOrder.push(`pizza_${sub.pizzaScope}`);
+      });
     } else {
       catOrder.push(cat.key);
+      if (cat.supportsPizza) catOrder.push(`pizza_${cat.pizzaScope}`);
     }
   });
+  // Legacy in coda
+  catOrder.push('pizze', 'pizze_baby');
   
   const maxQty = Math.max(...allItems.map(a => a.qty), 1);
   
@@ -3431,9 +4650,16 @@ function renderHistory() {
     catItems.sort((a,b) => b.qty - a.qty).forEach(item => {
       const row = document.createElement('div');
       row.className = 'agg-row';
+      const variantTag = item.excludeAllergenName 
+        ? `<span style="display: inline-block; margin-left: 8px; padding: 2px 8px; background: var(--accent-warm); color: var(--paper); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em;">SENZA ${item.excludeAllergenName}</span>`
+        : '';
+      const sideInfo = item.pizzaSide
+        ? `<div style="font-size: 11px; color: var(--ink-muted); font-style: italic; margin-top: 2px;">+ ${item.pizzaSide}</div>`
+        : '';
       row.innerHTML = `
         <div>
-          <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}</div>
+          <div style="font-family: 'Fraunces', serif; font-size: 15px;">${item.name}${variantTag}</div>
+          ${sideInfo}
           <div class="agg-bar"><div class="agg-fill" style="width: ${(item.qty / maxQty * 100)}%;"></div></div>
         </div>
         <div class="agg-qty">${item.qty}</div>
@@ -3518,6 +4744,11 @@ DB.onUpdate(() => {
     const activeTab = document.querySelector('.admin-nav button.active')?.id?.replace('tab-', '');
     if (activeTab === 'menu') {
       renderDayTabs(); // include renderDayEditor
+      // Aggiorno UI switch hour solo se NON è in modalità modifica (per non sovrascrivere
+      // il valore che l'utente sta modificando manualmente)
+      if (!switchHourUnlocked) refreshSwitchHourUI();
+    } else if (activeTab === 'pizza') {
+      renderPizzaConfigEditor();
     } else if (activeTab === 'orders') {
       renderOrders();
     } else if (activeTab === 'history') {
@@ -3538,6 +4769,10 @@ Object.assign(window, {
   // Guest form
   changeQty, submitOrder, forceSubmit, closeConfirmModal, resetGuestForm,
   setHasIntolerances, toggleFilterSafe,
+  // Varianti intolleranze
+  cancelVariant, confirmVariant, removeVariantOne,
+  // Pizza configuratore
+  openPizzaModal, selectPizzaOption, confirmPizzaConfig, cancelPizzaConfig, removePizzaOrder,
   // Commensali / intolleranze persona
   removeGuest, openPersonModal, savePersonIntolerances, clearPersonIntolerances,
   onPeopleCountChange,
@@ -3545,7 +4780,11 @@ Object.assign(window, {
   login, logout,
   // Admin menù
   toggleCategory, togglePublish, addDish, updateDish, removeDish,
-  copyFromPreviousWeek, exportQR,
+  copyFromPreviousWeek, exportQR, togglePizzaCategory,
+  toggleSwitchHourLock,
+  // Admin menù pizza
+  addPizzaItem, updatePizzaItem, removePizzaItem,
+  openPizzaItemAllergenPicker, savePizzaItemAllergens,
   // Admin allergeni piatto
   openAdminAllergenPicker, saveAdminAllergens, clearAdminAllergens,
   // Admin ordini e storico
