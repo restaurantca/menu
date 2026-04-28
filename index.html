@@ -1528,7 +1528,8 @@ body.print-mode #print-overlay {
   display: block !important;
   background: white;
   color: #1a1a1a;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Solo font di sistema, niente Google Fonts: la stampa NON deve aspettare il caricamento di rete */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   padding: 28px 32px;
   font-size: 14px;
   max-width: 820px;
@@ -1544,7 +1545,7 @@ body.print-mode::before {
   padding: 10px 16px;
   text-align: center;
   font-size: 13px;
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 99999;
@@ -1565,122 +1566,143 @@ body.print-mode #print-overlay { margin-top: 60px; }
   
   .print-page { max-width: 100%; }
   
-  /* Header compatto: logo piccolo a sinistra */
+  /* Header: logo piccolo a sinistra, info brand a destra in colonna */
   .print-header {
     display: flex;
     align-items: center;
     gap: 14px;
     padding-bottom: 10px;
-    margin-bottom: 18px;
-    border-bottom: 2px solid #286098;
+    margin-bottom: 24px;
   }
   .print-logo {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
     border-radius: 4px;
   }
-  .print-header-text { flex: 1; }
+  .print-header-text {
+    flex: 1;
+  }
   .print-brand {
-    font-size: 8pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #286098;
-    font-weight: 600;
-    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13pt;
+    color: #1a1a1a;
+    font-weight: 400;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: none;
   }
   .print-subtitle {
-    font-family: 'Fraunces', 'Times New Roman', serif;
-    font-size: 14pt;
-    color: #1a1a1a;
-    margin: 2px 0 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12pt;
+    color: #555;
+    font-weight: 400;
+    margin: 0 0 4px 0;
     line-height: 1.2;
   }
   .print-date {
-    font-size: 10pt;
-    color: #555;
-    margin-top: 2px;
-    font-style: italic;
-  }
-  
-  .print-section-title {
-    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     font-size: 17pt;
-    color: #286098;
-    margin: 22px 0 12px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ccc;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0;
     line-height: 1.2;
   }
   
-  .print-stats {
-    display: flex;
-    gap: 24px;
-    font-size: 11pt;
-    margin-bottom: 18px;
-    color: #555;
+  /* Titolo sezione centrato sotto l'header */
+  .print-section-title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 22pt;
+    color: #1a1a1a;
+    font-weight: 700;
+    text-align: center;
+    margin: 8px 0 24px 0;
+    padding: 0;
+    border: none;
+    line-height: 1.2;
   }
-  .print-stats strong { color: #1a1a1a; font-size: 14pt; }
   
-  /* Categorie e piatti più ariosi */
-  .print-cat-block {
+  /* Riga stats grande e ben visibile - dato cruciale */
+  .print-stats {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 17pt;
     margin-bottom: 22px;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .print-stats strong {
+    font-weight: 700;
+    font-size: 17pt;
+  }
+  
+  /* Categorie con titolo grande in bold */
+  .print-cat-block {
+    margin-bottom: 18px;
     page-break-inside: avoid;
   }
   .print-cat-title {
-    font-size: 10pt;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #8C6E4A;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 16pt;
+    color: #1a1a1a;
     font-weight: 700;
-    margin: 18px 0 8px 0;
-    border-bottom: 1px dashed #aaa;
-    padding-bottom: 5px;
+    margin: 16px 0 8px 0;
+    padding: 0;
+    border: none;
+    text-transform: none;
+    letter-spacing: 0;
   }
   
+  /* Piatti grandi e leggibili - dato cruciale */
   .print-table { 
     width: 100%; 
     border-collapse: collapse; 
-    font-size: 13pt;
+    font-size: 14pt;
   }
-  .print-table tr { 
-    border-bottom: 1px dotted #d0d0d0; 
+  .print-table tr {
+    border-bottom: none;
   }
-  .print-table tr:last-child { border-bottom: none; }
   .print-table .print-name {
-    padding: 9px 4px;
-    font-family: 'Fraunces', 'Times New Roman', serif;
-    line-height: 1.3;
+    padding: 6px 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+    line-height: 1.4;
+    color: #1a1a1a;
   }
   .print-table .print-qty {
     text-align: right;
-    padding: 9px 4px;
+    padding: 6px 4px;
     font-weight: 700;
-    font-size: 16pt;
-    width: 60px;
-    color: #286098;
+    font-size: 14pt;
+    width: 50px;
+    color: #1a1a1a;
   }
   
+  /* Tag SENZA in linea con il nome */
   .print-variant {
-    display: inline-block;
-    padding: 2px 8px;
-    background: #8C6E4A;
-    color: white;
-    border-radius: 100px;
-    font-size: 9pt;
+    display: inline;
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+    border-radius: 0;
+    font-size: 14pt;
     font-weight: 700;
     letter-spacing: 0.05em;
-    margin-left: 8px;
-    vertical-align: middle;
-    font-family: 'Inter', sans-serif;
+    margin-left: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
   }
   .print-side {
-    font-size: 10pt;
-    color: #777;
+    font-size: 12pt;
+    color: #555;
     font-style: italic;
-    margin-top: 3px;
+    margin-top: 2px;
   }
-  .print-side-inline { color: #777; font-style: italic; font-size: 11pt; }
+  .print-side-inline { 
+    color: #555; 
+    font-style: italic; 
+    font-size: 12pt; 
+  }
   
   /* Card famiglia */
   .print-family-card {
@@ -1699,40 +1721,39 @@ body.print-mode #print-overlay { margin-top: 60px; }
     margin-bottom: 8px;
   }
   .print-family-head strong {
-    font-size: 14pt;
-    color: #286098;
-    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-size: 16pt;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   }
   .print-family-meta {
-    font-size: 10pt;
-    color: #777;
+    font-size: 13pt;
+    color: #555;
   }
   .print-intol {
     background: #fff5f5;
     border-left: 3px solid #A13C3C;
     padding: 8px 12px;
     margin-bottom: 8px;
-    font-size: 11pt;
+    font-size: 12pt;
     color: #6a1f1f;
     border-radius: 3px;
   }
   .print-intol strong { display: block; margin-bottom: 3px; }
   .print-table-family { 
     width: 100%; 
-    font-size: 12pt;
+    font-size: 14pt;
     border-collapse: collapse;
   }
   .print-table-family td { 
-    padding: 6px 4px; 
-    border-bottom: 1px dotted #eee; 
+    padding: 6px 4px;
   }
-  .print-table-family tr:last-child td { border-bottom: none; }
   .print-table-family .print-qty {
     text-align: right;
     font-weight: 700;
     width: 50px;
-    color: #286098;
-    font-size: 13pt;
+    color: #1a1a1a;
+    font-size: 14pt;
   }
   
   .print-pagebreak { page-break-before: always; }
@@ -5120,7 +5141,7 @@ function closePrintChoice() {
   document.getElementById('print-choice-modal').classList.add('hidden');
 }
 
-function doPrint(mode) {
+async function doPrint(mode) {
   _printMode = mode;
   isPrinting = true;
   document.getElementById('print-choice-modal').classList.add('hidden');
@@ -5131,8 +5152,6 @@ function doPrint(mode) {
   document.body.dataset.printMode = mode;
   
   // Pulizia: avviene SOLO quando il dialog di stampa si chiude.
-  // Niente timeout di fallback perché aprivano il rischio di pulire prima
-  // che il browser abbia avuto tempo di aprire il dialog (alcuni browser sono lenti).
   const cleanup = () => {
     document.body.classList.remove('print-mode');
     document.body.dataset.printMode = '';
@@ -5142,6 +5161,17 @@ function doPrint(mode) {
     window.removeEventListener('afterprint', cleanup);
   };
   window.addEventListener('afterprint', cleanup);
+  
+  // IMPORTANTE: aspetto che document.fonts sia ready (con timeout di sicurezza 500ms)
+  // Senza questo, alcuni browser (es. Chrome) aspettano fino a 60 secondi prima di
+  // mostrare il dialog di stampa, perché vogliono garantire che i font siano caricati.
+  // Il print overlay usa solo font di sistema, quindi non c'è davvero da aspettare.
+  try {
+    await Promise.race([
+      document.fonts.ready,
+      new Promise(resolve => setTimeout(resolve, 500))
+    ]);
+  } catch (e) { /* ignore */ }
   
   // Chiamata sincrona a window.print()
   window.print();
